@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" xml:space="preserve">
+<style type="text/css">
+	.st0 {
+		fill:#FFC100;
+	}
+	#rotate {
+	  animation-name: girar;
+	  animation-duration: 5s;
+	  animation-iteration-count: infinite;
+	  transform-origin: 100px 100px;
+	}
+	@keyframes girar {
+	  0% {
+			transform: rotate(0deg);
+	  }
+	  50% {
+			transform: rotate(360deg);
+	  }
+	}
+</style>
+<g>
+	<path id="rotate" class="st0" d="M100,14.7l85.8,85.8L100,186.3l-85.8-85.8L100,14.7 M100,2L1.5,100.5L100,199l98.5-98.5L100,2L100,2z"/>
+</g>
+</svg>

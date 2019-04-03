@@ -1,0 +1,10 @@
+SetEnvIf Request_URI ^.*$ VIEWS=v
+SetEnvIf Request_URI ^.*$ PARTS=common-html
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.+)\/(.+)(\/)?$ index.php?controller=$1&action=$2 [QSA]
+
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
