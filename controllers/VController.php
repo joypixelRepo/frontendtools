@@ -16,10 +16,10 @@ class VController extends ApplicationController {
     $this->options = new Options();
     if($this->options->loadOptions()['maintenance'] == 'on') {
       if(!parent::session() && !$this->options->maintenance_ips()) {
-      	if(!isset($_GET['action']) || empty($_GET['action'])) {
-      		$_GET['action'] = '';
-      	}
-      	if($_GET['action'] != 'sign_in' && $_GET['action'] != 'sign_up') {
+        if(!isset($_GET['action']) || empty($_GET['action'])) {
+          $_GET['action'] = '';
+        }
+        if($_GET['action'] != 'sign_in' && $_GET['action'] != 'sign_up') {
           self::maintenance();
         }
       }
@@ -80,6 +80,13 @@ class VController extends ApplicationController {
   }
 
   public function exec() {
+
+    $file = $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/iframes/page'.$_GET['id'].'.php';
+    $entry = $this->view->loadEntry($_GET['id']);
+    if (!empty($entry) && !file_exists($file)) {
+      parent::createIframe($entry);
+    }
+
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
@@ -109,7 +116,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
-      	self::printCss('/assets/css/custom/home.css'),
+        self::printCss('/assets/css/custom/home.css'),
       ]
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -135,7 +142,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
-      	self::printCss('/assets/css/authentication.css'),
+        self::printCss('/assets/css/authentication.css'),
         self::printCss('/assets/css/custom/autentication.css'),
       ]
     ]);
@@ -187,12 +194,12 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
-    	'user' => $this->user->getUserData(),
+      'user' => $this->user->getUserData(),
       'avatars' => self::renderAvatars(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-    	'scripts' => [
-    		self::printScript('/assets/bundles/knob.bundle.js'),
+      'scripts' => [
+        self::printScript('/assets/bundles/knob.bundle.js'),
         self::printScript('/assets/js/pages/charts/jquery-knob.js'),
         self::printScript('/assets/js/custom/profile.js'),
       ]
@@ -263,9 +270,9 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
-      	self::printCss('/assets/plugins/ion-rangeslider/css/ion.rangeSlider.css'),
-      	self::printCss('/assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css'),
-      	self::printCss('/assets/css/custom/rem.css')
+        self::printCss('/assets/plugins/ion-rangeslider/css/ion.rangeSlider.css'),
+        self::printCss('/assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css'),
+        self::printCss('/assets/css/custom/rem.css')
       ]
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -276,11 +283,11 @@ class VController extends ApplicationController {
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-    	'scripts' => [
-    		self::printScript('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js'),
-    		self::printScript('/assets/js/pages/ui/range-sliders.js'),
-    		self::printScript('/assets/js/custom/rem.js')
-    	]
+      'scripts' => [
+        self::printScript('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js'),
+        self::printScript('/assets/js/pages/ui/range-sliders.js'),
+        self::printScript('/assets/js/custom/rem.js')
+      ]
     ]);
     die;
   }
@@ -289,8 +296,8 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
-      	self::printCss('/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css'),
-      	self::printCss('/assets/css/custom/gradient_generator.css')
+        self::printCss('/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css'),
+        self::printCss('/assets/css/custom/gradient_generator.css')
       ]
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -301,10 +308,10 @@ class VController extends ApplicationController {
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-    	'scripts' => [
-    		self::printScript('/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'),
-    		self::printScript('/assets/js/custom/gradient_generator.js')
-    	]
+      'scripts' => [
+        self::printScript('/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'),
+        self::printScript('/assets/js/custom/gradient_generator.js')
+      ]
     ]);
     die;
   }
@@ -321,9 +328,9 @@ class VController extends ApplicationController {
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-    	'scripts' => [
-    		self::printScript('/assets/js/custom/text_generator.js')
-    	]
+      'scripts' => [
+        self::printScript('/assets/js/custom/text_generator.js')
+      ]
     ]);
     die;
   }
@@ -349,11 +356,11 @@ class VController extends ApplicationController {
   }
 
   public function printCss($url) {
-  	return '<link rel="stylesheet" href="'.$url.'">';
+    return '<link rel="stylesheet" href="'.$url.'">';
   }
 
   public function printScript($url) {
-  	return '<script src="'.$url.'"></script>';
+    return '<script src="'.$url.'"></script>';
   }
 
   private function returnGet($get) {
