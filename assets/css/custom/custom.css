@@ -14,6 +14,13 @@ a:focus {
 }
 .sidebar .user-info .image img {
 	background: #ffffffa1;
+	-webkit-transition: all .08s ease-out;
+	-moz-transition: all .08s ease-out;
+	-o-transition: all .08s ease-out;
+	transition: all .08s ease-out;
+}
+.sidebar .user-info .image img:hover {
+	transform: scale(1.05);
 }
 .bg-custom {
 	background: linear-gradient(60deg, #ffc107, #e2aa04);
