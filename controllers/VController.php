@@ -350,11 +350,11 @@ class VController extends ApplicationController {
   }
 
   public function printCss($url) {
-  	return '<link rel="stylesheet" href="'.$url.'">';
+  	return '<link rel="stylesheet" href="'.$url.'?v='. hash('md5', time()) .'">';
   }
 
   public function printScript($url) {
-  	return '<script src="'.$url.'"></script>';
+  	return '<script src="'.$url.'?v='. hash('md5', time()) .'"></script>';
   }
 
   private function returnGet($get) {

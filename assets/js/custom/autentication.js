@@ -40,7 +40,7 @@ $('#sign_in').on('submit', function(e){
 	}
 	if(!conditions.prop('checked')) {
 		errors.push(conditions.attr('name'));
-		errorTxt.push('Debes aceptar las condiciones generales.');
+		errorTxt.push('Debes aceptar las condiciones generales de uso.');
 	}
 
 	// check errors
