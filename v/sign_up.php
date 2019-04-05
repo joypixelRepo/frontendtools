@@ -15,7 +15,7 @@
                 </div>
                 <form class="col-lg-12" id="sign_in" method="POST" action="/user/sign_up">
                     <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">
-                    <input type="hidden" name="avatar" value="" required>
+                    <input type="hidden" name="avatar" value="" >
                     <h5 class="title">Registro de nuevo usuario</h5>
                     <?php if(isset($_GET['e'])) { ?>
                     <div class="alert alert-danger mt-3">
@@ -23,12 +23,22 @@
                     </div>
                     <?php } ?>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" name="full-name" class="form-control" required>
+                                    <label class="form-label">Nombre y apellidos</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" name="user" class="form-control" required>
+                                    <input type="text" name="user" class="form-control" minlength="3" maxlength="20" required>
                                     <label class="form-label">Nombre de usuario</label>
                                 </div>
                             </div>
@@ -64,7 +74,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <span class="title">Elije tu avatar</span>
+                            <span class="title">Elige un avatar</span>
                         </div>
                         <div class="col-12">
                             <div class="avatars">
@@ -78,12 +88,13 @@
                     
                     
                     <div>
-                        <input type="checkbox" name="conditions" id="conditions" class="filled-in chk-col-amber" required>
+                        <input type="checkbox" name="conditions" id="conditions" class="filled-in chk-col-amber">
                         <label for="conditions">Acepto las <a href="#">condiciones generales de uso</a>.</label>
                     </div>
                     <div class="col-lg-12">
                         <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="Registrarme">
                     </div>
+                    <div class="col-lg-12" id="errors"></div>
                 </form>
                 <div class="col-lg-12 m-t-20">
                     <a href="/<?= $_SERVER['VIEWS'] ?>/sign_in">Ya estoy registrado</a>

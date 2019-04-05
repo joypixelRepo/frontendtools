@@ -30,6 +30,8 @@ function changeImage(img) {
     	if(response == 'ok') {
 	    	effectOut(img);
 	    	effectIn(img);
+    	} else {
+    		alert('Operación no permitida.');
     	}
     }
 	});

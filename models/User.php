@@ -17,13 +17,27 @@ class User {
     }
   }
 
-  public function changeImage() {
-    $sql = 'UPDATE login SET image = ? WHERE user = ?';
-    $vars = [$_GET['image'], self::getUserData()['user']];
+  public function sign_up() {
+    $sql = 'INSERT INTO login SET user = ?, email = ?, password = ?, name = ?, image = ?, rol = ?, active = ?';
+    $vars = [$_POST['user'], $_POST['email'], self::encrypt($_POST['password']), $_POST['full-name'], $_POST['avatar'], 'user', 1];
     $res = $this->db->query($sql, $vars)->rowCount();
 
     if($res == 1) {
-      echo 'ok';
+      return true;
+    }
+  }
+
+  public function changeImage() {
+    if(file_exists($_SERVER['DOCUMENT_ROOT'].$_GET['image'])) {
+      $sql = 'UPDATE login SET image = ? WHERE user = ?';
+      $vars = [$_GET['image'], self::getUserData()['user']];
+      $res = $this->db->query($sql, $vars)->rowCount();
+
+      if($res == 1) {
+        echo 'ok';
+      }
+    } else {
+      echo 'no_image';
     }
   }
 

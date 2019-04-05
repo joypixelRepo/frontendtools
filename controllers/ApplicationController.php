@@ -1,22 +1,22 @@
 <?php
 class ApplicationController {
 
-  protected function render($view, $vars = []) {
+	protected function render($view, $vars = []) {
     if (file_exists($view)) {
       extract($vars);
-      include($view);
+	    include($view);
     } else {
-      echo "<script>console.log('El archivo ".$view." no existe'"."\n".");</script>";
+    	echo "<script>console.log('El archivo ".$view." no existe'"."\n".");</script>";
     }
-  }
+	}
 
-  protected function session() {
-    if(!empty(session_id()) && isset($_SESSION['id']) && $_SESSION['id'] === 'aR_3vG_88KlpZ') {
-      return true;
-    }
-  }
+	protected function session() {
+		if(!empty(session_id()) && isset($_SESSION['id']) && $_SESSION['id'] === 'aR_3vG_88KlpZ') {
+			return true;
+		}
+	}
 
-  protected function unique_multidim_array($array, $key) {
+	protected function unique_multidim_array($array, $key) {
     $temp_array = [];
     $i = 0;
     $key_array = [];
@@ -39,8 +39,6 @@ class ApplicationController {
   }
 
   protected function createIframe($entry) {
-    if(isset($entry['executable']) && $entry['executable']) {
-
 $html = 
 '<!DOCTYPE html>
 <html>
@@ -60,11 +58,10 @@ $html =
 </body>
 </html>';
 
-      $file = $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/iframes/page'.$entry['id'].'.php';
-      $handle = fopen($file,'w+');
-      fwrite($handle,$html);
-      fclose($handle); 
-    }
+    $file = $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/iframes/page'.$entry['id'].'.php';
+    $handle = fopen($file,'w+');
+    fwrite($handle,$html);
+    fclose($handle);
 
     return true;
   }

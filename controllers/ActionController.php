@@ -57,5 +57,10 @@ class ActionController {
     $this->view->results($results);
   }
 
+  public function searchByUser() {
+    $results = $this->action->searchByUser();
+    $this->view->results($results);
+  }
+
   public function __destruct() {}
 }

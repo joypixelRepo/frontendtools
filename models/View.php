@@ -39,7 +39,7 @@ class View extends ApplicationController {
       $limit = ' LIMIT '.$limitNumber;
     }
 
-    $sql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id '.$where.' GROUP BY entries.id ORDER BY entries.id DESC '.$limit;
+    $sql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id INNER JOIN login ON login.user = entries.creator '.$where.' GROUP BY entries.id ORDER BY entries.id DESC '.$limit;
 
     $entries = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 

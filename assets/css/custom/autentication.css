@@ -1,6 +1,11 @@
 body {
     line-height: 0;
 }
+#errors {
+	margin: 15px 0;
+	color: red;
+	font-size: 12px;
+}
 .authentication {
     line-height: 1;
 }

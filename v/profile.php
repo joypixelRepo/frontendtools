@@ -6,7 +6,7 @@
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="profile-image float-md-right">
                         <a href="#" id="editImage">
-                            <img src="<?= $user['image'] ?>" alt="profile-img" data-toggle="tooltip" data-placement="bottom" title="Cambiar avatar">
+                            <img src="<?= $user['image'] ?>" alt="profile-img">
                         </a>
                     </div>
                 </div>

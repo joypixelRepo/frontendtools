@@ -38,7 +38,7 @@
 		</div>
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
-			<li class="hidden-sm-down"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode" title="Añadir nuevo código útil"><i class="zmdi zmdi-code"></i></a></li>
+			<li class="hidden-sm-down"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode" title="Crear entrada"><i class="zmdi zmdi-code"></i></a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i>
@@ -72,7 +72,9 @@
 		</li>
 		<?php if($session) { ?>
 			<li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Cerrar sesión" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a></li>
+			<? if($user['rol'] == 'admin') { ?>
 			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings"></i></a></li>
+			<? } ?>
 		<?php } else { ?>
 			<li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Iniciar sesión" class="mega-menu" data-close="true"><i class="zmdi zmdi-sign-in"></i></a></li>
 		<?php } ?>
@@ -113,7 +115,7 @@
 	<!-- Menu -->
 	<div class="menu">
 		<ul class="list">
-			<li class="header">ELIGE OPCIÓN</li>
+			<li class="header">MENÚ PRINCIPAL</li>
 
 			<li><a id="dashboardLink" href="/"><i class="zmdi zmdi-home"></i><span>Inicio</span> </a></li>
 

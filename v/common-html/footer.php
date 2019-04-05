@@ -5,7 +5,7 @@
 		      <div class="col-lg-12">
 		          <div class="card">
 		              <div class="body">
-		                  <p class="m-b-0">© <?= date('Y') ?> Front-End Tools by <a href="//joypixel.com/" target="_blank">Joypixel</a></p>
+		                  <p class="m-b-0">Copyright © 2018 - <?= date('Y') ?> Frontendtools.net. All rights reserved. By <a href="//joypixel.com/" target="_blank">joypixel</a>.</p>
 		              </div>
 		          </div>
 		      </div>

@@ -8,12 +8,14 @@
             if(!empty($entry[0])) { ?>
               <div class="float-right">
               	<?php if($session) { ?>
-                <a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry[0]['id']?>" title="Editar">
-                  <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">edit</i> </button>
-                </a>
-                <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry[0]['id']?>" title="Eliminar">
-                  <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">delete</i> </button>
-                </a>
+                  <? if($user['user'] == $entry[0]['creator']) { ?>
+                  <a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry[0]['id']?>" title="Editar">
+                    <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">edit</i> </button>
+                  </a>
+                  <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry[0]['id']?>" title="Eliminar">
+                    <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">delete</i> </button>
+                  </a>
+                  <? } ?>
                 <?php } ?>
                 <?php if($entry[0]['executable']) { ?>
                 <a href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry[0]['id'] ?>.php" title="Pantalla completa" target="_blank">
@@ -32,7 +34,7 @@
                 </div>
               </div>
 
-              <a href="#" class="creator col-grey"><?= $entry[0]['creator'] ?></a>
+              <a href="/action/searchByUser?creator=<?= $entry[0]['creator'] ?>" class="creator col-grey"><?= $entry[0]['creator'] ?></a>
               
               <h2><?= html_entity_decode($entry[0]['title'], ENT_QUOTES | ENT_HTML5) ?></h2>
               

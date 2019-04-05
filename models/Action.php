@@ -154,6 +154,29 @@ class Action extends ApplicationController {
     }
   }
 
+  public function searchByUser() {
+    $where = '';
+    if(!empty($_GET['creator'])) {
+      $where = 'WHERE entries.creator = "'.$_GET['creator'].'" ';
+
+      $sql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id '.$where;
+
+      $sql .= ' GROUP BY entries.id ORDER BY entries.id DESC';
+
+      $entries = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+      // delete duplicated entries
+      //$entries = parent::unique_multidim_array($entries, 'id');
+      // push categories into entries
+      $entries = parent::pushCategories($entries, $this->db);
+
+      if($entries) {
+        return $entries;
+      }
+    }
+    return null;
+  }
+
   public function __destruct() {}
 
 }

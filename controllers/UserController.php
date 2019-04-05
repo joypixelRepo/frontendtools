@@ -20,6 +20,12 @@ class UserController {
     }
   }
 
+  public function sign_up() {
+    if($this->user->sign_up()) {
+      die('usuario creado.');
+    }
+  }
+
   public function sign_out() {
     session_destroy();
     $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';

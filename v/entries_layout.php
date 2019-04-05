@@ -43,8 +43,8 @@ if(!empty($entries)) {
 						<hr>
 						<div class="row">
 							<div class="col-7">
-								<div class="font-11">
-									<a href="#" class="col-grey"><?= $entry['creator'] ?></a>
+								<div class="font-11 entry-creator">
+									<a href="/action/searchByUser?creator=<?= $entry['creator'] ?>" class="col-grey"><?= $entry['creator'] ?></a>
 								</div>
 							</div>
 							<div class="col-5">

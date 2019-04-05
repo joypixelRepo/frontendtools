@@ -14,13 +14,6 @@ a:focus {
 }
 .sidebar .user-info .image img {
 	background: #ffffffa1;
-	-webkit-transition: all .08s ease-out;
-	-moz-transition: all .08s ease-out;
-	-o-transition: all .08s ease-out;
-	transition: all .08s ease-out;
-}
-.sidebar .user-info .image img:hover {
-	transform: scale(1.05);
 }
 .bg-custom {
 	background: linear-gradient(60deg, #ffc107, #e2aa04);
@@ -211,6 +204,12 @@ a:focus {
 }
 .entry-box iframe {
 	overflow: hidden;
+}
+.entry-box .entry-creator {
+	font-size: 11px;
+}
+.entry-box .entry-creator a:hover {
+	text-decoration: underline;
 }
 .code-description .no-description {
 	color: #ccc;
@@ -427,9 +426,10 @@ a.creator:focus {
 	display: inline-block;
 }
 .avatars img {
-	width: 37px;
-	height: 37px;
+	width: 44px;
+	height: 44px;
 	margin: 3px;
+	border-radius: 50%;
 }
 .avatars a:hover {
 	animation-name: pulseZoom;
@@ -476,4 +476,12 @@ a.creator:focus {
   100% {
 	transform: scale(1);
   }
+}
+.entry_user_image {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+.form-label.error {
+	color: red !important;
 }
