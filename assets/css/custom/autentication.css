@@ -1,0 +1,23 @@
+body {
+    line-height: 0;
+}
+#errors {
+	margin: 15px 0;
+	color: red;
+	font-size: 12px;
+}
+.authentication {
+    line-height: 1;
+}
+.authentication .card {
+    margin-top: 120px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.authentication.authentication-big .card {
+	max-width: 680px;
+}
