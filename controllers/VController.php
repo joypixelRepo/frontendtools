@@ -39,12 +39,6 @@ class VController extends ApplicationController {
     }
   }
 
-  public function entryBelongsToTheUser($entryId) {
-    if(!$this->user->entryBelongsToTheUser($entryId)) {
-      header('Location: /v/identify');
-    }
-  }
-
   public function identify() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session()
@@ -288,7 +282,7 @@ class VController extends ApplicationController {
 
   public function edit() {
     self::sessionActive();
-    self::entryBelongsToTheUser($_GET['id']);
+    $this->user->entryBelongsToTheUser($_GET['id']);
     if(!isset($_GET['type']) || !isset($_GET['id'])) {
       die('No se han recibido todos los parametros para poder realizar la operación solicitada.');
     }

@@ -66,26 +66,53 @@
 										</div>
 									</div>
 									<div class="row box-codes">
-										<div class="col-lg-4 col-12">
+										<div class="col-lg-4 col-12" data-full="full-html">
 											<div class="form-group mb-2">
 												<div class="form-line">
-													<h6>HTML</h6>
+													<div class="row">
+														<div class="col-6">
+															<h6>HTML</h6>
+														</div>
+														<div class="col-6">
+															<div class="float-right">
+																<a href="#" id="full-html"><i class="material-icons">aspect_ratio</i></a>
+															</div>
+														</div>
+													</div>
 													<textarea id="box_html" name="html" autocomplete="off"><?= $entry[0]['html'] ?></textarea>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-4 col-12">
+										<div class="col-lg-4 col-12" data-full="full-css">
 											<div class="form-group mb-2">
 												<div class="form-line">
-													<h6>CSS</h6>
+													<div class="row">
+														<div class="col-6">
+															<h6>CSS</h6>
+														</div>
+														<div class="col-6">
+															<div class="float-right">
+																<a href="#" id="full-css"><i class="material-icons">aspect_ratio</i></a>
+															</div>
+														</div>
+													</div>
 													<textarea id="box_css" name="css" autocomplete="off"><?= $entry[0]['css'] ?></textarea>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-4 col-12">
+										<div class="col-lg-4 col-12" data-full="full-js">
 											<div class="form-group mb-2">
 												<div class="form-line">
-													<h6>JavaScript</h6>
+													<div class="row">
+														<div class="col-6">
+															<h6>JavaScript</h6>
+														</div>
+														<div class="col-6">
+															<div class="float-right">
+																<a href="#" id="full-js"><i class="material-icons">aspect_ratio</i></a>
+															</div>
+														</div>
+													</div>
 													<textarea id="box_js" name="javascript" autocomplete="off"><?= $entry[0]['javascript'] ?></textarea>
 												</div>
 											</div>

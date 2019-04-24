@@ -12,7 +12,7 @@
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div><!-- Search  -->
 <div class="search-bar">
-	<form id="search-form" action="/" method="GET">
+	<form class="search-form" action="/" method="GET">
 		<div class="search-icon"> <i class="material-icons">search</i> </div>
 		<input type="text" name="keys" placeholder="Explora en Front End Tools..." autocomplete="off">
 		<div class="close-search"> <i class="material-icons">close</i> </div>
@@ -64,20 +64,19 @@
 				<li class="footer"> <a href="/<?= $_SERVER['VIEWS'] ?>/util">Ver todas las categorías</a> </li>
 			</ul>
 		</li>
-		<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
 		<li>
 			<a href="#" onclick="toggleFullscreen();" class="hidden-sm-down">
 				<i class="material-icons">fullscreen</i>                  
 			</a>
 		</li>
 		<?php if($session) { ?>
-			<li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Cerrar sesión" class="mega-menu" data-close="true"><i class="material-icons">exit_to_app</i></a></li>
 			<? if($user['rol'] == 'admin') { ?>
 			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons">settings</i></a></li>
 			<? } ?>
 		<?php } else { ?>
 			<li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Iniciar sesión" class="mega-menu" data-close="true"><i class="material-icons">person</i></a></li>
 		<?php } ?>
+			<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
 	</ul>
 </div>
 </nav>
@@ -121,6 +120,7 @@
 
 			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Extractos de código</span> </a>
 				<ul class="ml-menu">
+					<li class="li-categories"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode"><img class="category-image rotate" src="/assets/images/new.svg"><span>Nueva entrada</span> </a> </li>
 					<?php foreach ($categories as $category) { ?>
 						<li class="li-categories"><a href="/?c=<?= $category['descriptive_name'] ?>"><img class="category-image" src="<?= $category['category_logo'] ?>"><span><?= $category['category_name'] ?></span> </a> </li>
 					<?php } ?>

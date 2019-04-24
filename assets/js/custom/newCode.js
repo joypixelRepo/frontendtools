@@ -51,6 +51,23 @@ form.on('submit', function(e){
 	}
 });
 
+$('#full-html, #full-css, #full-js').on('click', function(e){
+	e.preventDefault();
+
+	const dataFull = $('body').find('*[data-full="'+$(this).attr('id')+'"]');
+	const codeMirror = dataFull.find('.CodeMirror');
+
+	if(!dataFull.hasClass('full-screen')) {
+		dataFull.removeClass('col-lg-4, col-12');
+		dataFull.addClass('full-screen');
+		codeMirror.height(500);
+	} else {
+		dataFull.addClass('col-lg-4, col-12');
+		dataFull.removeClass('full-screen');
+		codeMirror.height(300);
+	}
+})
+
 
 // $("form#edit-entry-form :input").change(function() {
 // 	//console.log('Form change detect');

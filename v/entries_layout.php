@@ -17,8 +17,20 @@ if(!empty($entries)) {
 				<div class="body entry-box">
 					<div class="float-right box-btn-view">
             <a href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>" title="Ver entrada">
-              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">remove_red_eye</i> </button>
+              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">remove_red_eye</i> </button>
             </a>
+
+
+            <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
+            <a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar">
+              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">edit</i> </button>
+            </a>
+            <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar">
+              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">delete</i> </button>
+            </a>
+            <? } ?>
+
+
           </div>
 					<? if($entry['executable']) { ?>
 						<? if(!empty($entry['screenshot'])) { ?>
@@ -86,24 +98,34 @@ if(!empty($entries)) {
 		}
 	}
 	$prevPage = $actualPage-1 >= 1 ? $actualPage-1 : 1;
-	$nextPage = $actualPage+1 >= 2 ? $actualPage+1 : 2;
+	$nextPage = $actualPage+1 >= 2 ? $actualPage+1 : 1;
 	?>
+
+
 
 	<div class="col-12">
 		<ul class="pagination pagination-md entries-pagination">
+
 			<li class="page-item">
 				<a class="page-link" href="<?= $url.'page=1' ?>"><< Primera</a>
 			</li>
+
 			<li><a class="page-link" href="<?= $url.'page='.$prevPage ?>"><</a></li>
 			<? for ($i=1; $i<$totalPages+1; $i++) { ?>
 				<li class="page-item"><a class="page-link <?= $actualPage == $i ? 'active' : '' ?>" href="<?= $url.'page='.$i ?>"><?= $i ?></a></li>
 			<? } ?>
+
 			<li><a class="page-link" href="<?= $url.'page='.$nextPage ?>">></a></li>
+
 	    <li class="page-item">
 	    	<a class="page-link" href="<?= $url.'page='.$totalPages ?>">Última >></a>
 	    </li>
+
 	  </ul>
 	</div>
+
+
+
 <? } else { ?>
 	<div class="card">
 		<div class="body">

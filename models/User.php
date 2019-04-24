@@ -76,10 +76,13 @@ class User {
   }
 
   public function entryBelongsToTheUser($entryId) {
-    $sql = 'SELECT entries.id FROM entries INNER JOIN login ON entries.creator = login.user WHERE login.user = ? AND entries.id = ?';
-    $vars = [$this->sessionUser, $entryId];
+    $sql = 'SELECT entries.id FROM entries INNER JOIN login ON entries.creator = login.user WHERE login.user = ? AND (entries.id = ? OR login.rol = ?)';
+    $vars = [$this->sessionUser, $entryId, 'admin'];
     $res = $this->db->query($sql, $vars)->rowCount();
-    return $res;
+    if($res == 0) {
+      header('Location: /v/identify');
+      die;
+    }
   }
 
   public function idAdmin() {

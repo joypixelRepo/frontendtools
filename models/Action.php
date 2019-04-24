@@ -124,15 +124,12 @@ class Action extends ApplicationController {
   }
 
   public function deleteEntry($id) {
-    if($this->user->entryBelongsToTheUser($id) || $this->user->idAdmin()) {
-      $sql = 'DELETE FROM entries WHERE id = ?';
-      $vars = [$id];
-      $res = $this->db->query($sql, $vars);
-      parent::deleteIframe($id);
-      return $res;
-    } else {
-      self::identify();
-    }
+    $this->user->entryBelongsToTheUser($id);
+    $sql = 'DELETE FROM entries WHERE id = ?';
+    $vars = [$id];
+    $res = $this->db->query($sql, $vars);
+    parent::deleteIframe($id);
+    return $res;
   }
 
   public function search() {

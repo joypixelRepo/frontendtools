@@ -27,7 +27,7 @@ function toggleFullscreen(elem) {
 }
 
 // clean any characters from #search-form
-$('#search-form').on('submit', function(e) {
+$('.search-form').on('submit', function(e) {
   e.preventDefault();
 
   const characters = /([,.])/g;
