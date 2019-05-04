@@ -8,7 +8,7 @@
 						<?php if($session) { ?>
 						<div class="row">
 							<div class="col-12">
-								<form action="/action/save_entry" method="POST">
+								<form id="new-entry-form" action="/action/save_entry" method="POST">
 									<div class="row">
 										<div class="col-12">
 											<h6>Ejecutable</h6>
@@ -25,7 +25,7 @@
 											<div class="form-group">
 												<div class="form-line">
 													<h6>Título</h6>
-													<input type="text" class="form-control" name="title" maxlength="255" autocomplete="off">
+													<input type="text" class="form-control" name="title" maxlength="255" autocomplete="off" placeholder="Título de la entrada">
 												</div>
 											</div>
 										</div>
@@ -35,16 +35,20 @@
 											<div class="form-group mb-2">
 												<div class="form-line">
 													<h6>Breve descripción</h6>
-													<textarea name="description" rows="1" class="textarea-code form-control no-resize auto-growth" autocomplete="off"></textarea>
+													<textarea name="description" rows="1" class="textarea-code form-control no-resize auto-growth" autocomplete="off" placeholder="Escribe una breve descripción"></textarea>
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-12 mt-5">
+											<div class="form-group mb-2">
+												<div class="form-line">
+													<h6>Descripción larga</h6>
+													<textarea name="explanation" rows="3" class="textarea-code form-control no-resize auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada"></textarea>
+												</div>
+											</div>
 											<!-- CKEditor -->
-											<h6>Explicación</h6>
-											<textarea name="explanation" class="explanation"></textarea>
 											<!-- <textarea id="ckeditor" name="explanation" required></textarea> -->
 											<!-- #END# CKEditor -->
 										</div>

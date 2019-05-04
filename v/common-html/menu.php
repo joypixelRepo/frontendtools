@@ -137,7 +137,6 @@
 				</ul>
 			</li>
 
-			<li><a href="/original" target="_blank"><i class="zmdi zmdi-delicious"></i><span>Original</span> </a> </li>
 		</ul>
 	</div>
 	<!-- #Menu --> 

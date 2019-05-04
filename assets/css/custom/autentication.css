@@ -5,6 +5,7 @@
 	background: #263238;
 	max-width: 300px;
 	margin: -70px auto 20px auto;
+	border-radius: 6px;
 }
 #errors {
 	margin: 15px 0;

@@ -334,6 +334,12 @@ section.content-footer {
 .code-description p {
 	margin-bottom: 6px;
 }
+.explanation {
+	width: 100%;
+	height: 200px;
+	border: 1px solid #ddd;
+	padding: 8px 12px;
+}
 .execute-box iframe {
 	width: 100%;
 	height: 100%;
@@ -606,6 +612,10 @@ a.creator:focus {
 }
 .entry-action-button i {
 	left: 0;
+}
+#edit-entry-form input[name="title"],
+#new-entry-form input[name="title"] {
+	font-size: 24px;
 }
 .full-screen {
 	width: 80%;
