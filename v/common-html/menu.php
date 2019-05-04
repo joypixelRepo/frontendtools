@@ -14,7 +14,7 @@
 <div class="search-bar">
 	<form class="search-form" action="/" method="GET">
 		<div class="search-icon"> <i class="material-icons">search</i> </div>
-		<input type="text" name="keys" placeholder="Explora en Front End Tools..." autocomplete="off">
+		<input type="text" name="keys" placeholder="Explora en Frontendtools..." autocomplete="off">
 		<div class="close-search"> <i class="material-icons">close</i> </div>
 	</form>
 </div>
@@ -120,7 +120,7 @@
 
 			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Extractos de código</span> </a>
 				<ul class="ml-menu">
-					<li class="li-categories"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode"><img class="category-image rotate" src="/assets/images/new.svg"><span>Nueva entrada</span> </a> </li>
+					<li class="li-categories"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode"><img class="category-image horizontal-move" src="/assets/images/new.svg"><span>Nueva entrada</span> </a> </li>
 					<?php foreach ($categories as $category) { ?>
 						<li class="li-categories"><a href="/?c=<?= $category['descriptive_name'] ?>"><img class="category-image" src="<?= $category['category_logo'] ?>"><span><?= $category['category_name'] ?></span> </a> </li>
 					<?php } ?>
@@ -188,10 +188,10 @@
 							<ul>
 								<? foreach ($users as $user) { ?>
 									<li>
-										<a href="#" class="col-grey">
-										<img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" alt="profile-img">
-										<span><?= $user['user'] ?></span>
-										<span class="font-10 ml-2"><?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?></span>
+										<a href="#" class="col-grey user-sidebar">
+											<img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" alt="profile-img" class="filter-gray">
+											<span><?= $user['user'] ?></span>
+											<span class="font-10 ml-2"><?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?></span>
 										</a>
 									</li>
 								<? } ?>

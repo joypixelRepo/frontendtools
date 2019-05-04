@@ -15,9 +15,13 @@
 	<link rel="stylesheet" href="/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
 	<link rel="stylesheet" href="/assets/plugins/morrisjs/morris.css">
 	<link rel="stylesheet" href="/assets/css/main.css">
+	<link rel="stylesheet" href="/assets/plugins/sweetalert/sweetalert.css">
 	<link rel="stylesheet" href="/assets/css/color_skins.css">
 	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>">
+
+	<!-- common scrips -->
+	<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
 	
 	<?php if(isset($styles) && !empty($styles)) {
 		echo '<!-- required styles for this view -->'."\n\t";
@@ -28,3 +32,6 @@
 
 </head>
 <body class="theme-orange">
+	<div id="cookies" style="display: none;">
+		<p>Este sitio utiliza cookies propias y de terceros para mejorar tu experiencia de navegación. Si continuas navegando estás aceptando su uso. <a href="#" id="accept-cookies">Aceptar y no mostrar más</a>.</p>
+	</div>

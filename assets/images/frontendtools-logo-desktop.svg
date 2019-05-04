@@ -1,5 +1,85 @@
-<xml version="1.0" encoding="utf-8">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2692.5 491" xml:space="preserve">
+	<style type="text/css">
+    /* <![CDATA[ */
+    .st0 {
+			fill:none;
+			stroke:#FFC100;
+			stroke-width:40;
+			stroke-miterlimit:10;
+		}
+		.st1 {
+			fill:#FFFFFF;
+		}
+		#rotate {
+			animation-name: girar;
+			animation-duration: 10s;
+			animation-iteration-count: infinite;
+			transform-origin: 246px 246px;
+			display: inline-block;
+		}
+		.letters .frontend-letters path {
+			animation-name: frontend-letters;
+			animation-duration: 10s;
+			animation-iteration-count: infinite;
+		}
+		.letters .net-letters path {
+			animation-name: net-letters;
+			animation-duration: 10s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes girar {
+			0% {
+				transform: rotate(45deg);
+				stroke: #FFC100;
+				stroke-width:35;
+			}
+			40% {
+				stroke: #FFC100;
+			}
+			50% {
+				transform: rotate(405deg);
+				stroke: #ffffff;
+				stroke-width:35;
+			}
+			90% {
+				stroke: #ffffff;
+			}
+			100% {
+				transform: rotate(45deg);
+				stroke: #FFC100;
+				stroke-width:35;
+			}
+		}
+		@keyframes frontend-letters {
+			0% {
+				fill: #ffffff;
+			}
+			40% {
+				fill: #ffffff;
+			}
+			50% {
+				fill: #FFC100;
+			}
+			90% {
+				fill: #FFC100;
+			}
+			100% {
+				fill: #ffffff;
+			}
+		}
+		@keyframes net-letters {
+			0% {
+				fill: #cccccc;
+			}
+			50% {
+				fill: #cccccc;
+			}
+			100% {
+				fill: #cccccc;
+			}
+		}
+    /* ]]> */
+  </style>
 <g>
 	<rect id="rotate" x="103" y="103" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -101.8961 245.999)" class="st0" width="286" height="286"/>
 	<g>

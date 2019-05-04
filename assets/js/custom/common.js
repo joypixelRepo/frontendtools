@@ -1,3 +1,14 @@
+const cookie = Cookies.get('fet_cookies_accept');
+if(!cookie) {
+  $('#cookies').css('display', 'block');
+  $('#accept-cookies').on('click', function(e) {
+    e.preventDefault();
+    console.log('Cookies');
+    Cookies.set('fet_cookies_accept', 1, {expires: 365});
+    $('#cookies').slideUp(100);
+  });
+}
+
 $('[data-toggle="tooltip"]').tooltip();
 
 function toggleFullscreen(elem) {
@@ -37,5 +48,12 @@ $('.search-form').on('submit', function(e) {
 
   keys.val(cleanKeys);
   this.submit();
+});
+
+$('a.user-sidebar').on('mouseover touchstart', function() {
+  $(this).find('img').removeClass('filter-gray');
+});
+$('a.user-sidebar').on('mouseout touchend', function() {
+  $(this).find('img').addClass('filter-gray');
 });
 

@@ -10,6 +10,16 @@ class ApplicationController {
     }
 	}
 
+  public function notify($type, $title, $message, $urlRedirect = '/') {
+    $messages = [
+      'type' => $type,
+      'title' => $title,
+      'message' => $message,
+    ];
+    setcookie('fet_notify', serialize($messages), 0, '/');
+    header('Location: '.$urlRedirect);
+  }
+
 	protected function session() {
 		if(!empty(session_id()) && isset($_SESSION['id']) && $_SESSION['id'] === 'aR_3vG_88KlpZ') {
 			return true;

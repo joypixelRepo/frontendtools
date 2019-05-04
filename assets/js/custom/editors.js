@@ -62,3 +62,21 @@ if(box_otherCode = document.getElementById('box_otherCode')) {
   });
   //console.log(editorCss.getDoc().getValue("\n"));
 }
+
+// PHP
+var phpCode = null;
+if(phpCode = document.getElementById('phpCode')) {
+  var editorPHP = CodeMirror.fromTextArea(document.getElementById('phpCode'), {
+    value: '// Sublime Text mode.',
+    lineNumbers: true,
+    mode: "application/x-httpd-php",
+    keyMap: "sublime",
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    showCursorWhenSelecting: true,
+    theme: "monokai",
+    tabSize: 2,
+    //value: 'content here',
+  });
+  //console.log(editorJs.getDoc().getValue("\n"));
+}

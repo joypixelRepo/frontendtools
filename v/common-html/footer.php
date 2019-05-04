@@ -5,7 +5,7 @@
 		      <div class="col-lg-12">
 		          <div class="card">
 		              <div class="body">
-		                  <p class="m-b-0">Copyright © 2018 - <?= date('Y') ?> Frontendtools.net. All rights reserved. By <a href="//joypixel.com/" target="_blank">joypixel</a>.</p>
+		                  <p class="m-b-0">Copyright © 2018 - <?= date('Y') ?> Frontendtools.net. All rights reserved. Site development by <a href="//joypixel.com/" target="_blank">joypixel</a>.</p>
 		              </div>
 		          </div>
 		      </div>
@@ -16,6 +16,7 @@
 	<!-- common scripts -->
 	<script src="/assets/bundles/libscripts.bundle.js"></script>
 	<script src="/assets/bundles/vendorscripts.bundle.js"></script>
+	<script src="/assets/js/libraries/js.cookie.js"></script>
 	<script src="/assets/plugins/tether/tether.min.js"></script>
 	<script src="/assets/plugins/autosize/autosize.min.js"></script>
 	<script src="/assets/plugins/momentjs/moment.js"></script>

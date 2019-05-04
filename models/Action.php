@@ -185,10 +185,6 @@ class Action extends ApplicationController {
     return null;
   }
 
-  public function identify() {
-    header('Location: /v/identify');
-  }
-
   public function __destruct() {}
 
 }

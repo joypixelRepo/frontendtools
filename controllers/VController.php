@@ -11,22 +11,29 @@ class VController extends ApplicationController {
     // https://mothereff.in/html-entities
     // view model
     $this->view = new View();
+    $this->user = new User();
 
     $this->viewUrl = $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'];
     // MAINTENANCE
     $this->options = new Options();
+
     if($this->options->loadOptions()['maintenance'] == 'on') {
+      // si no hay sesión Y la IP no está permitida
       if(!parent::session() && !$this->options->maintenance_ips()) {
       	if(!isset($_GET['action']) || empty($_GET['action'])) {
       		$_GET['action'] = '';
       	}
-      	if($_GET['action'] != 'sign_in' && $_GET['action'] != 'sign_up') {
+      	if($_GET['action'] != 'sign_in') {
+          self::maintenance();
+        }
+      }
+      if(!$this->user->isAdmin() && !$this->options->maintenance_ips()) {
+        if($_GET['action'] != 'sign_in') {
           self::maintenance();
         }
       }
     }
     // END MAINTENANCE
-    $this->user = new User();
     
     if(parent::session()) {
       $this->user->setLastConnection();
@@ -35,7 +42,7 @@ class VController extends ApplicationController {
 
   public function sessionActive() {
     if(!parent::session()) {
-      header('Location: /v/identify');
+      parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
     }
   }
 
@@ -74,6 +81,7 @@ class VController extends ApplicationController {
       'category' => $this->view->getCategoryName(self::returnGet('c')),
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         
@@ -100,6 +108,7 @@ class VController extends ApplicationController {
       'entries' => $results,
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         
@@ -129,12 +138,15 @@ class VController extends ApplicationController {
       'entry' => $this->view->loadEntry($_GET['id']),
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
       ]
@@ -161,6 +173,7 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
     die;
   }
@@ -178,6 +191,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/css/custom/autentication.css',0),
       ]
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
     die;
   }
@@ -190,6 +204,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/css/custom/autentication.css',0),
       ]
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
       'avatars' => self::renderAvatars(),
     ]);
@@ -208,6 +223,24 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
+    die;
+  }
+
+  public function success() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session()
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
     die;
   }
@@ -232,6 +265,7 @@ class VController extends ApplicationController {
     	'user' => $this->user->getUserData(),
       'avatars' => self::renderAvatars(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
     		self::printScript('/assets/bundles/knob.bundle.js',1),
@@ -264,9 +298,10 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
+        //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
         self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
@@ -308,9 +343,10 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
       'user' => $this->user->getUserData(),
     ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
+        //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
         self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
@@ -341,6 +377,7 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
     		self::printScript('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js',1),
@@ -367,6 +404,7 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
     		self::printScript('/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js',1),
@@ -388,6 +426,7 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
     		self::printScript('/assets/js/custom/text_generator.js',0)

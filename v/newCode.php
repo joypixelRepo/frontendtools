@@ -44,7 +44,8 @@
 										<div class="col-12 mt-5">
 											<!-- CKEditor -->
 											<h6>Explicación</h6>
-											<textarea id="ckeditor" name="explanation" required></textarea>
+											<textarea name="explanation" class="explanation"></textarea>
+											<!-- <textarea id="ckeditor" name="explanation" required></textarea> -->
 											<!-- #END# CKEditor -->
 										</div>
 									</div>
@@ -116,7 +117,7 @@
 											<h6>Categoría</h6>
 
 												<?php foreach ($categories as $category) { ?>
-												<input type="checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" class="filled-in category<?= $category['id_category'] ?>" />
+												<input type="checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" class="filled-in category<?= $category['id_category'] ?>" data_category="<?= $category['descriptive_name'] ?>"/>
                         <label for="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></label>&nbsp;&nbsp;&nbsp;
 												<?php } ?>
 

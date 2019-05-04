@@ -129,7 +129,7 @@
 															$checked = 'checked';
 														}
 													} ?>
-													<input type="checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" class="filled-in category<?= $category['id_category'] ?>" <?= $checked ?> />
+													<input type="checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" class="filled-in category<?= $category['id_category'] ?>" <?= $checked ?> data_category="<?= $category['descriptive_name'] ?>"/>
                         	<label for="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></label>&nbsp;&nbsp;&nbsp;
 												<?php } ?>
 

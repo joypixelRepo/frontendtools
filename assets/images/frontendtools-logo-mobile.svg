@@ -1,5 +1,14 @@
-<xml version="1.0" encoding="utf-8">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1181.4 491" xml:space="preserve">
+	<style type="text/css">
+    /* <![CDATA[ */
+    .st0 {
+			display:none;
+		}
+		.st1 {
+			fill:#FFFFFF;
+		}
+    /* ]]> */
+  </style>
 <g>
 	<g>
 		<path class="st1" d="M7.7,221.8C3.9,218,2,213.1,2,206.9V59.4c0-6.1,1.7-10.9,5-14.2c3.3-3.3,8.1-5,14.2-5h90.7

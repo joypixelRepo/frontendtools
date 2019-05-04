@@ -1,5 +1,5 @@
 <?php
-class ActionController {
+class ActionController extends ApplicationController {
 
   private $action;
   private $view;
@@ -11,10 +11,9 @@ class ActionController {
 
   public function save_entry() {
   	if($this->action->saveEntry()) {
-  		header('Location: /v/newCode?s=1');
+      parent::notify('success', 'Entrada creada', 'La entrada ha sido creada con éxito.', '/');
   	} else {
-  		// TODO redirigir a página de error
-  		die('No se ha guardado el extracto de código debido a un error inesperado.');
+      parent::notify('error', 'Entrada no creada', 'No se ha guardado el extracto de código debido a un error inesperado.', '/');
   	}
   }
 
@@ -22,10 +21,9 @@ class ActionController {
     $prevUrl = isset($_POST['url']) ? $_POST['url'] : '/';
 
     if($this->action->editEntry()) {
-      header('Location: '.urldecode($prevUrl));
+      parent::notify('success', 'Entrada modificada', 'La entrada ha sido modificada correctamente.', urldecode($prevUrl));
     } else {
-      // TODO redirigir a página de error
-      die('No se ha modificado el extracto de código debido a un error inesperado.');
+      parent::notify('error', 'Error modificando la entrada', 'La entrada no ha podido sido modificada por un error inesperado. Por favor, prueba de nuevo.', '/');
     }
   }
 
@@ -36,18 +34,16 @@ class ActionController {
     
     if($_GET['type'] == 'entry') {
       if($this->action->deleteEntry($_GET['id'])) {
-        header('Location: /');
+        parent::notify('success', 'Entrada eliminada', 'La entrada ha sido eliminada.', '/');
       } else {
-        // TODO redirigir a página de error
-        die('No se ha eliminado la entrada debido a un error inesperado.');
+        parent::notify('error', 'Error eliminando la entrada', 'La entrada no ha podido sido eliminada por un error inesperado. Por favor, prueba de nuevo.', '/');
       }
     }
     else if($_GET['type'] == 'category') {
       if($this->action->deleteCategory($_GET['id'])) {
-        header('Location: /');
+        parent::notify('success', 'Categoría eliminada', 'La categoría ha sido eliminada.', '/');
       } else {
-        // TODO redirigir a página de error
-        die('No se ha eliminado la entrada debido a un error inesperado.');
+        parent::notify('error', 'Error eliminando la categoría', 'La categoría no ha podido sido eliminada por un error inesperado. Por favor, prueba de nuevo.', '/');
       }
     }
   }

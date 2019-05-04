@@ -1,5 +1,10 @@
-body {
+/*body {
     line-height: 0;
+}*/
+.theme-orange .authentication .card .header {
+	background: #263238;
+	max-width: 300px;
+	margin: -70px auto 20px auto;
 }
 #errors {
 	margin: 15px 0;
@@ -8,6 +13,8 @@ body {
 }
 .authentication {
     line-height: 1;
+    height: auto;
+    background: none !important;
 }
 .authentication .card {
     margin-top: 120px;
@@ -20,4 +27,8 @@ input:-webkit-autofill:active  {
 }
 .authentication.authentication-big .card {
 	max-width: 680px;
+}
+.btn:disabled {
+	background: #adadad !important;
+	opacity: .5;
 }

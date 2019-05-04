@@ -5,7 +5,7 @@
 				<div class="card">
 					<div class="body">
 						<div class="header">
-							<h2>Últimas utilidades<small>Listado de las últimas utilidades añadidas<?= isset($_GET['creator']) ? ' por el usuario <strong>'.$_GET['creator'].'</strong>' : ''; ?>.</small></h2>
+							<h2>Últimas utilidades<small>Listado de las últimas utilidades añadidas<?= isset($_GET['creator']) ? ' por <strong>'.$_GET['creator'].'</strong>' : ''; ?>.</small></h2>
 						</div>
 					</div>
 				</div>

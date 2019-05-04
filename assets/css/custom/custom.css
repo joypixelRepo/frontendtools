@@ -1,3 +1,28 @@
+#cookies {
+  position: fixed;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  top: 0;
+  z-index: 9999;
+  background: #353535;
+  color: #fff;
+  width: 100%;
+  padding: 21px 10px;
+  box-shadow: 0px 1px 5px #0000007a;
+}
+#cookies p {
+	margin: 0;
+}
+#cookies a {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px solid #FFC107;
+	font-weight: 600;
+}
+#cookies a:hover {
+	color: #FFC107;
+}
 .oculto {
 	display: none;
 }
@@ -10,6 +35,9 @@
 a:hover,
 a:focus {
 	text-decoration: none;
+}
+.search-bar .close-search {
+  right: 23px;
 }
 .right-sidebar #settings .setting-list {
 	margin-bottom: 0;
@@ -69,6 +97,10 @@ a:focus {
 	border-radius: 0 0 50% 50%;
 	margin: 0 5px 0 2px;
 }
+.filter-gray {
+	-webkit-filter: grayscale(100%) !important;
+	filter: grayscale(100%) !important;
+}
 .bg-custom {
 	background: linear-gradient(60deg, #ffc107, #e2aa04);
 	color: #fff !important;
@@ -114,94 +146,6 @@ a:focus {
 	height: 31px;
 	width: auto;
 }
-/* logo desktop */
-.st0 {
-	fill:none;
-	stroke:#FFC100;
-	stroke-width:40;
-	stroke-miterlimit:10;
-}
-.st1 {
-	fill:#FFFFFF;
-}
-#rotate {
-	animation-name: girar;
-	animation-duration: 10s;
-	animation-iteration-count: infinite;
-	transform-origin: 246px 246px;
-	display: inline-block;
-}
-.letters .frontend-letters path {
-	animation-name: frontend-letters;
-	animation-duration: 10s;
-	animation-iteration-count: infinite;
-}
-.letters .net-letters path {
-	animation-name: net-letters;
-	animation-duration: 10s;
-	animation-iteration-count: infinite;
-}
-@keyframes girar {
-	0% {
-		transform: rotate(45deg);
-		stroke: #FFC100;
-		stroke-width:35;
-	}
-	40% {
-		stroke: #FFC100;
-	}
-	50% {
-		transform: rotate(405deg);
-		stroke: #ffffff;
-		stroke-width:35;
-	}
-	90% {
-		stroke: #ffffff;
-	}
-	100% {
-		transform: rotate(45deg);
-		stroke: #FFC100;
-		stroke-width:35;
-	}
-}
-@keyframes frontend-letters {
-	0% {
-		fill: #ffffff;
-	}
-	40% {
-		fill: #ffffff;
-	}
-	50% {
-		fill: #FFC100;
-	}
-	90% {
-		fill: #FFC100;
-	}
-	100% {
-		fill: #ffffff;
-	}
-}
-@keyframes net-letters {
-	0% {
-		fill: #cccccc;
-	}
-	50% {
-		fill: #cccccc;
-	}
-	100% {
-		fill: #cccccc;
-	}
-}
-/* end logo desktop */
-
-/* logo mobile */
-.st0 {
-	display:none;
-}
-.st1 {
-	fill:#FFFFFF;
-}
-/* end logo mobile */
 .screenshot {
 	width: 100%;
 	height: 150px;
@@ -276,15 +220,30 @@ a:focus {
 #adminForm .form-group.form-group-sm {
 	margin: 0;
 }
+.executable-corner i {
+	font-size: 15px;
+}
 .executable-corner {
 	position: absolute;
-	right: 0;
-	top: 0;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 0 10px 10px 0;
-	border-color: transparent #379c94 transparent transparent;
+	left: -5px;
+	top: -6px;
+	background: #ffc100;
+	color: #fff;
+	padding: 1px 5px 0px 7px;
+	font-size: 10px;
+	border-radius: 50%;
+	animation: corner 3s ease-in-out infinite;
+}
+@keyframes corner {
+	0% {
+		background: #FFC107;
+	}
+	50% {
+		background: #CDDC39;
+	}
+	100% {
+		background: #FFC107;
+	}
 }
 section.content-footer {
 	z-index: 0;
@@ -336,6 +295,10 @@ section.content-footer {
 	margin-bottom: -14px;
 	margin-right: -14px;
 	padding: 10px 15px;
+}
+.hover-red:hover {
+	background-color: #d80000 !important;
+	color: #fff !important;
 }
 .categories-badges {
 	margin-bottom: 15px;
@@ -479,6 +442,8 @@ a.creator:focus {
 }
 .avatars a {
 	display: inline-block;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
 }
 .avatars img {
 	width: 44px;
@@ -490,19 +455,21 @@ a.creator:focus {
 	animation-name: pulseZoom;
 	animation-duration: .5s;
 	animation-iteration-count: infinite;
+	-webkit-filter: grayscale(0%) !important;
+	filter: grayscale(0%) !important;
 }
 .avatars a.enabled {
 	animation-name: none;
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
 }
 .avatars a.disabled {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
-	opacity: .3;
 }
 .avatars.avatars-edit a.disabled {
-	-webkit-filter: grayscale(0%);
-	filter: grayscale(0%);
-	opacity: .4;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
 }
 .pulse-rotate {
 	animation-name: pulseRotate;
@@ -530,6 +497,13 @@ a.creator:focus {
 	-o-animation: rotate 2s linear infinite;
 	animation: rotate 2s linear infinite;
 }
+.horizontal-move {
+	-webkit-animation: horizontal-move 1s linear infinite;
+	-moz-animation: horizontal-move 1s linear infinite;
+	-ms-animation: horizontal-move 1s linear infinite;
+	-o-animation: horizontal-move 1s linear infinite;
+	animation: horizontal-move 1s linear infinite;
+}
 @keyframes rotate {
 	from {
 		transform: rotate(0deg);
@@ -554,6 +528,27 @@ a.creator:focus {
 	to {
 		transform: rotate(360deg);
 		-webkit-transform: rotate(360deg);
+	}
+}
+@keyframes horizontal-move {
+	0% {
+		transform: translateX(0px);
+	}
+	50% {
+		transform: translateX(3px);
+	}
+	100% {
+		transform: translateX(0px);
+	}
+}
+.pulse-zoom-corner {
+	animation-name: pulseCorner;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+@keyframes pulseCorner {
+	50% {
+		border-color: transparent #ffc100 transparent transparent;
 	}
 }
 @keyframes pulseZoom {

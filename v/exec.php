@@ -13,7 +13,7 @@
                     <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">edit</i> </button>
                   </a>
                   <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry[0]['id']?>" title="Eliminar">
-                    <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">delete</i> </button>
+                    <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float hover-red"> <i class="material-icons">delete</i> </button>
                   </a>
                   <? } ?>
                 <?php } ?>
@@ -27,7 +27,7 @@
               <div class="link-box">
                 <div class="languages-logos">
                 <?php foreach ($entry[0]['categories'] as $category) { ?>
-                  <a href="/<?= $_SERVER['VIEWS'].'/util?c='.$category['descriptive_name']?>" title="<?= $category['category_name']?>">
+                  <a href="/?c=<?=$category['descriptive_name']?>" title="<?= $category['category_name']?>">
                     <img src="<?= $category['category_logo'] ?>">
                   </a>&nbsp;&nbsp;
                 <?php } ?>

@@ -26,7 +26,7 @@ if(!empty($entries)) {
               <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">edit</i> </button>
             </a>
             <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar">
-              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">delete</i> </button>
+              <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button hover-red"> <i class="material-icons">delete</i> </button>
             </a>
             <? } ?>
 
@@ -43,10 +43,10 @@ if(!empty($entries)) {
 						<? } ?>
 					<? } ?>
 					<? if($entry['executable']) { ?>
-					<div class="executable-corner" data-toggle="tooltip" data-placement="top" title="Ejecutable"></div>
+					<div class="executable-corner" data-toggle="tooltip" data-placement="top" title="Ejecutable"><i class="zmdi zmdi-play"></i></div>
 					<? } ?>
 						<a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
-							<h3 title="<?= $entry['title'] ?>"><?= strlen($entry['title']) > 45 ? substr($entry['title'],0,45)."..." : $entry['title'] ?></h3>
+							<h3 title="<?= $entry['title'] ?>"><?= strlen($entry['title']) > 65 ? substr($entry['title'],0,65)."..." : $entry['title'] ?></h3>
 							<div class="code-description">
 								<? if(!empty($entry['description'])) { ?>
 								<?= strlen($entry['description']) > 60 ? substr($entry['description'],0,60)."..." : $entry['description'] ?>

@@ -4,14 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="header slideDown">
-                        <a href="/"><div class="logo"><img src="/assets/images/logo.png" alt="Nexa"></div></a>
-                        <h1>Front End Tools</h1>
-                        <ul class="list-unstyled l-social">
-                            <li><a href="#"><i class="zmdi zmdi-facebook-box"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-linkedin-box"></i></a></li>                            
-                            <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                        </ul>
-                    </div>                        
+                        <a href="/"><div class="logo"><img src="/assets/images/frontendtools-logo-desktop.svg" alt="frontendtools-logo"></div></a>
+                    </div>
                 </div>
                 <form class="col-lg-12" id="sign_in" method="POST" action="/user/sign_in">
                     <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">

@@ -24,7 +24,27 @@ executable.on('change', function(){
 const alerts = $('.alerts');
 const form = $('form');
 const title = $('input[name="title"]');
+const description = $('textarea[name="description"]');
 const content = $('input[name="content"]');
+// const categories = $('.check-categories input');
+
+// categories.on('click', function(e){
+// 	e.preventDefault();
+// 	if($(this).attr('data_category') == 'git' && $(this).is(':checked') && otherChecked($(this), 'git')) {
+// 		alert('La categoría seleccionada no permite seleccionar más categorías');
+// 	}
+// });
+
+// function otherChecked(element, categoryName) {
+// 	console.log(element.attr('data_category'));
+// 	console.log(categoryName);
+// 	//categories.each(function(index) {
+// 	  if(element.attr('data_category') != categoryName) {
+// 	  	console.log('entra');
+// 	  	return true;
+// 	  }
+// 	//});
+// }
 
 form.on('submit', function(e){
 	e.preventDefault();
@@ -36,6 +56,10 @@ form.on('submit', function(e){
 
 	if(title.val().length <= 3 || title.val().length > 255) {
 		errors.push('El título debe contener entre 4 y 255 caracteres.');
+	}
+
+	if(description.val().length > 255) {
+		errors.push('La descripción no puede contener más de 255 caracteres.');
 	}
 	
 	if($('.check-categories input:checked').length == 0) {
