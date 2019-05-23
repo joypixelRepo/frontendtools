@@ -14,7 +14,12 @@ if(isset($_COOKIE['fet_notify'])) { ?>
 if($notify) { ?>
 	<script>
 		// open notification modal
-	  swal('<?= $notify['title'] ?>', '<?= $notify['message'] ?>', '<?= $notify['type'] ?>');
+	  swal({
+      title: '<?= $notify['title'] ?>', 
+      html: '<?= $notify['message'] ?>', 
+      type: '<?= $notify['type'] ?>',
+      timer: 2500,
+    });
 	</script>
 <?
 // delete cookie 

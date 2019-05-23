@@ -1,4 +1,4 @@
-<section class="content pt-3">
+<section class="content pt-3 create-entry">
 	<div class="container-fluid">
 		<div class="row clearfix">
 			<div class="col-lg-12">
@@ -22,31 +22,28 @@
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<div class="form-group">
-												<div class="form-line">
-													<h6>Título</h6>
-													<input type="text" class="form-control" name="title" maxlength="255" autocomplete="off" placeholder="Título de la entrada">
-												</div>
+                      <div class="mt-4">
+  											<h6>Título</h6>
+                        <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="Título de la entrada" maxlength="100"></textarea>
+                        <span class="characters">100</span>
+                      </div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<div class="mt-4">
+												<h6>Breve descripción</h6>
+												<textarea name="description" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="Escribe una breve descripción" maxlength="255"></textarea>
+                        <span class="characters">255</span>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<h6>Breve descripción</h6>
-													<textarea name="description" rows="1" class="textarea-code form-control no-resize auto-growth" autocomplete="off" placeholder="Escribe una breve descripción"></textarea>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-12 mt-5">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<h6>Descripción larga</h6>
-													<textarea name="explanation" rows="3" class="textarea-code form-control no-resize auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada"></textarea>
-												</div>
+											<div class="mt-4">
+												<h6>Descripción larga</h6>
+												<textarea name="explanation" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada" maxlength="65535"></textarea>
+                        <span class="characters">65535</span>
 											</div>
 											<!-- CKEditor -->
 											<!-- <textarea id="ckeditor" name="explanation" required></textarea> -->
@@ -71,9 +68,9 @@
 														<div class="col-6">
 															<h6>HTML</h6>
 														</div>
-														<div class="col-6">
+														<div class="col-6 hidden-mobile">
 															<div class="float-right">
-																<a href="#" id="full-html"><i class="material-icons">aspect_ratio</i></a>
+																<a href="#" id="full-html" class="full-code"><i class="material-icons">aspect_ratio</i></a>
 															</div>
 														</div>
 													</div>
@@ -88,9 +85,9 @@
 														<div class="col-6">
 															<h6>CSS</h6>
 														</div>
-														<div class="col-6">
+														<div class="col-6 hidden-mobile">
 															<div class="float-right">
-																<a href="#" id="full-css"><i class="material-icons">aspect_ratio</i></a>
+																<a href="#" id="full-css" class="full-code"><i class="material-icons">aspect_ratio</i></a>
 															</div>
 														</div>
 													</div>
@@ -105,9 +102,9 @@
 														<div class="col-6">
 															<h6>JavaScript</h6>
 														</div>
-														<div class="col-6">
+														<div class="col-6 hidden-mobile">
 															<div class="float-right">
-																<a href="#" id="full-js"><i class="material-icons">aspect_ratio</i></a>
+																<a href="#" id="full-js" class="full-code"><i class="material-icons">aspect_ratio</i></a>
 															</div>
 														</div>
 													</div>

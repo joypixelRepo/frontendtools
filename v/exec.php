@@ -40,7 +40,7 @@
               
               <h5 class="col-grey mb-4"><?= html_entity_decode($entry[0]['description'], ENT_QUOTES | ENT_HTML5) ?></h5>
 
-              <div class="code-description"><?= html_entity_decode($entry[0]['explanation'], ENT_QUOTES | ENT_HTML5) ?></div>
+              <div class="code-description"><?= html_entity_decode(str_replace("\n", "<br>", $entry[0]['explanation']), ENT_QUOTES | ENT_HTML5) ?></div>
 
               <?php if($entry[0]['executable']) { ?>
               <div class="row code_boxes">

@@ -22,7 +22,7 @@
 						</div>
 					</div>
 				</div>
-				<? include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/entries_layout.php'; ?>
+				<? include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/entries_masonry.php'; ?>
 			</div>
 		</div>
 	</div>

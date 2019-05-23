@@ -8,10 +8,11 @@
 <body>
 	<div class="screen-center">
 		<div class="text-maintenance">
-			<h1>Front End <strong>Tools</strong></h1>
+			<img src="/assets/images/frontendtools-logo-desktop.svg" alt="logo FET">
 			<h3>< en desarrollo /></h3>
 		</div>
 		<a href="/<?= $_SERVER['VIEWS'] ?>/sign_in">Iniciar sesión</a>
 	</div>
 </body>
 </html>
+<? include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/'.$_SERVER['PARTS'].'/notifications.php'; ?>

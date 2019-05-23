@@ -33,5 +33,5 @@
 </head>
 <body class="theme-orange">
 	<div id="cookies" style="display: none;">
-		<p>Este sitio utiliza cookies propias y de terceros para mejorar tu experiencia de navegación. Si continuas navegando estás aceptando su uso. <a href="#" id="accept-cookies">Aceptar y no mostrar más</a>.</p>
+		<p>Este sitio utiliza cookies propias y de terceros para mejorar tu experiencia de usuario. Si continuas navegando estás aceptando el uso de las cookies. <a href="#" id="accept-cookies">Aceptar y no mostrar más</a>.</p>
 	</div>

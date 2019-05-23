@@ -42,19 +42,19 @@ class User extends ApplicationController {
     $subject = 'Activar cuenta en Frontendtools';
 
     $message = '
-<html>
-<head>
-  <title>Activar cuenta en Frontendtools</title>
-</head>
-<body>
-  <h3>Hola '.$name.'</h3>
-  <p>Haz click en el siguiente enlace para activar tu cuenta en Frontendtools:</p>
-  <p><a href="https://'.$_SERVER['SERVER_NAME'].'/user/activate?user='.$user.'&code='.self::activationCode($user).'">Activar mi cuenta</a></p>
-  <p>Si no puedes acceder al enlace, copia y pega el siguiente código en la barra de direcciones de tu navegador:</p>
-  https://'.$_SERVER['SERVER_NAME'].'/user/activate?user='.$user.'&code='.self::activationCode($user).'
-</body>
-</html>
-';
+    <html>
+    <head>
+      <title>Activar cuenta en Frontendtools</title>
+    </head>
+    <body>
+      <h3>Hola '.$name.'</h3>
+      <p>Haz click en el siguiente enlace para activar tu cuenta en Frontendtools:</p>
+      <p><a href="https://'.$_SERVER['SERVER_NAME'].'/user/activate?user='.$user.'&code='.self::activationCode($user).'">Activar mi cuenta</a></p>
+      <p>Si no puedes acceder al enlace, copia y pega el siguiente código en la barra de direcciones de tu navegador:</p>
+      https://'.$_SERVER['SERVER_NAME'].'/user/activate?user='.$user.'&code='.self::activationCode($user).'
+    </body>
+    </html>
+    ';
 
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -64,6 +64,38 @@ class User extends ApplicationController {
     $headers .= 'Reply-To: '.$config['email'] . "\r\n";
     //$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
     //$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+    if(mail($to, $subject, $message, $headers)) {
+      self::sendCopyEmail($user, $name, $email, $config);
+    }
+  }
+
+  private function sendCopyEmail($user, $name, $email, $config) {
+    $message = '
+    <html>
+    <head>
+      <title>Registro en Frontendtools</title>
+    </head>
+    <body>
+      <h3>Un nuevo usuario se ha registrado en Frontendtools</h3>
+      <p>Nombre: '.$name.'</p>
+      <p>Nombre usuario: '.$user.'</p>
+      <p>Email: '.$email.'</p>
+    </body>
+    </html>
+    ';
+
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+    // Cabeceras adicionales
+    $headers .= 'To: '.$config['name'].' <'.$config['email'].'>' . "\r\n";
+    $headers .= 'From: '.$config['name'].' <'.$config['email'].'>' . "\r\n";
+    $headers .= 'Reply-To: '.$config['email'] . "\r\n";
+    //$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+    //$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+    $to = $config['email'];
+    $subject = 'Registro en Frontendtools';
 
     mail($to, $subject, $message, $headers);
   }
@@ -108,7 +140,6 @@ class User extends ApplicationController {
   }
 
   public function getUserData() {
-    
     $sql = 'SELECT * FROM login WHERE user = ?';
     $vars = [$this->sessionUser];
     $res = $this->db->query($sql, $vars)->fetch(PDO::FETCH_ASSOC);

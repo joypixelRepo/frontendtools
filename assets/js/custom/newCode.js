@@ -23,7 +23,7 @@ executable.on('change', function(){
 // VALIDATIONS
 const alerts = $('.alerts');
 const form = $('form');
-const title = $('input[name="title"]');
+const title = $('textarea[name="title"]');
 const description = $('textarea[name="description"]');
 const content = $('input[name="content"]');
 // const categories = $('.check-categories input');
@@ -90,7 +90,30 @@ $('#full-html, #full-css, #full-js').on('click', function(e){
 		dataFull.removeClass('full-screen');
 		codeMirror.height(300);
 	}
-})
+});
+
+
+var maxlength = $('*[maxlength]');
+maxlength.each(function(index) {
+  const num = $(this).attr('maxlength');
+  var span = $(this).next();
+
+  span.text(num - $(this).val().length);
+
+  $(this).on('keydown keyup', function() {
+    span.text(num - $(this).val().length);
+    if((num - $(this).val().length) > 50) {
+      span.css({'background':'', 'border':'', 'color':''});
+    }
+    if((num - $(this).val().length) <= 50) {
+      span.css({'background':'#ffc100', 'border':'1px solid #ffc100', 'color':'#fff'});
+    }
+    if((num - $(this).val().length) <= 10) {
+      span.css({'background':'red', 'border':'1px solid red', 'color':'#fff'});
+    }
+  });
+
+});
 
 
 // $("form#edit-entry-form :input").change(function() {

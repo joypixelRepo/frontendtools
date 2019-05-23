@@ -71,7 +71,7 @@
 		</li>
 		<?php if($session) { ?>
 			<? if($user['rol'] == 'admin') { ?>
-			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons">settings</i></a></li>
+			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons rotate">settings</i></a></li>
 			<? } ?>
 		<?php } else { ?>
 			<li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Iniciar sesión" class="mega-menu" data-close="true"><i class="material-icons">person</i></a></li>
@@ -96,7 +96,7 @@
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
 				<ul class="dropdown-menu">
-					<li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Profile</a></li>
+					<li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Perfil</a></li>
 					<li class="divider"></li>
 					<li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
 					<li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
@@ -116,7 +116,9 @@
 		<ul class="list">
 			<li class="header">MENÚ PRINCIPAL</li>
 
-			<li><a id="dashboardLink" href="/"><i class="zmdi zmdi-home"></i><span>Inicio</span> </a></li>
+      <li><a href="/"><i class="zmdi zmdi-home"></i><span>Inicio</span> </a></li>
+
+			<li><a href="/<?= $_SERVER['VIEWS'] ?>/newCode" class="btn-new-entry"><span>Crear entrada</span></a></li>
 
 			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Extractos de código</span> </a>
 				<ul class="ml-menu">
@@ -136,6 +138,10 @@
 					<li><a href="/<?= $_SERVER['VIEWS'] ?>/text_generator"><span>Texto aleatorio</span></a></li>
 				</ul>
 			</li>
+
+			<?php if($user['rol'] == 'admin') { ?>
+			<li><a href="/original" target="_blank"><i class="zmdi zmdi-delicious"></i><span>Original</span> </a></li>
+			<?php } ?>
 
 		</ul>
 	</div>

@@ -145,6 +145,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
         self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
         self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
@@ -302,14 +303,16 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        self::printScript('/assets/js/pages/forms/editors.js',1),
+        //self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
+        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
       ]
     ]);
     die;
@@ -347,14 +350,16 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        self::printScript('/assets/js/pages/forms/editors.js',1),
+        //self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
+        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
       ]
     ]);
     die;

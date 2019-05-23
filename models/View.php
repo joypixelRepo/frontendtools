@@ -32,7 +32,7 @@ class View extends ApplicationController {
   public function loadEntries() {
     // pagination
     $entriesPosition = 0;
-    $entriesNum = 12;
+    $entriesNum = 18;
     if(isset($_GET['page']) && is_numeric($_GET['page'])) {
       $page = $_GET['page'] > 1 ? $_GET['page'] : 1;
       $entriesPosition = $entriesNum * ($page-1);

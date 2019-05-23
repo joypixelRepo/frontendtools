@@ -51,13 +51,10 @@ if(box_js = document.getElementById('box_js')) {
 var box_otherCode = null;
 if(box_otherCode = document.getElementById('box_otherCode')) {
   var otherCode = CodeMirror.fromTextArea(box_otherCode, {
-    //mode: "text/css",
-    extraKeys: {"Ctrl-Space": "autocomplete"},
+    mode: "scheme",
     keyMap: "sublime",
     theme: "monokai",
     lineNumbers: true,
-    showCursorWhenSelecting: true,
-    tabSize: 2,
     //value: 'content here',
   });
   //console.log(editorCss.getDoc().getValue("\n"));
