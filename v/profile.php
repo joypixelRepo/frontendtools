@@ -11,10 +11,9 @@
                 </div>
                 <div class="col-lg-6 col-md-8 col-12">
                     <h4 class="m-t-5 m-b-0"><?= $user['name'] ?></h4>
-                    <span class="job_post">Ui UX Designer</span>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <span class="job_post"><?= $user['job'] ?></span>
                     <p class="social-icon m-t-20 m-b-0">
-                        <a title="Twitter" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
+                        <a title="Github" href="<?= $user['github'] ?>"><i class="zmdi zmdi-github"></i></a>
                         <a title="Facebook" href="javascript:void(0);"><i class="zmdi zmdi-facebook"></i></a>
                         <a title="Instagram" href="javascript:void(0);"><i class="zmdi zmdi-instagram "></i></a>
                     </p>
@@ -45,43 +44,24 @@
         <div class="row clearfix">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
+                  <div class="header">
+                    <h2>Tus entradas</h2>
+                  </div>
+                    <div class="row profile_state list-unstyled">
+                        <?php
+                        foreach ($userCategories as $userCategory) { ?>
+                          <li class="col-lg-2 col-md-4 col-6">
                             <div class="body">
-                            <p>Page View</p>
-                            <input type="text" class="knob" value="42" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#00adef" readonly>
+                                <div class="profile-categories">
+                                  <a href="/?c=<?= $userCategory['descriptive_name'] ?>&creator=<?= $user['user'] ?>">
+                                    <img src="<?= $userCategory['category_logo'] ?>">
+                                    <h4><?= $userCategory['entriesCount'] ?></h4>
+                                    <span><?= $userCategory['category_name'] ?></span>
+                                  </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
-                            <div class="body">
-                            <p>Storage</p>
-                            <input type="text" class="knob" value="81" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#49cdd0" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
-                            <div class="body">
-                            <p>New User</p>
-                            <input type="text" class="knob" value="62" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#8f78db" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
-                            <div class="body">
-                            <p>Total Visit</p>
-                            <input type="text" class="knob" value="38" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#f67a82" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
-                            <div class="body">
-                            <p>Subscribers</p>
-                            <input type="text" class="knob" value="87" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#40b988" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
-                            <div class="body">
-                            <p>Bounce Rate</p>
-                            <input type="text" class="knob" value="64" data-linecap="round" data-width="80" data-height="80" data-thickness="0.15" data-fgColor="#f7bb97" readonly>
-                            </div>
-                        </div>
+                          </li>
+                        <? } ?>
                     </div>
                 </div>
             </div>

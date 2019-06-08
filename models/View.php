@@ -66,7 +66,9 @@ class View extends ApplicationController {
       $limit = ' LIMIT '.$entriesPosition.', '.$entriesNum;
     }
 
-    $countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id INNER JOIN login ON login.user = entries.creator '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
+    $countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
+
+    //$countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id INNER JOIN login ON login.user = entries.creator '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
 
     $count = $this->db->query($countSql)->fetchAll();
     $totalPages = ceil(count($count) / $entriesNum);
@@ -80,6 +82,18 @@ class View extends ApplicationController {
     $entries = parent::pushCategories($entries, $this->db);
 
     $entries['pages'] = $totalPages;
+
+    if($entries) {
+      return $entries;
+    }
+  }
+
+  public function userCategories() {
+    $user = $_SESSION['user']['user'];
+
+    $sql = 'SELECT categories.`category_logo`, categories.`category_name`, categories.`descriptive_name`, count(category_entry.`category_id`) as entriesCount FROM category_entry LEFT JOIN categories ON categories.`id_category` = category_entry.`category_id` INNER JOIN entries ON entries.id = category_entry.entry_id WHERE entries.`creator` = "'.$user.'" GROUP BY category_entry.`category_id`';
+
+    $entries = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     if($entries) {
       return $entries;

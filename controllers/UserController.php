@@ -11,13 +11,37 @@ class UserController extends ApplicationController {
     $prevUrl = isset($_POST['url']) && !empty($_POST['url']) ? $_POST['url'] : '/';
     $prevUrl = urldecode($prevUrl);
 
-    if($userData = $this->user->sign_in()) {
+    if($userData = $this->user->sign_in($_POST['user'], $_POST['password'])) {
       //session_start();
       $_SESSION['id'] = 'aR_3vG_88KlpZ';
       $_SESSION['user'] = $userData;
+
+      $cookieSession = [
+        'user' => $userData['user'],
+        'password' => $userData['password']
+      ];
+
+      // la cookie caducará en 1 año (31536000 segundos)
+      setcookie('fet_net_session_login', serialize($cookieSession), time()+31536000, '/');
+
       parent::notify('success', 'Sesión iniciada', 'Has iniciado sesión correctamente.', $prevUrl);
     } else {
       header('Location: /'.$_SERVER['VIEWS'].'/sign_in?e');
+    }
+  }
+
+  public function checkCookiesSession() {
+    if(isset($_COOKIE['fet_net_session_login'])) {
+      $cookieSession = unserialize($_COOKIE['fet_net_session_login']);
+      $session = [
+        'user' => $cookieSession['user'],
+        'password' => $cookieSession['password'],
+      ];
+
+      if($userData = $this->user->sign_in_cookie($session['user'], $session['password'])) {
+        $_SESSION['id'] = 'aR_3vG_88KlpZ';
+        $_SESSION['user'] = $userData;
+      }
     }
   }
 
@@ -39,6 +63,7 @@ class UserController extends ApplicationController {
 
   public function sign_out() {
     session_destroy();
+    setcookie('fet_net_session_login', null, -1, '/');
     $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
     parent::notify('success', '¡Hasta pronto!', 'Has cerrado tu sesión correctamente.', urldecode($prevUrl));
   }
@@ -49,6 +74,10 @@ class UserController extends ApplicationController {
 
   public function userExist() {
     $this->user->userExist();
+  }
+
+  public function emailExist() {
+    $this->user->emailExist();
   }
 
   public function __destruct() {

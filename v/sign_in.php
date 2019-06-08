@@ -9,25 +9,15 @@
                 </div>
                 <form class="col-lg-12" id="sign_in" method="POST" action="/user/sign_in">
                     <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">
-                    <h5 class="title">Acceder como usuario</h5>
+                    <h5 class="title mb-4">Acceder como usuario</h5>
                     <?php if(isset($_GET['e'])) { ?>
                     <div class="alert alert-danger mt-3">
                         El usuario introducido y/o la contraseña son incorrectos.
                     </div>
                     <?php } ?>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" name="user" class="form-control" required>
-                            <label class="form-label">Usuario</label>
-                        </div>
-                    </div>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="password" name="password" class="form-control" required>
-                            <label class="form-label">Contraseña</label>
-                        </div>
-                    </div>
-                    <div>
+                    <input type="text" name="user" class="custom-input mb-2" placeholder="Usuario" required>
+                    <input type="password" name="password" class="custom-input mb-2" placeholder="Contraseña" required>
+                    <div class="mt-2">
                         <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-amber">
                         <label for="rememberme">Recordarme</label>
                     </div>

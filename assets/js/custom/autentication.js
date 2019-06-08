@@ -6,6 +6,7 @@ if($('#sign_up').length > 0) {
 	const name = $('*[name="full-name"]');
 	const user = $('*[name="user"]');
 	const email = $('*[name="email"]');
+  const emailConfirm = $('*[name="emailConfirm"]');
 	const password = $('*[name="password"]');
 	const passwordConfirm = $('*[name="passwordConfirm"]');
 	const avatar = $('*[name="avatar"]');
@@ -16,26 +17,42 @@ if($('#sign_up').length > 0) {
 		checkUser(user);
 	});
 
+  email.on('focusout', function() {
+    checkEmail(email);
+  });
+
 	function checkUser(user) {
 		$.post('/user/userExist?user='+user.val(), function(data) {
 		  if(data == 1) {
-		  	swal('Error', 'El nombre de usuario ya existe. Por favor, elige otro nombre.', 'error');
+		  	//swal('Error', 'El nombre de usuario ya existe. Por favor, elige otro nombre.', 'error');
 		  	//user.val('');
-		  	user.next().addClass('error');
+		  	user.addClass('error');
 		  	$('*[type="submit"]').prop('disabled', true);
 		  } else {
-		  	user.next().removeClass('error');
+		  	user.removeClass('error');
 		  	$('*[type="submit"]').prop('disabled', false);
 		  }
 		});
 	}
+
+  function checkEmail(email) {
+    $.post('/user/emailExist?email='+email.val(), function(data) {
+      if(data == 1) {
+        email.addClass('error');
+        $('*[type="submit"]').prop('disabled', true);
+      } else {
+        email.removeClass('error');
+        $('*[type="submit"]').prop('disabled', false);
+      }
+    });
+  }
 
 	$('#sign_up').on('submit', function(e){
 		e.preventDefault();
 
 		var errors = [];
 		var errorTxt = [];
-		$('input').next().removeClass('error');
+		$('input').removeClass('error');
 
 		if(!/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/g.test(name.val())) {
 			errors.push(name.attr('name'));
@@ -54,6 +71,11 @@ if($('#sign_up').length > 0) {
 			errors.push(passwordConfirm.attr('name'));
 			errorTxt.push('Las contraseñas no coinciden.');
 		}
+    if(email.val() != emailConfirm.val()) {
+      errors.push(email.attr('name'));
+      errors.push(emailConfirm.attr('name'));
+      errorTxt.push('Los emails no coinciden.');
+    }
 		if(avatar.val().length == 0) {
 			errors.push(avatar.attr('name'));
 			errorTxt.push('Debes seleccionar un avatar.');
@@ -66,7 +88,7 @@ if($('#sign_up').length > 0) {
 		// check errors
 		if(!jQuery.isEmptyObject(errors)) {
 			errors.forEach(function(error, index) {
-			  $('*[name="'+error+'"]').next().addClass('error');
+			  $('*[name="'+error+'"]').addClass('error');
 			});
 			var errorAlerts = '';
 			errorTxt.forEach(function(error, index) {

@@ -1,24 +1,24 @@
-const box_codes = $('.box-codes');
-const row_content = $('.row-content');
-const executable = $('input[name="executable"]');
+// const box_codes = $('.box-codes');
+// const row_content = $('.row-content');
+// const executable = $('input[name="executable"]');
 
-if(executable.is(':checked')) {
-	box_codes.css('display', 'flex');
-	row_content.css('display', 'none');
-} else {
-	box_codes.css('display', 'none');
-	row_content.css('display', 'flex');
-}
+// if(executable.is(':checked')) {
+// 	box_codes.css('display', 'flex');
+// 	row_content.css('display', 'none');
+// } else {
+// 	box_codes.css('display', 'none');
+// 	row_content.css('display', 'flex');
+// }
 
-executable.on('change', function(){
-	if($(this).is(':checked')) {
-		box_codes.slideDown(150);
-		row_content.slideUp(150);
-	} else {
-		box_codes.slideUp(150);
-		row_content.slideDown(150);
-	}
-});
+// executable.on('change', function(){
+// 	if($(this).is(':checked')) {
+// 		box_codes.slideDown(150);
+// 		row_content.slideUp(150);
+// 	} else {
+// 		box_codes.slideUp(150);
+// 		row_content.slideDown(150);
+// 	}
+// });
 
 // VALIDATIONS
 const alerts = $('.alerts');
@@ -68,7 +68,7 @@ form.on('submit', function(e){
 
 	if(errors.length > 0) {
 		for (var i = 0; i < errors.length; i++) {
-      alerts.append('<span class="alert-message">' + errors[i] + '</span>');
+      alerts.append('<div class="row"><div class="col-12"><span class="alert-message">' + errors[i] + '</span></div></div>');
     }
 	} else {
 		this.submit();
@@ -100,7 +100,7 @@ maxlength.each(function(index) {
 
   span.text(num - $(this).val().length);
 
-  $(this).on('keydown keyup', function() {
+  $(this).on('keydown keyup change', function() {
     span.text(num - $(this).val().length);
     if((num - $(this).val().length) > 50) {
       span.css({'background':'', 'border':'', 'color':''});
@@ -113,6 +113,85 @@ maxlength.each(function(index) {
     }
   });
 
+});
+
+var git = $('input[data_category="git"]');
+var mysql = $('input[data_category="mysql"]');
+var php = $('input[data_category="php"]');
+var reactjs = $('input[data_category="reactjs"]');
+var xampp = $('input[data_category="xampp"]');
+var terminal = $('input[data_category="terminal"]');
+
+const checkboxes = $('.check-categories input[type="checkbox"]');
+
+checkboxes.on('change', function() {
+  checkCheckboxes();
+});
+
+if($('#edit-entry')) {
+  checkCheckboxes();
+}
+
+function checkCheckboxes() {
+  if(
+    $('input[data_category="css3"]').is(':checked') ||
+    $('input[data_category="javascript"]').is(':checked') ||
+    $('input[data_category="svg"]').is(':checked') ||
+    $('input[data_category="jquery"]').is(':checked')
+    ) {
+    $('.box-codes').css('display', 'flex');
+  } else {
+    $('.box-codes').css('display', 'none');
+  }
+
+  if(git.is(':checked')) {
+    $('.box-git').css('display', 'flex');
+  } else {
+    $('.box-git').css('display', 'none');
+  }
+
+  if(mysql.is(':checked')) {
+    $('.box-mysql').css('display', 'flex');
+  } else {
+    $('.box-mysql').css('display', 'none');
+  }
+
+  if(php.is(':checked')) {
+    $('.box-php').css('display', 'flex');
+  } else {
+    $('.box-php').css('display', 'none');
+  }
+
+  if(reactjs.is(':checked')) {
+    $('.box-reactjs').css('display', 'flex');
+  } else {
+    $('.box-reactjs').css('display', 'none');
+  }
+
+  if(xampp.is(':checked')) {
+    $('.box-xampp').css('display', 'flex');
+  } else {
+    $('.box-xampp').css('display', 'none');
+  }
+
+  if(terminal.is(':checked')) {
+    $('.box-terminal').css('display', 'flex');
+  } else {
+    $('.box-terminal').css('display', 'none');
+  }
+
+  $('.CodeMirror').each(function(i, el){
+      el.CodeMirror.refresh();
+  });
+}
+
+$('.check-categories input.logo-checkbox').on('change', function() {
+  if($(this).is(':checked')) {
+    $(this).prev().addClass('category-selected');
+  }
+  else {
+    $(this).prev().removeClass('category-selected');
+  }
 });
 
 

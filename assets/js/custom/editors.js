@@ -1,3 +1,25 @@
+// other code
+var box_otherCode = null;
+if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
+  box_otherCode.forEach(function(valor, indice, array) {
+    var valor = CodeMirror.fromTextArea(valor, {
+      mode: "scheme",
+      keyMap: "sublime",
+      theme: "monokai",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+      extraKeys: {
+        "Ctrl-Enter": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }
+      }
+    });
+  });
+}
+
 // HTML
 var box_html = null;
 if(box_html = document.getElementById('box_html')) {
@@ -7,10 +29,17 @@ if(box_html = document.getElementById('box_html')) {
     keyMap: "sublime",
     theme: "monokai",
     lineNumbers: true,
+    autoCloseBrackets: true,
     tabSize: 2,
-    //value: 'content here',
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
   });
-  //console.log(editorHtml.getDoc().getValue("\n"));
 }
 
 // css
@@ -22,18 +51,24 @@ if(box_css = document.getElementById('box_css')) {
     keyMap: "sublime",
     theme: "monokai",
     lineNumbers: true,
+    autoCloseBrackets: true,
     showCursorWhenSelecting: true,
     tabSize: 2,
-    //value: 'content here',
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
   });
-  //console.log(editorCss.getDoc().getValue("\n"));
 }
 
 // JavaScript
 var box_js = null;
 if(box_js = document.getElementById('box_js')) {
-  var editorJs = CodeMirror.fromTextArea(document.getElementById('box_js'), {
-    value: '// Sublime Text mode.',
+  var editorJs = CodeMirror.fromTextArea(box_js, {
     lineNumbers: true,
     mode: "javascript",
     keyMap: "sublime",
@@ -42,29 +77,21 @@ if(box_js = document.getElementById('box_js')) {
     showCursorWhenSelecting: true,
     theme: "monokai",
     tabSize: 2,
-    //value: 'content here',
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
   });
-  //console.log(editorJs.getDoc().getValue("\n"));
-}
-
-// other code
-var box_otherCode = null;
-if(box_otherCode = document.getElementById('box_otherCode')) {
-  var otherCode = CodeMirror.fromTextArea(box_otherCode, {
-    mode: "scheme",
-    keyMap: "sublime",
-    theme: "monokai",
-    lineNumbers: true,
-    //value: 'content here',
-  });
-  //console.log(editorCss.getDoc().getValue("\n"));
 }
 
 // PHP
 var phpCode = null;
-if(phpCode = document.getElementById('phpCode')) {
-  var editorPHP = CodeMirror.fromTextArea(document.getElementById('phpCode'), {
-    value: '// Sublime Text mode.',
+if(phpCode = document.getElementById('php')) {
+  var editorPHP = CodeMirror.fromTextArea(phpCode, {
     lineNumbers: true,
     mode: "application/x-httpd-php",
     keyMap: "sublime",
@@ -73,7 +100,90 @@ if(phpCode = document.getElementById('phpCode')) {
     showCursorWhenSelecting: true,
     theme: "monokai",
     tabSize: 2,
-    //value: 'content here',
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
   });
-  //console.log(editorJs.getDoc().getValue("\n"));
 }
+
+// SQL
+var sql = null;
+if(sql = document.getElementById('mysql')) {
+  var editorSQL = CodeMirror.fromTextArea(sql, {
+    mode: "text/x-mariadb",
+    keyMap: "sublime",
+    theme: "monokai",
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    matchBrackets : true,
+    extraKeys: {"Ctrl-Space": "autocomplete"},
+    hintOptions: {tables: {
+      users: ["name", "score", "birthDate"],
+      countries: ["name", "population", "size"]
+    }},
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
+  });
+}
+
+// reactjs
+var reactjs = null;
+if(reactjs = document.getElementById('reactjs')) {
+  var editorJs = CodeMirror.fromTextArea(document.getElementById('reactjs'), {
+    lineNumbers: true,
+    mode: "jsx",
+    keyMap: "sublime",
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    showCursorWhenSelecting: true,
+    theme: "monokai",
+    tabSize: 2,
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
+  });
+}
+
+// terminal
+var terminal = null;
+if(terminal = document.getElementById('terminal')) {
+  var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
+    lineNumbers: true,
+    mode: "shell",
+    keyMap: "sublime",
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    showCursorWhenSelecting: true,
+    theme: "monokai",
+    tabSize: 2,
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
+  });
+}
+
+$('.CodeMirror').each(function(i, el){
+    el.CodeMirror.refresh();
+});

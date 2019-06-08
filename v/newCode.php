@@ -4,22 +4,24 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="body">
-						<h2>Crear nuevo extracto de código</h2>
+						<h1 class="titles">Crear nueva entrada</h1>
 						<?php if($session) { ?>
 						<div class="row">
 							<div class="col-12">
 								<form id="new-entry-form" action="/action/save_entry" method="POST">
-									<div class="row">
-										<div class="col-12">
-											<h6>Ejecutable</h6>
-											<div class="switch">
-			                  <label>
-			                  	<input type="checkbox" name="executable" checked>
-			                    <span class="lever switch-col-amber"></span>
-			                  </label>
-			                </div>
-										</div>
-									</div>
+                  
+                  <div class="row">
+                    <div class="col-12 mt-4 check-categories">
+                      <h6>Categoría</h6>
+
+                        <?php foreach ($categories as $category) { ?>
+                        <label for="<?= $category['id_category'] ?>" class="category-select"><img src="<?= $category['category_logo'] ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $category['category_name']?>"></label>
+                        <input type="checkbox" class="logo-checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" data_category="<?= $category['descriptive_name'] ?>"/>
+                        <?php } ?>
+
+                    </div>
+                  </div>
+
 									<div class="row">
 										<div class="col-12">
                       <div class="mt-4">
@@ -40,90 +42,155 @@
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<div class="mt-4">
-												<h6>Descripción larga</h6>
-												<textarea name="explanation" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada" maxlength="65535"></textarea>
-                        <span class="characters">65535</span>
-											</div>
-											<!-- CKEditor -->
-											<!-- <textarea id="ckeditor" name="explanation" required></textarea> -->
-											<!-- #END# CKEditor -->
-										</div>
-									</div>
-									<div class="row row-content">
-										<div class="col-12">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<h6>Código</h6>
-													<textarea id="box_otherCode" name="content" autocomplete="off"></textarea>
-												</div>
+											<div class="mt-4 mb-4">
+												<h6>Descripción detallada</h6>
+												<!-- <textarea name="explanation" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada" maxlength="65535"></textarea> -->
+												<textarea id="ckeditor" name="explanation" maxlength="65535"></textarea>
+                        <!-- <span class="characters">65535</span> -->
 											</div>
 										</div>
 									</div>
+
 									<div class="row box-codes">
 										<div class="col-lg-4 col-12" data-full="full-html">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<div class="row">
-														<div class="col-6">
-															<h6>HTML</h6>
-														</div>
-														<div class="col-6 hidden-mobile">
-															<div class="float-right">
-																<a href="#" id="full-html" class="full-code"><i class="material-icons">aspect_ratio</i></a>
-															</div>
-														</div>
-													</div>
+											<div class="mt-2 mb-2">
+												<div class="form-box">
+													<h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/html.svg" alt="language-logo">
+                            </div>HTML
+                          </h6>
 													<textarea id="box_html" name="html" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-4 col-12" data-full="full-css">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<div class="row">
-														<div class="col-6">
-															<h6>CSS</h6>
-														</div>
-														<div class="col-6 hidden-mobile">
-															<div class="float-right">
-																<a href="#" id="full-css" class="full-code"><i class="material-icons">aspect_ratio</i></a>
-															</div>
-														</div>
-													</div>
+											<div class="mt-2 mb-2">
+												<div class="form-box">
+													<h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/css.svg" alt="language-logo">
+                            </div>CSS
+                          </h6>
 													<textarea id="box_css" name="css" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-4 col-12" data-full="full-js">
-											<div class="form-group mb-2">
-												<div class="form-line">
-													<div class="row">
-														<div class="col-6">
-															<h6>JavaScript</h6>
-														</div>
-														<div class="col-6 hidden-mobile">
-															<div class="float-right">
-																<a href="#" id="full-js" class="full-code"><i class="material-icons">aspect_ratio</i></a>
-															</div>
-														</div>
-													</div>
+											<div class="mt-2 mb-2">
+												<div class="form-box">
+													<h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/javascript.svg" alt="language-logo">
+                            </div>JavaScript
+                          </h6>
 													<textarea id="box_js" name="javascript" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-12 mt-4 check-categories">
-											<h6>Categoría</h6>
 
-												<?php foreach ($categories as $category) { ?>
-												<input type="checkbox" id="<?= $category['id_category'] ?>" name="categories[]" value="<?= $category['id_category'] ?>" class="filled-in category<?= $category['id_category'] ?>" data_category="<?= $category['descriptive_name'] ?>"/>
-                        <label for="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></label>&nbsp;&nbsp;&nbsp;
-												<?php } ?>
 
-										</div>
-									</div>
+                  <div class="row row-content box-git">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/git.svg" alt="language-logo">
+                            </div>Git
+                          </h6>
+                          <textarea class="box_otherCode" name="git" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-content box-mysql">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/mysql.svg" alt="language-logo">
+                            </div>MySQL
+                          </h6>
+                          <textarea id="mysql" name="mysql" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-content box-php">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/php.svg" alt="language-logo">
+                            </div>PHP
+                          </h6>
+                          <textarea id="php" name="php" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-content box-reactjs">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/react.svg" alt="language-logo">
+                            </div>ReactJS
+                          </h6>
+                          <textarea id="reactjs" name="reactjs" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-content box-xampp">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/xampp.svg" alt="language-logo">
+                            </div>XAMPP
+                          </h6>
+                          <textarea class="box_otherCode" name="xampp" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-content box-terminal">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/terminal.svg" alt="language-logo">
+                            </div>Terminal
+                          </h6>
+                          <textarea id="terminal" name="terminal" autocomplete="off"></textarea>
+                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
 									<div class="row">
 										<div class="col-12">
 											<button type="submit" class="btn btn-raised bg-custom waves-effect mt-4"><i class="zmdi zmdi-save"></i>&nbsp;&nbsp;Guardar</button>

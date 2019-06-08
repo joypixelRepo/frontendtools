@@ -16,10 +16,15 @@ class Action extends ApplicationController {
       title = ?,
       description = ?,
       explanation = ?,
-      content = ?,
       css = ?,
       html = ?,
       javascript = ?,
+      php = ?,
+      mysql = ?,
+      git = ?,
+      reactjs = ?,
+      xampp = ?,
+      terminal = ?,
       creator = ?,
       creation_date = ?,
       edition_date = ?,
@@ -28,16 +33,21 @@ class Action extends ApplicationController {
 
 		$vars = [
       $_POST['title'],
-      htmlspecialchars($_POST['description'], ENT_QUOTES | ENT_HTML5),
-      htmlspecialchars($_POST['explanation'], ENT_QUOTES | ENT_HTML5),
-      htmlspecialchars($_POST['content'], ENT_QUOTES | ENT_HTML5),
+      $_POST['description'],
+      $_POST['explanation'],
       $_POST['css'],
-      htmlspecialchars($_POST['html'], ENT_QUOTES | ENT_HTML5),
+      $_POST['html'],
       $_POST['javascript'],
+      $_POST['php'],
+      $_POST['mysql'],
+      $_POST['git'],
+      $_POST['reactjs'],
+      $_POST['xampp'],
+      $_POST['terminal'],
       $_SESSION['user']['user'],
       strftime('%Y-%m-%d %H:%M:%S'),
       strftime('%Y-%m-%d %H:%M:%S'),
-      isset($_POST['executable']) && $_POST['executable'] === 'on' ? 1 : 0
+      !empty($_POST['html']) || !empty($_POST['css']) || !empty($_POST['javascript']) || !empty($_POST['jquery']) ? 1 : 0
     ];
 		$res = $this->db->query($sql, $vars);
 
@@ -76,10 +86,15 @@ class Action extends ApplicationController {
       title = ?,
       description = ?,
       explanation = ?,
-      content = ?,
       css = ?,
       html = ?,
       javascript = ?,
+      php = ?,
+      mysql = ?,
+      git = ?,
+      reactjs = ?,
+      xampp = ?,
+      terminal = ?,
       edition_date = ?,
       executable = ?
       WHERE id = ?
@@ -87,14 +102,19 @@ class Action extends ApplicationController {
 
     $vars = [
       $_POST['title'],
-      htmlspecialchars($_POST['description'], ENT_QUOTES | ENT_HTML5),
-      htmlspecialchars($_POST['explanation'], ENT_QUOTES | ENT_HTML5),
-      htmlspecialchars($_POST['content'], ENT_QUOTES | ENT_HTML5),
+      $_POST['description'],
+      $_POST['explanation'],
       $_POST['css'],
-      htmlspecialchars($_POST['html'], ENT_QUOTES | ENT_HTML5),
+      $_POST['html'],
       $_POST['javascript'],
+      $_POST['php'],
+      $_POST['mysql'],
+      $_POST['git'],
+      $_POST['reactjs'],
+      $_POST['xampp'],
+      $_POST['terminal'],
       strftime('%Y-%m-%d %H:%M:%S'),
-      isset($_POST['executable']) && $_POST['executable'] === 'on' ? 1 : 0,
+      !empty($_POST['html']) || !empty($_POST['css']) || !empty($_POST['javascript']) || !empty($_POST['jquery']) ? 1 : 0,
       $_POST['id']
     ];
     $res = $this->db->query($sql, $vars);

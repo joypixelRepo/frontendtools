@@ -8,8 +8,10 @@ class VController extends ApplicationController {
 
   public function __construct() {
   	setlocale(LC_TIME, "es_ES.UTF8");
-    // https://mothereff.in/html-entities
-    // view model
+    
+    $userController = new UserController();
+    $userController->checkCookiesSession();
+
     $this->view = new View();
     $this->user = new User();
 
@@ -117,44 +119,6 @@ class VController extends ApplicationController {
     die;
   }
 
-  public function exec() {
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session(),
-      'styles' => [
-        self::printCss('/assets/css/custom/code.css',0),
-        self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
-        self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
-      ]
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
-      'session' => parent::session(),
-      'entry' => $this->view->loadEntry($_GET['id']),
-      'user' => $this->user->getUserData(),
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-      'scripts' => [
-        self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
-        self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
-        self::printScript('/assets/js/custom/editors.js',0),
-      ]
-    ]);
-    die;
-  }
-
   public function index() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
@@ -172,6 +136,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/home.php', [
       'entries' => $this->view->loadEntries(),
       'categories' => $this->view->loadCategories(),
+      'viewCategory' => $this->view->getCategoryName(self::returnGet('c')),
       'user' => $this->user->getUserData(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
@@ -229,6 +194,27 @@ class VController extends ApplicationController {
     die;
   }
 
+  public function base64() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session(),
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
+      'scripts' => [
+        self::printScript('/assets/js/custom/base64.js',0),
+      ]
+    ]);
+    die;
+  }
+
   public function success() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session()
@@ -265,6 +251,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
     	'user' => $this->user->getUserData(),
       'avatars' => self::renderAvatars(),
+      'userCategories' => $this->view->userCategories(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
@@ -277,6 +264,52 @@ class VController extends ApplicationController {
     die;
   }
 
+  public function exec() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session(),
+      'styles' => [
+        self::printCss('/assets/css/custom/code.css',0),
+        self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
+        self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
+        self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
+      ]
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
+      'session' => parent::session(),
+      'entry' => $this->view->loadEntry($_GET['id']),
+      'user' => $this->user->getUserData(),
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
+      'scripts' => [
+        self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
+        self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScript('/assets/js/custom/editors.js',0),
+      ]
+    ]);
+    die;
+  }
+
   public function newCode() {
     self::sessionActive();
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
@@ -284,8 +317,9 @@ class VController extends ApplicationController {
       'styles' => [
         self::printCss('/assets/plugins/bootstrap-select/css/bootstrap-select.css',1),
         self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
+        self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
         self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
-      ]
+      ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -302,14 +336,24 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        //self::printScript('/assets/js/pages/forms/editors.js',1),
+        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
+        self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
         self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
         self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
@@ -330,6 +374,7 @@ class VController extends ApplicationController {
       'styles' => [
         self::printCss('/assets/plugins/bootstrap-select/css/bootstrap-select.css',1),
         self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
+        self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
         self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
       ]
     ]);
@@ -349,14 +394,24 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        //self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        //self::printScript('/assets/js/pages/forms/editors.js',1),
+        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
+        self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
         self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
         self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
         self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
         self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
         self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),

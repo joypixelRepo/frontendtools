@@ -13,6 +13,30 @@ if(!empty($entries)) {
   <div class="card-columns">
   <? foreach ($entries as $entry) { ?>
     <div class="card card-home">
+
+      <div class="header">
+          <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
+            <h2 title="<?= $entry['title'] ?>">
+              <?= strlen($entry['title']) > 65 ? substr($entry['title'],0,65)."..." : $entry['title'] ?>
+            </h2>
+          </a>
+          <ul class="header-dropdown m-r--5">
+            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
+              <ul class="dropdown-menu">
+
+                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver</a></li>
+
+                <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
+                
+                <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar"><i class="material-icons">mode_edit</i>Editar</a></li>
+                <li><a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar"><i class="material-icons">delete</i>Eliminar</a></li>
+
+                <? } ?>
+
+              </ul>
+            </li>
+          </ul>
+      </div>
       
       <div class="body entry-box">
 
@@ -27,32 +51,15 @@ if(!empty($entries)) {
           <? } ?>
         <? } ?>
 
-        <div class="float-right box-btn-view">
-          <a href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>" title="Ver entrada">
-            <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">remove_red_eye</i> </button>
-          </a>
-
-
-          <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
-          <a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar">
-            <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button"> <i class="material-icons">edit</i> </button>
-          </a>
-          <a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar">
-            <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float entry-action-button hover-red"> <i class="material-icons">delete</i> </button>
-          </a>
-          <? } ?>
-
-        </div>
-          <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
-            <h3 title="<?= $entry['title'] ?>"><?= strlen($entry['title']) > 65 ? substr($entry['title'],0,65)."..." : $entry['title'] ?></h3>
-            <div class="code-description">
-              <? if(!empty($entry['description'])) { ?>
-              <?= strlen($entry['description']) > 120 ? substr($entry['description'],0,120)."..." : $entry['description'] ?>
-              <? } else { ?>
-                <span class="no-description">Sin descripción.</span>
-              <? } ?>
-            </div>
-          </a>
+        <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
+          <div class="code-description">
+            <? if(!empty($entry['description'])) { ?>
+            <?= strlen($entry['description']) > 120 ? substr($entry['description'],0,120)."..." : $entry['description'] ?>
+            <? } else { ?>
+              <span class="no-description">Sin descripción.</span>
+            <? } ?>
+          </div>
+        </a>
       </div>
       <div class="entry-creator-info">
         <div class="row">
@@ -83,7 +90,7 @@ if(!empty($entries)) {
             <? if($entry['executable']) { ?>
             <div class="executable-corner" data-toggle="tooltip" data-placement="top" title="Ejecutable">
               <!-- <span>Ejecutable</span> -->
-              <img src="/assets/images/executable.svg" alt="Entrada ejecutable">
+              <img src="/assets/images/executable-grid.svg" alt="Entrada ejecutable">
             </div>
             <? } ?>
           </div>

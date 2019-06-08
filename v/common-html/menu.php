@@ -37,8 +37,7 @@
 			</a>
 		</div>
 		<ul class="nav navbar-nav navbar-left">
-			<li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="material-icons">swap_horiz</i></a></li>
-			<li class="hidden-sm-down"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode" title="Crear entrada"><i class="material-icons">code</i></a></li>
+			<li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true" title="Maximizar horizontalmente"><i class="material-icons">swap_horiz</i></a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="material-icons">apps</i>
@@ -65,14 +64,15 @@
 			</ul>
 		</li>
 		<li>
-			<a href="#" onclick="toggleFullscreen();" class="hidden-sm-down">
-				<i class="material-icons">fullscreen</i>                  
+			<a href="#" onclick="toggleFullscreen();" class="hidden-sm-down app-fullscreen">
+				<i class="material-icons">fullscreen</i>
 			</a>
 		</li>
 		<?php if($session) { ?>
 			<? if($user['rol'] == 'admin') { ?>
 			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons rotate">settings</i></a></li>
 			<? } ?>
+      <li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Cerrar sesión"><i class="material-icons">exit_to_app</i></a></li>
 		<?php } else { ?>
 			<li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Iniciar sesión" class="mega-menu" data-close="true"><i class="material-icons">person</i></a></li>
 		<?php } ?>
@@ -116,13 +116,21 @@
 		<ul class="list">
 			<li class="header">MENÚ PRINCIPAL</li>
 
-      <li><a href="/"><i class="zmdi zmdi-home"></i><span>Inicio</span> </a></li>
+      <? if(!isset($user)) { ?>
+      <li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>"><i class="zmdi zmdi-account"></i><span>Iniciar sesión</span> </a></li>
+      <? } ?>
 
-			<li><a href="/<?= $_SERVER['VIEWS'] ?>/newCode" class="btn-new-entry"><span>Crear entrada</span></a></li>
+      <li><a href="/" class="bb-n"><i class="zmdi zmdi-home"></i><span>Inicio</span> </a></li>
+
+      <li>
+        <a href="/<?= $_SERVER['VIEWS'] ?>/newCode" class="btn-fade-icon bg-1">
+          <i class="material-icons">add_circle</i>
+          <span>Crear entrada</span>
+        </a>
+      </li>
 
 			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Extractos de código</span> </a>
 				<ul class="ml-menu">
-					<li class="li-categories"><a href="/<?= $_SERVER['VIEWS'] ?>/newCode"><img class="category-image horizontal-move" src="/assets/images/new.svg"><span>Nueva entrada</span> </a> </li>
 					<?php foreach ($categories as $category) { ?>
 						<li class="li-categories"><a href="/?c=<?= $category['descriptive_name'] ?>"><img class="category-image" src="<?= $category['category_logo'] ?>"><span><?= $category['category_name'] ?></span> </a> </li>
 					<?php } ?>
@@ -136,6 +144,8 @@
 					<li><a href="/<?= $_SERVER['VIEWS'] ?>/gradient_generator"><span>Degradado CSS3</span></a></li>
 
 					<li><a href="/<?= $_SERVER['VIEWS'] ?>/text_generator"><span>Texto aleatorio</span></a></li>
+
+          <li><a href="/<?= $_SERVER['VIEWS'] ?>/base64"><span>Base64 encode/decode</span></a></li>
 				</ul>
 			</li>
 
@@ -193,7 +203,7 @@
 							<ul>
 								<? foreach ($users as $user) { ?>
 									<li>
-										<a href="#" class="col-grey user-sidebar">
+										<a href="/?creator=<?= $user['user'] ?>" class="col-grey user-sidebar">
 											<img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" alt="profile-img" class="filter-gray">
 											<span><?= $user['user'] ?></span>
 											<span class="font-10 ml-2"><?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?></span>

@@ -19,6 +19,8 @@
   });
 
   function setFullscreen(cm) {
+    $('body').addClass('ls-toggle-menu');
+    $('nav.navbar').addClass('z-index-8');
     var wrap = cm.getWrapperElement();
     cm.state.fullScreenRestore = {scrollTop: window.pageYOffset, scrollLeft: window.pageXOffset,
                                   width: wrap.style.width, height: wrap.style.height};
@@ -30,6 +32,8 @@
   }
 
   function setNormal(cm) {
+    $('body').removeClass('ls-toggle-menu');
+    $('nav.navbar').removeClass('z-index-8');
     var wrap = cm.getWrapperElement();
     wrap.className = wrap.className.replace(/\s*CodeMirror-fullscreen\b/, "");
     document.documentElement.style.overflow = "";
