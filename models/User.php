@@ -57,7 +57,7 @@ class User extends ApplicationController {
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
       <title>Activar cuenta en Frontendtools</title>
       <style type="text/css">
 
@@ -132,7 +132,7 @@ class User extends ApplicationController {
         a.link2{
           text-decoration:none;
           font-family:Helvetica, Arial, sans-serif;
-          font-size:16px;
+          font-size:20px;
           color:#fff;
           border-radius:4px;
         }
@@ -218,8 +218,9 @@ class User extends ApplicationController {
                         <td width="400" align="center" style="padding-bottom:5px;">
                           <div class="contentEditableContainer contentTextEditable">
                             <div class="contentEditable" >
-                              <p >Hola '.$name.'</p>
-                              <p >Haz click en el siguiente enlace para activar tu cuenta en Frontendtools:</p>
+                              <p>Hola '.$name.'</p>
+                              <p>Te has registrado satisfactoriamente en frontendtools, pero es necesaria la activación del usuario para poder acceder.</p>
+                              <p>Haz click en el siguiente enlace para activar tu cuenta en Frontendtools:</p>
                             </div>
                           </div>
                         </td>

@@ -72,7 +72,21 @@
 			<? if($user['rol'] == 'admin') { ?>
 			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons rotate">settings</i></a></li>
 			<? } ?>
-      <li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Cerrar sesión"><i class="material-icons">exit_to_app</i></a></li>
+      <li>
+        <div class="user-helper-dropdown avatar-top-right-menu">
+          <img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" class="avatar-top-right-menu" alt="User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"/>
+          <ul class="dropdown-menu">
+            <li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Mi cuenta</a></li>
+            <li class="divider"></li>
+            <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+            <li class="divider"></li> -->
+            <li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </li>
+
 		<?php } else { ?>
 			<li><a href="/<?= $_SERVER['VIEWS'] ?>/sign_in?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" title="Iniciar sesión" class="mega-menu" data-close="true"><i class="material-icons">person</i></a></li>
 		<?php } ?>
@@ -96,12 +110,12 @@
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
 				<ul class="dropdown-menu">
-					<li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Perfil</a></li>
+					<li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Mi cuenta</a></li>
 					<li class="divider"></li>
-					<li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+					<!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
 					<li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
 					<li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-					<li class="divider"></li>
+					<li class="divider"></li> -->
 					<li><a href="/user/sign_out?url=<?= urlencode($_SERVER['REQUEST_URI']) ?>"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
 				</ul>
 			</div>
@@ -129,7 +143,7 @@
         </a>
       </li>
 
-			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Extractos de código</span> </a>
+			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Categorías</span> </a>
 				<ul class="ml-menu">
 					<?php foreach ($categories as $category) { ?>
 						<li class="li-categories"><a href="/?c=<?= $category['descriptive_name'] ?>"><img class="category-image" src="<?= $category['category_logo'] ?>"><span><?= $category['category_name'] ?></span> </a> </li>

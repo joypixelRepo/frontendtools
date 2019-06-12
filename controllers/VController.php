@@ -194,6 +194,23 @@ class VController extends ApplicationController {
     die;
   }
 
+  public function error404() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session()
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
+    die;
+  }
+
   public function base64() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
@@ -272,7 +289,8 @@ class VController extends ApplicationController {
         self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
         self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
         self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
-      ]
+      ],
+      'entry' => $this->view->loadEntry($_GET['id']),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -356,7 +374,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
-        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
+        // self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
       ]
     ]);
     die;
@@ -414,7 +432,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
-        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
+        // self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
       ]
     ]);
     die;

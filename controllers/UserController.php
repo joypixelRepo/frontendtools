@@ -16,13 +16,17 @@ class UserController extends ApplicationController {
       $_SESSION['id'] = 'aR_3vG_88KlpZ';
       $_SESSION['user'] = $userData;
 
-      $cookieSession = [
-        'user' => $userData['user'],
-        'password' => $userData['password']
-      ];
-
-      // la cookie caducará en 1 año (31536000 segundos)
-      setcookie('fet_net_session_login', serialize($cookieSession), time()+31536000, '/');
+      if(isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
+        $cookieSession = [
+          'user' => $userData['user'],
+          'password' => $userData['password']
+        ];
+        // la cookie caducará en 1 año (31536000 segundos)
+        setcookie('fet_net_session_login', serialize($cookieSession), time()+31536000, '/');
+      } else {
+        // eliminamos la cookie
+        setcookie('fet_net_session_login', null, -1, '/');
+      }
 
       parent::notify('success', 'Sesión iniciada', 'Has iniciado sesión correctamente.', $prevUrl);
     } else {

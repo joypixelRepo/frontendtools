@@ -115,6 +115,14 @@ maxlength.each(function(index) {
 
 });
 
+title.on('keyup', function() {
+  if(title.val().length > 0) {
+    $('h1.titles').html(title.val());
+  } else {
+    $('h1.titles').html('Escribe el título');
+  }
+});
+
 var git = $('input[data_category="git"]');
 var mysql = $('input[data_category="mysql"]');
 var php = $('input[data_category="php"]');

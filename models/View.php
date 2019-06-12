@@ -66,7 +66,7 @@ class View extends ApplicationController {
       $limit = ' LIMIT '.$entriesPosition.', '.$entriesNum;
     }
 
-    $countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
+    $countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id INNER JOIN login ON login.user = entries.creator '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
 
     //$countSql = 'SELECT * FROM category_entry INNER JOIN entries ON entries.id = category_entry.entry_id INNER JOIN categories ON categories.id_category = category_entry.category_id INNER JOIN login ON login.user = entries.creator '.$where.' GROUP BY entries.id ORDER BY entries.id DESC ';
 
@@ -108,6 +108,8 @@ class View extends ApplicationController {
 
     if($entry) {
       return $entry;
+    } else {
+      header('Location: /'.$_SERVER['VIEWS'].'/error404');
     }
   }
 

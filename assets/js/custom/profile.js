@@ -1,6 +1,8 @@
 const avatars_a = $('.avatars a');
 const user_img = $('.user-info .image img');
 const profile_image = $('.profile-image img');
+const avatar_top_right_menu_image = $('.avatar-top-right-menu img');
+
 const box_images = $('#box-edit-image');
 
 profile_image.on('click', function(e){
@@ -48,6 +50,7 @@ function effectIn(img) {
 	setTimeout(function() { 
 		profile_image.removeClass(fxOut+' animated-fast').attr('src', img).addClass(fxIn+' animated-fast');
 		user_img.removeClass(fxOut+' animated-fast').attr('src', img).addClass(fxIn+' animated-fast');
+    avatar_top_right_menu_image.attr('src', img);
 	}, 150);
 }
 

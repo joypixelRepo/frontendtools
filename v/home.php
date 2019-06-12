@@ -28,7 +28,7 @@
           <div class="body">
             <div class="header">
               <? if(!empty($viewCategory['id_category'])) { ?>
-              <div class="row vertical-align-parent">
+              <div class="row">
                 <div class="col-lg-1 col-sm-2 col-3 vertical-align-child">
                   <div class="category-big-logo">
                     <img src="<?= $viewCategory['category_logo'] ?>" alt="language-logo">

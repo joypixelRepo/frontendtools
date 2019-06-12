@@ -12,10 +12,12 @@
                 <div class="col-lg-6 col-md-8 col-12">
                     <h4 class="m-t-5 m-b-0"><?= $user['name'] ?></h4>
                     <span class="job_post"><?= $user['job'] ?></span>
-                    <p class="social-icon m-t-20 m-b-0">
-                        <a title="Github" href="<?= $user['github'] ?>"><i class="zmdi zmdi-github"></i></a>
-                        <a title="Facebook" href="javascript:void(0);"><i class="zmdi zmdi-facebook"></i></a>
-                        <a title="Instagram" href="javascript:void(0);"><i class="zmdi zmdi-instagram "></i></a>
+                    <p class="social-icon mt-1 m-b-0">
+                        
+                        <? if(!empty($user['github'])) { ?>
+                        <a title="Github" href="<?= $user['github'] ?>" target="_blank"><i class="zmdi zmdi-github"></i></a>
+                        <? } ?>
+
                     </p>
                 </div>                
             </div>
@@ -45,7 +47,8 @@
             <div class="col-sm-12">
                 <div class="card">
                   <div class="header">
-                    <h2>Tus entradas</h2>
+                    <h3 class="text-center title-profile">Tus entradas</h3>
+                    <p class="text-center">Todas tus entradas clasificadas por categorías</p>
                   </div>
                     <div class="row profile_state list-unstyled">
                         <?php
@@ -62,6 +65,9 @@
                             </div>
                           </li>
                         <? } ?>
+                    </div>
+                    <div class="text-center">
+                      <a href="/?creator=<?= $user['user'] ?>" class="btn btn-raised bg-custom waves-effect mt-4 mb-4">Ver todas mis entradas</a>
                     </div>
                 </div>
             </div>

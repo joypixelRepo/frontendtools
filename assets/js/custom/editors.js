@@ -2,7 +2,7 @@
 var box_otherCode = null;
 if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
   box_otherCode.forEach(function(valor, indice, array) {
-    var valor = CodeMirror.fromTextArea(valor, {
+    var editor = CodeMirror.fromTextArea(valor, {
       mode: "scheme",
       keyMap: "sublime",
       theme: "monokai",
@@ -23,7 +23,7 @@ if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
 // HTML
 var box_html = null;
 if(box_html = document.getElementById('box_html')) {
-  var editorHtml = CodeMirror.fromTextArea(box_html, {
+  var editor = CodeMirror.fromTextArea(box_html, {
     mode: "text/html",
     extraKeys: {"Ctrl-Space": "autocomplete"},
     keyMap: "sublime",
@@ -45,7 +45,7 @@ if(box_html = document.getElementById('box_html')) {
 // css
 var box_css = null;
 if(box_css = document.getElementById('box_css')) {
-  var editorCss = CodeMirror.fromTextArea(box_css, {
+  var editor = CodeMirror.fromTextArea(box_css, {
     mode: "text/css",
     extraKeys: {"Ctrl-Space": "autocomplete"},
     keyMap: "sublime",
@@ -68,7 +68,7 @@ if(box_css = document.getElementById('box_css')) {
 // JavaScript
 var box_js = null;
 if(box_js = document.getElementById('box_js')) {
-  var editorJs = CodeMirror.fromTextArea(box_js, {
+  var editor = CodeMirror.fromTextArea(box_js, {
     lineNumbers: true,
     mode: "javascript",
     keyMap: "sublime",
@@ -91,7 +91,7 @@ if(box_js = document.getElementById('box_js')) {
 // PHP
 var phpCode = null;
 if(phpCode = document.getElementById('php')) {
-  var editorPHP = CodeMirror.fromTextArea(phpCode, {
+  var editor = CodeMirror.fromTextArea(phpCode, {
     lineNumbers: true,
     mode: "application/x-httpd-php",
     keyMap: "sublime",
@@ -114,7 +114,7 @@ if(phpCode = document.getElementById('php')) {
 // SQL
 var sql = null;
 if(sql = document.getElementById('mysql')) {
-  var editorSQL = CodeMirror.fromTextArea(sql, {
+  var editor = CodeMirror.fromTextArea(sql, {
     mode: "text/x-mariadb",
     keyMap: "sublime",
     theme: "monokai",
@@ -141,7 +141,7 @@ if(sql = document.getElementById('mysql')) {
 // reactjs
 var reactjs = null;
 if(reactjs = document.getElementById('reactjs')) {
-  var editorJs = CodeMirror.fromTextArea(document.getElementById('reactjs'), {
+  var editor = CodeMirror.fromTextArea(document.getElementById('reactjs'), {
     lineNumbers: true,
     mode: "jsx",
     keyMap: "sublime",
@@ -164,7 +164,7 @@ if(reactjs = document.getElementById('reactjs')) {
 // terminal
 var terminal = null;
 if(terminal = document.getElementById('terminal')) {
-  var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
+  var editor = CodeMirror.fromTextArea(document.getElementById('terminal'), {
     lineNumbers: true,
     mode: "shell",
     keyMap: "sublime",
@@ -184,6 +184,17 @@ if(terminal = document.getElementById('terminal')) {
   });
 }
 
-$('.CodeMirror').each(function(i, el){
-    el.CodeMirror.refresh();
-});
+// solve ckeditor toolbar popup on click on other textarea
+CKEDITOR.disableAutoInline = true;
+
+// solve codemirror elements on ckeditor is visible
+$(document).ready(checkContainer);
+function checkContainer() {
+  if($('#cke_ckeditor').is(':visible')) {
+    $('.CodeMirror').each(function(i, el){
+      el.CodeMirror.refresh();
+    });
+  } else {
+    setTimeout(checkContainer, 50);
+  }
+}

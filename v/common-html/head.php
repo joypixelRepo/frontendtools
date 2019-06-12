@@ -1,6 +1,16 @@
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141935705-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141935705-1');
+  </script>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -19,6 +29,11 @@
 	<link rel="stylesheet" href="/assets/css/color_skins.css">
 	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>">
+
+  <?php if(isset($entry[0])) { ?>
+  <meta property="og:title" content="<?= $entry[0]['title'] ?>" />
+  <meta property="og:description" content="<?= $entry[0]['description'] ?>" />
+  <?php } ?>
 
 	<!-- common scrips -->
 	<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>

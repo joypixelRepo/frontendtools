@@ -46,8 +46,11 @@
           </div>
 
           <div class="row">
-            <div class="col-12 mb-4">
-              <input type="text" name="github" class="custom-input sign_up_icon icon_github" placeholder="Github">
+            <div class="col-1 mb-4">
+              <img class="icon-social" src="/assets/images/github.svg">
+            </div>
+            <div class="col-11 mb-4">
+              <input type="text" name="github" class="custom-input sign_up_icon" placeholder="https://github.com/...">
             </div>
           </div>
 

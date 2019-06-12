@@ -12,12 +12,12 @@ if(!empty($entries)) {
 
   <div class="card-columns">
   <? foreach ($entries as $entry) { ?>
-    <div class="card card-home">
+    <div class="card card-home <?= $entry['executable'] ? 'entry-executable' : '' ?>">
 
       <div class="header">
           <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
             <h2 title="<?= $entry['title'] ?>">
-              <?= strlen($entry['title']) > 65 ? substr($entry['title'],0,65)."..." : $entry['title'] ?>
+              <?= $entry['title'] ?>
             </h2>
           </a>
           <ul class="header-dropdown m-r--5">

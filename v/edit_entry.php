@@ -9,7 +9,10 @@
                 <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">remove_red_eye</i> </button>
               </a>
             </div>
-						<h1 class="titles">Editar entrada</h1>
+            <span class="info-label">
+              <i class="material-icons">info_outline</i>Editando entrada
+            </span>
+						<h1 class="titles"><?= $entry[0]['title'] ?></h1>
 						<?php if($session) { ?>
 						<div class="row">
 							<div class="col-12">
