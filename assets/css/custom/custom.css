@@ -892,8 +892,8 @@ input.logo-checkbox {
 }
 .executable-corner svg,
 .executable-corner img {
-  -webkit-animation: scale-in-left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-  animation: scale-in-left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  -webkit-animation: scale-in-left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 2;
+  animation: scale-in-left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 2;
 }
 @-webkit-keyframes scale-in-left {
   0% {
@@ -1043,7 +1043,7 @@ input.logo-checkbox {
   font-size: 20px;
 }
 .avatar-top-right-menu {
-  top: -6px;
+  top: -3px;
   margin: 0 5px;
 }
 .avatar-top-right-menu img {
@@ -1064,4 +1064,10 @@ input.logo-checkbox {
 .icon-social {
   width: 33px;
   height: 33px;
+}
+input:required {
+  background: url(/assets/images/required.svg);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-size: 22px;
 }

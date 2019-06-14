@@ -60,7 +60,7 @@
 						<?php } ?>
 					</ul>
 				</li>
-				<li class="footer"> <a href="/<?= $_SERVER['VIEWS'] ?>/util">Ver todas las categorías</a> </li>
+				<li class="footer"> <a href="/">Ver todas las categorías</a> </li>
 			</ul>
 		</li>
 		<li>
@@ -72,8 +72,9 @@
 			<? if($user['rol'] == 'admin') { ?>
 			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons rotate">settings</i></a></li>
 			<? } ?>
+
       <li>
-        <div class="user-helper-dropdown avatar-top-right-menu">
+        <div class="dropdown avatar-top-right-menu">
           <img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" class="avatar-top-right-menu" alt="User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"/>
           <ul class="dropdown-menu">
             <li><a href="/<?= $_SERVER['VIEWS'] ?>/profile"><i class="material-icons">person</i>Mi cuenta</a></li>

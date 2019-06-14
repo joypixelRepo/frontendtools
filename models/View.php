@@ -106,6 +106,8 @@ class View extends ApplicationController {
     // push categories into entries
     $entry = parent::pushCategories($entry, $this->db);
 
+    $entry = $entry[0];
+
     if($entry) {
       return $entry;
     } else {

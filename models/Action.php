@@ -62,8 +62,8 @@ class Action extends ApplicationController {
     $view = new View();
     $newEntry = $view->loadEntry($insert_id);
     
-    if($newEntry[0]['executable']) {
-      parent::createIframe($newEntry[0]);
+    if($newEntry['executable']) {
+      parent::createIframe($newEntry);
       // $screenshot = parent::generateScreenshot($insert_id);
       // if(!empty($screenshot)) {
       //   $sql = 'UPDATE entries SET screenshot = ? WHERE id = ?';
@@ -128,8 +128,8 @@ class Action extends ApplicationController {
     $view = new View();
     $editedEntry = $view->loadEntry($_POST['id']);
 
-    if($editedEntry[0]['executable']) {
-      parent::createIframe($editedEntry[0]);
+    if($editedEntry['executable']) {
+      parent::createIframe($editedEntry);
       // $screenshot = parent::generateScreenshot($_POST['id']);
       // if(!empty($screenshot)) {
       //   $sql = 'UPDATE entries SET screenshot = ? WHERE id = ?';

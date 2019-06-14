@@ -184,8 +184,10 @@ if(terminal = document.getElementById('terminal')) {
   });
 }
 
-// solve ckeditor toolbar popup on click on other textarea
-CKEDITOR.disableAutoInline = true;
+// solve ckeditor toolbar popup on click on other textarea (mobile)
+if($('#ckeditor').length) {
+  CKEDITOR.disableAutoInline = true;
+}
 
 // solve codemirror elements on ckeditor is visible
 $(document).ready(checkContainer);

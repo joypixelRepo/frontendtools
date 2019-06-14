@@ -21,10 +21,22 @@ if($('#sign_up').length > 0) {
     checkEmail(email);
   });
 
+  passwordConfirm.on('focusout', function() {
+    if(password.val().length > 0 && passwordConfirm.val().length > 0) {
+      checkPassword(password, passwordConfirm);
+    }
+  });
+
 	function checkUser(user) {
 		$.post('/user/userExist?user='+user.val(), function(data) {
 		  if(data == 1) {
-		  	//swal('Error', 'El nombre de usuario ya existe. Por favor, elige otro nombre.', 'error');
+        swal({
+          title: 'Error',
+          text: 'El usuario elegido está ocupado. Por favor, elige otro.',
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#ffc100',
+        });
 		  	//user.val('');
 		  	user.addClass('error');
 		  	$('*[type="submit"]').prop('disabled', true);
@@ -38,6 +50,13 @@ if($('#sign_up').length > 0) {
   function checkEmail(email) {
     $.post('/user/emailExist?email='+email.val(), function(data) {
       if(data == 1) {
+        swal({
+          title: 'Error',
+          text: 'El correo electrónico elegido está ocupado. Por favor, elige otro.',
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#ffc100',
+        });
         email.addClass('error');
         $('*[type="submit"]').prop('disabled', true);
       } else {
@@ -45,6 +64,25 @@ if($('#sign_up').length > 0) {
         $('*[type="submit"]').prop('disabled', false);
       }
     });
+  }
+
+  function checkPassword(password, passwordConfirm) {
+    if(password.val() != passwordConfirm.val()) {
+      swal({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden.',
+        type: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#ffc100',
+      });
+      password.addClass('error');
+      passwordConfirm.addClass('error');
+      $('*[type="submit"]').prop('disabled', true);
+    } else {
+      password.removeClass('error');
+      passwordConfirm.removeClass('error');
+      $('*[type="submit"]').prop('disabled', false);
+    }
   }
 
 	$('#sign_up').on('submit', function(e){

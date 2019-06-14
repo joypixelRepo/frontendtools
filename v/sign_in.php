@@ -18,7 +18,7 @@
                     <input type="text" name="user" class="custom-input mb-2" placeholder="Usuario" required>
                     <input type="password" name="password" class="custom-input mb-2" placeholder="Contraseña" required>
                     <div class="mt-2">
-                        <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-amber">
+                        <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-amber" checked>
                         <label for="rememberme">Recordarme</label>
                     </div>
                     <div class="col-lg-12">

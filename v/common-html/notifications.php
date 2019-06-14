@@ -15,8 +15,8 @@ if($notify) { ?>
 	<script>
 		// open notification modal
 	  swal({
-      title: '<?= $notify['title'] ?>', 
-      html: '<?= $notify['message'] ?>', 
+      title: '<?= $notify['title'] ?>',
+      html: '<?= $notify['message'] ?>',
       type: '<?= $notify['type'] ?>',
       timer: 2500,
     });

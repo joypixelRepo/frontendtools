@@ -14,11 +14,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+	
+	<title><?= !empty($entry['title']) ? $entry['title'] : 'Web Tools for Front-end developers' ?></title>
+  <meta name="description" content="<?= !empty($entry['description']) ? $entry['description'] : 'Entrada sin descripción establecida.' ?>">
 
-	<title>Web Tools for Front-end developers</title>
 	<!-- Favicon-->
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png<?= '?v='.hash('md5', time()) ?>">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png<?= '?v='.hash('md5', time()) ?>">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png<?= '?v='.hash('md5', time()) ?>">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 
 	<!-- common styles -->
 	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -30,9 +36,11 @@
 	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>">
 
-  <?php if(isset($entry[0])) { ?>
-  <meta property="og:title" content="<?= $entry[0]['title'] ?>" />
-  <meta property="og:description" content="<?= $entry[0]['description'] ?>" />
+  <?php if(isset($entry)) { ?>
+
+  <meta property="og:title" content="<?= $entry['title'] ?>" />
+  <meta property="og:description" content="<?= $entry['description'] ?>" />
+
   <?php } ?>
 
 	<!-- common scrips -->

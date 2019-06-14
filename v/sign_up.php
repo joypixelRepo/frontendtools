@@ -10,7 +10,10 @@
         <form class="col-lg-12" id="sign_up" method="POST" action="/user/sign_up">
           <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">
           <input type="hidden" name="avatar" value="" >
-          <h5 class="title mb-5">Registro de nuevo usuario</h5>
+          <div class="mb-4">
+            <h5 class="title">Registro de nuevo usuario</h5>
+            <span class="font-11">Los campos marcados con (*) son obligatorios</span>
+          </div>
 
           <div class="row">
             <div class="col-md-6 col-12 mb-4">
@@ -23,7 +26,7 @@
 
           <div class="row">
             <div class="col-12 mb-4">
-              <input type="text" name="job" class="custom-input" placeholder="Ocupación" required>
+              <input type="text" name="job" class="custom-input" placeholder="Ocupación">
             </div>
           </div>
 
@@ -90,7 +93,7 @@
   <script src="/assets/bundles/libscripts.bundle.js"></script>    
   <script src="/assets/bundles/vendorscripts.bundle.js"></script>
   <script src="/assets/bundles/mainscripts.bundle.js"></script>
-  <script src="/assets/js/custom/autentication.js"></script>
   <script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
+  <script src="/assets/js/custom/autentication.js"></script>
 </body>
 </html>
