@@ -290,7 +290,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
         self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
       ],
-      'entry' => $this->view->loadEntry($_GET['id']),
+      'entry' => $this->view->loadEntry(null, $_GET['u']),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -301,12 +301,15 @@ class VController extends ApplicationController {
     ]);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
       'session' => parent::session(),
-      'entry' => $this->view->loadEntry($_GET['id']),
+      'entry' => $this->view->loadEntry(null, $_GET['u']),
       'user' => $this->user->getUserData(),
+      'comments' => $this->view->loadComments($_GET['u']),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
+        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
+        self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
         self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
@@ -323,6 +326,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
+        self::printScript('/assets/js/custom/exec.js',0),
       ]
     ]);
     die;

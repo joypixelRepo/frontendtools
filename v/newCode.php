@@ -28,6 +28,7 @@
   											<h6>Título</h6>
                         <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="Título de la entrada" maxlength="100"></textarea>
                         <span class="characters">100</span>
+                        <div id="errorTitle"></div>
                       </div>
 										</div>
 									</div>
@@ -84,7 +85,7 @@
 													<h6 class="code-title">
                             <div class="code-logo">
                               <img src="/assets/images/logos/javascript.svg" alt="language-logo">
-                            </div>JavaScript
+                            </div>JavaScript / jQuery
                           </h6>
 													<textarea id="box_js" name="javascript" autocomplete="off"></textarea>
                           <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>

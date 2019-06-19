@@ -215,12 +215,14 @@ class User extends ApplicationController {
                       </tr>
                       <tr>
                         <td width="100">&nbsp;</td>
-                        <td width="400" align="center" style="padding-bottom:5px;">
+                        <td width="500" align="center" style="padding-bottom:5px;">
                           <div class="contentEditableContainer contentTextEditable">
                             <div class="contentEditable" >
-                              <p>Hola '.$name.'</p>
-                              <p>Te has registrado satisfactoriamente en frontendtools, pero es necesaria la activación del usuario para poder acceder.</p>
-                              <p>Haz click en el siguiente enlace para activar tu cuenta en Frontendtools:</p>
+                              <p>Hola '.$name.'.</p>
+                              <p>&nbsp;</p>
+                              <p>Te has registrado satisfactoriamente en <a href="https://frontendtools.net">frontendtools</a>, pero es necesaria la activación del usuario para poder acceder.</p>
+                              <p>&nbsp;</p>
+                              <p>Haz click en el siguiente botón para activar tu cuenta:</p>
                             </div>
                           </div>
                         </td>
@@ -233,7 +235,7 @@ class User extends ApplicationController {
                     <table cellpadding="0" cellspacing="0" border="0" align="center" width="600">
                       <tr>
                         <td width="100">&nbsp;</td>
-                        <td width="400" align="center" style="padding-top:25px;padding-bottom:115px;">
+                        <td width="500" align="center" style="padding-top:25px;padding-bottom:115px;">
                           <table cellpadding="0" cellspacing="0" border="0" align="center" width="200" height="50">
                             <tr>
                               <td bgcolor="#ffc100" align="center" style="border-radius:4px;" width="200" height="50">

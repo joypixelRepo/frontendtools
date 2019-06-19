@@ -19,6 +19,9 @@ if($notify) { ?>
       html: '<?= $notify['message'] ?>',
       type: '<?= $notify['type'] ?>',
       timer: 2500,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#263238',
+      allowOutsideClick: true,
     });
 	</script>
 <?

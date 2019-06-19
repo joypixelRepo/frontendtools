@@ -32,10 +32,11 @@ if($('#sign_up').length > 0) {
 		  if(data == 1) {
         swal({
           title: 'Error',
-          text: 'El usuario elegido está ocupado. Por favor, elige otro.',
+          text: 'Usuario ocupado.',
           type: 'error',
           confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#ffc100',
+          confirmButtonColor: '#263238',
+          allowOutsideClick: true,
         });
 		  	//user.val('');
 		  	user.addClass('error');
@@ -52,10 +53,11 @@ if($('#sign_up').length > 0) {
       if(data == 1) {
         swal({
           title: 'Error',
-          text: 'El correo electrónico elegido está ocupado. Por favor, elige otro.',
+          text: 'Correo electrónico ocupado.',
           type: 'error',
           confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#ffc100',
+          confirmButtonColor: '#263238',
+          allowOutsideClick: true,
         });
         email.addClass('error');
         $('*[type="submit"]').prop('disabled', true);
@@ -73,7 +75,8 @@ if($('#sign_up').length > 0) {
         text: 'Las contraseñas no coinciden.',
         type: 'error',
         confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#ffc100',
+        confirmButtonColor: '#263238',
+        allowOutsideClick: true,
       });
       password.addClass('error');
       passwordConfirm.addClass('error');

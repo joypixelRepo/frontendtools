@@ -202,6 +202,39 @@ $('.check-categories input.logo-checkbox').on('change', function() {
   }
 });
 
+title.on('focusout', function() {
+  checkTitle(title);
+});
+
+function checkTitle(title) {
+  let entryId = '';
+  if(title.attr('data-entry-id') != undefined) {
+    entryId = '&entryId='+title.attr('data-entry-id');
+  }
+  $.ajax({
+    url: '/action/checkTitle?title='+title.val()+entryId,
+    cache: false,
+    beforeSend: function(){
+      
+    },
+    complete: function(){
+      
+    },
+    success: function(response){
+      if(response == 'exist') {
+        form.find('button[type="submit"]').prop('disabled', true);
+        title.addClass('error');
+        const message = 'El título de la entrada está ocupado. Por favor, elige otro.';
+        $('#errorTitle').html(message);
+      } else {
+        form.find('button[type="submit"]').prop('disabled', false);
+        title.removeClass('error');
+        $('#errorTitle').html('');
+      }
+    }
+  });
+}
+
 
 // $("form#edit-entry-form :input").change(function() {
 // 	//console.log('Form change detect');

@@ -28,7 +28,8 @@ class Action extends ApplicationController {
       creator = ?,
       creation_date = ?,
       edition_date = ?,
-      executable = ?
+      executable = ?,
+      url = ?
     ';
 
 		$vars = [
@@ -47,7 +48,8 @@ class Action extends ApplicationController {
       $_SESSION['user']['user'],
       strftime('%Y-%m-%d %H:%M:%S'),
       strftime('%Y-%m-%d %H:%M:%S'),
-      !empty($_POST['html']) || !empty($_POST['css']) || !empty($_POST['javascript']) || !empty($_POST['jquery']) ? 1 : 0
+      !empty($_POST['html']) || !empty($_POST['css']) || !empty($_POST['javascript']) || !empty($_POST['jquery']) ? 1 : 0,
+      str_replace('+', '-', urlencode($_POST['title']))
     ];
 		$res = $this->db->query($sql, $vars);
 
@@ -96,7 +98,8 @@ class Action extends ApplicationController {
       xampp = ?,
       terminal = ?,
       edition_date = ?,
-      executable = ?
+      executable = ?,
+      url = ?
       WHERE id = ?
     ';
 
@@ -115,6 +118,7 @@ class Action extends ApplicationController {
       $_POST['terminal'],
       strftime('%Y-%m-%d %H:%M:%S'),
       !empty($_POST['html']) || !empty($_POST['css']) || !empty($_POST['javascript']) || !empty($_POST['jquery']) ? 1 : 0,
+      str_replace('+', '-', urlencode($_POST['title'])),
       $_POST['id']
     ];
     $res = $this->db->query($sql, $vars);
@@ -203,6 +207,40 @@ class Action extends ApplicationController {
       }
     }
     return null;
+  }
+
+  public function checkTitle() {
+    $id = isset($_GET['entryId']) ? $_GET['entryId'] : null;
+
+    $sql = 'SELECT * FROM entries WHERE title = ?';
+
+    $vars = [$_GET['title']];
+    
+    if($id != null) {
+      $sql .= ' AND id != ?';
+      $vars = [$_GET['title'], $id];
+    }
+    
+    $res = $this->db->query($sql, $vars);
+    if($res->rowCount() > 0) {
+      return true;
+    }
+  }
+
+  public function saveComment() {
+    $sql = 'INSERT INTO comments SET 
+      comment_entry_id = ?,
+      comment_user_id = ?,
+      comment = ?,
+      comment_date = ?
+    ';
+
+    $vars = [$_POST['id'], $_SESSION['user']['user_id'], $_POST['comment'], date('Y-m-d H:i:s')];
+    $res = $this->db->query($sql, $vars);
+    
+    if($res->rowCount() > 0) {
+      return true;
+    }
   }
 
   public function __destruct() {}

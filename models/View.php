@@ -32,7 +32,7 @@ class View extends ApplicationController {
   public function loadEntries() {
     // pagination
     $entriesPosition = 0;
-    $entriesNum = 18;
+    $entriesNum = 12;
     if(isset($_GET['page']) && is_numeric($_GET['page'])) {
       $page = $_GET['page'] > 1 ? $_GET['page'] : 1;
       $entriesPosition = $entriesNum * ($page-1);
@@ -100,8 +100,11 @@ class View extends ApplicationController {
     }
   }
 
-  public function loadEntry($id) {
-    $sql = 'SELECT * FROM entries WHERE id = '.$id;
+  public function loadEntry($id, $url = null) {
+    $sql = 'SELECT * FROM entries WHERE url = "'.urlencode($url).'"';
+    if(!$url) {
+      $sql = 'SELECT * FROM entries WHERE id = '.$id;
+    }
     $entry = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     // push categories into entries
     $entry = parent::pushCategories($entry, $this->db);
@@ -112,6 +115,18 @@ class View extends ApplicationController {
       return $entry;
     } else {
       header('Location: /'.$_SERVER['VIEWS'].'/error404');
+    }
+  }
+
+  public function loadComments($url) {
+    $sql = "SELECT * FROM comments INNER JOIN entries ON comments.comment_entry_id = entries.id INNER JOIN login ON comments.comment_user_id = login.user_id WHERE entries.url = ?";
+
+    $vars = [urlencode($url)];
+
+    $comments = $this->db->query($sql, $vars)->fetchAll(PDO::FETCH_ASSOC);
+    
+    if($comments) {
+      return $comments;
     }
   }
 

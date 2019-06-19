@@ -70,7 +70,7 @@
 		</li>
 		<?php if($session) { ?>
 			<? if($user['rol'] == 'admin') { ?>
-			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons rotate">settings</i></a></li>
+			<li><a href="javascript:void(0);" title="Administración" class="js-right-sidebar" data-close="true"><i class="material-icons <?= $options['maintenance'] != 'on' ? 'rotate"' : '' ?>">settings</i></a></li>
 			<? } ?>
 
       <li>

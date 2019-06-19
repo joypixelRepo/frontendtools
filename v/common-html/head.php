@@ -36,11 +36,12 @@
 	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>">
 
+  <!-- SEO -->
+  <meta property="og:site_name" content="Frontendtools" />
+  <meta property="og:image" content="/assets/images/frontendtools-logo-desktop-background.png" />
   <?php if(isset($entry)) { ?>
-
   <meta property="og:title" content="<?= $entry['title'] ?>" />
   <meta property="og:description" content="<?= $entry['description'] ?>" />
-
   <?php } ?>
 
 	<!-- common scrips -->

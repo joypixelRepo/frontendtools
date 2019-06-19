@@ -42,6 +42,7 @@
             </div>
         </div>
     </div>
+    
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-sm-12">
@@ -50,6 +51,7 @@
                     <h3 class="text-center title-profile">Tus entradas</h3>
                     <p class="text-center">Todas tus entradas clasificadas por categorías</p>
                   </div>
+                  <? if(isset($userCategories)) { ?>
                     <div class="row profile_state list-unstyled">
                         <?php
                         foreach ($userCategories as $userCategory) { ?>
@@ -66,6 +68,7 @@
                           </li>
                         <? } ?>
                     </div>
+                  <? } ?>
                     <div class="text-center">
                       <a href="/?creator=<?= $user['user'] ?>" class="btn btn-raised bg-custom waves-effect mt-4 mb-4">Ver todas mis entradas</a>
                     </div>
@@ -73,4 +76,5 @@
             </div>
         </div>
     </div>
+    
 </section>

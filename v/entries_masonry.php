@@ -3,11 +3,6 @@
 if(!empty($entries)) {
   $totalPages = $entries['pages'];
   unset($entries['pages']);
-
-  $count = 0;
-  $numColsInRow = 3;
-  $cols_md = 4;
-
 ?>
 
   <div class="card-columns">
@@ -15,7 +10,7 @@ if(!empty($entries)) {
     <div class="card card-home <?= $entry['executable'] ? 'entry-executable' : '' ?>">
 
       <div class="header">
-          <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
+          <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>">
             <h2 title="<?= $entry['title'] ?>">
               <?= $entry['title'] ?>
             </h2>
@@ -24,12 +19,12 @@ if(!empty($entries)) {
             <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
               <ul class="dropdown-menu">
 
-                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver</a></li>
+                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver</a></li>
 
                 <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
                 
                 <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar"><i class="material-icons">mode_edit</i>Editar</a></li>
-                <li><a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar"><i class="material-icons">delete</i>Eliminar</a></li>
+                <li><a class="delete-menu" onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar"><i class="material-icons">delete</i>Eliminar</a></li>
 
                 <? } ?>
 
@@ -51,7 +46,7 @@ if(!empty($entries)) {
           <? } ?>
         <? } ?>
 
-        <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?id='.$entry['id']?>">
+        <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>">
           <div class="code-description">
             <? if(!empty($entry['description'])) { ?>
             <?= strlen($entry['description']) > 120 ? substr($entry['description'],0,120)."..." : $entry['description'] ?>
@@ -88,9 +83,9 @@ if(!empty($entries)) {
           </div>
           <div class="col-2">
             <? if($entry['executable']) { ?>
-            <div class="executable-corner" data-toggle="tooltip" data-placement="top" title="Ejecutable">
+            <div class="executable-corner" title="Ejecutable">
               <!-- <span>Ejecutable</span> -->
-              <img src="/assets/images/executable-grid.svg" alt="Entrada ejecutable">
+              <a href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" target="_blank"><img src="/assets/images/executable-grid.svg" alt="Entrada ejecutable"></a>
             </div>
             <? } ?>
           </div>
@@ -100,37 +95,60 @@ if(!empty($entries)) {
 <? } ?>
 </div>
 
-  <?
-  $url = '?';
-  $actualPage = isset($_GET['page']) ? $_GET['page'] : 1;
-  if(isset($_GET) && !empty($_GET)) {
-    unset($_GET['page']);
-    foreach ($_GET as $key => $value) {
-      $url .= $key.'='.$value.'&';
-    }
+<?
+$url = '?';
+$actualPage = isset($_GET['page']) ? $_GET['page'] : 1;
+if(isset($_GET) && !empty($_GET)) {
+  unset($_GET['page']);
+  foreach ($_GET as $key => $value) {
+    $url .= $key.'='.$value.'&';
   }
-  $prevPage = $actualPage-1 >= 1 ? $actualPage-1 : 1;
-  $nextPage = $actualPage+1 >= 2 ? $actualPage+1 : 1;
+}
+$prevPage = $actualPage-1 >= 1 ? $actualPage-1 : 1;
+$nextPage = $actualPage+1 >= 2 ? $actualPage+1 : 1;
 
-  if($nextPage > $totalPages) {
-    $nextPage = null;
-  }
+if($nextPage > $totalPages) {
+  $nextPage = null;
+}
 
-  ?>
-
-
+?>
 
   <div class="col-12">
     <ul class="pagination pagination-md entries-pagination">
 
+      <!-- pagination -->
+      <? if($actualPage != 1) { ?>
       <li class="page-item">
         <a class="page-link link-bold" href="<?= $url.'page=1' ?>" title="Primera página"><img src="/assets/images/arrow-first.svg"></a>
       </li>
-
+      
       <li><a class="page-link link-bold" href="<?= $url.'page='.$prevPage ?>" title="Página anterior"><img src="/assets/images/arrow-previous.svg"></a></li>
-      <? for ($i=1; $i<$totalPages+1; $i++) { ?>
-        <li class="page-item"><a class="page-link <?= $actualPage == $i ? 'active' : '' ?>" href="<?= $url.'page='.$i ?>"><?= $i ?></a></li>
       <? } ?>
+
+      
+      <? if(($actualPage - 2) > 0) { ?>
+      <li class="page-item"><a class="page-link" href="<?= $url.'page='.($actualPage - 2) ?>">
+        <?= $actualPage - 2 ?></a></li>
+      <? } ?>
+
+      <? if(($actualPage - 1) > 0) { ?>
+      <li class="page-item"><a class="page-link" href="<?= $url.'page='.($actualPage - 1) ?>">
+        <?= $actualPage - 1 ?></a></li>
+      <? } ?>
+
+      <li class="page-item"><a class="page-link active" href="<?= $url.'page='.$actualPage ?>">
+        <?= $actualPage ?></a></li>
+      
+      <? if($nextPage != null && $nextPage <= $totalPages) { ?>
+      <li class="page-item"><a class="page-link" href="<?= $url.'page='.$nextPage ?>">
+        <?= $nextPage ?></a></li>
+      <? } ?>
+
+      <? if($nextPage != null && ($nextPage + 1) <= $totalPages) { ?>
+      <li class="page-item"><a class="page-link" href="<?= $url.'page='.($nextPage + 1) ?>">
+        <?= $nextPage + 1 ?></a></li>
+      <? } ?>
+
 
       <? if($nextPage != null) { ?>
       <li><a class="page-link link-bold" href="<?= $url.'page='.$nextPage ?>" title="Página siguiente"><img src="/assets/images/arrow-next.svg"></a></li>
@@ -138,8 +156,8 @@ if(!empty($entries)) {
       <li class="page-item">
         <a class="page-link link-bold" href="<?= $url.'page='.$totalPages ?>" title="Última página"><img src="/assets/images/arrow-last.svg"></a>
       </li>
-
       <? } ?>
+      <!-- end pagination -->
 
     </ul>
   </div>

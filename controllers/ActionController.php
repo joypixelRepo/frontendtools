@@ -58,5 +58,21 @@ class ActionController extends ApplicationController {
     $this->view->results($results);
   }
 
+  public function checkTitle() {
+    if($this->action->checkTitle()) {
+      echo 'exist';
+    }
+  }
+
+  public function saveComment() {
+    $prevUrl = isset($_POST['url']) ? $_POST['url'] : '/';
+
+    if($this->action->saveComment()) {
+      parent::notify('success', 'Comentario publicado', 'Tu comentario ha sido publicado correctamente.', urldecode($prevUrl));
+    } else {
+      parent::notify('error', 'Error', 'No se ha podido enviar tu comentario. Por favor, prueba de nuevo.', '/');
+    }
+  }
+
   public function __destruct() {}
 }

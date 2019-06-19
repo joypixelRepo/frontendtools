@@ -1071,3 +1071,46 @@ input:required {
   background-position-x: right;
   background-size: 22px;
 }
+.custom-input.error {
+  border: 1px solid red;
+}
+#errorTitle {
+  position: absolute;
+  bottom: -13px;
+  font-size: 12px;
+  color: red;
+  font-style: italic;
+}
+button[type="submit"]:disabled {
+  background: #b3b3b3 !important;
+}
+.entry-comments .entry-comment {
+  margin-bottom: 18px;
+}
+.entry-comments .entry-comment:not(:last-child) {
+  padding-bottom: 0;
+  border-bottom: 2px solid #eeeeee;
+}
+.entry-comments .entry-comment .comment-user-avatar {
+  text-align: center;
+  vertical-align: top;
+}
+.entry-comments .entry-comment .comment-user-avatar img.comment-avatar {
+  width: 45px;
+  height: 45px;
+}
+.entry-comments .entry-comment .comment-comment .comment-user-name {
+  display: block;
+}
+.entry-comments .entry-comment .comment-comment .comment-date {
+  display: block;
+  font-size: 13px;
+  color: grey;
+  margin-bottom: 8px;
+}
+.entry-comments .entry-comment .comment-comment {
+  padding-left: 15px;
+}
+#comment-form {
+  display: none;
+}
