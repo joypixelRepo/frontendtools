@@ -12,6 +12,7 @@ if($('#sign_up').length > 0) {
 	const avatar = $('*[name="avatar"]');
 	const errorsInput = $('#errors');
 	const conditions = $('*[name="conditions"]');
+  const job = $('*[name="job"]');
 
 	user.on('focusout', function() {
 		checkUser(user);
@@ -103,6 +104,10 @@ if($('#sign_up').length > 0) {
 			errors.push(user.attr('name'));
 			errorTxt.push('El campo usuario no es correcto.');
 		}
+    if(job.val() == '-1') {
+      errors.push(job.attr('name'));
+      errorTxt.push('Debes seleccionar a qué te dedicas.');
+    }
 		if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val())) {
 			errors.push(email.attr('name'));
 			errorTxt.push('El campo email no es correcto.');

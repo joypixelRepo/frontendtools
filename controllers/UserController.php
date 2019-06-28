@@ -34,6 +34,14 @@ class UserController extends ApplicationController {
     }
   }
 
+  public function sign_up() {
+    if($this->user->sign_up()) {
+      parent::notify('success', 'Te has registrado satisfactoriamente', 'Te hemos enviado un email. Revisa tu correo electrónico para poder activar tu usuario (si no lo encuentras mira en la carpeta de spam).', '/'.$_SERVER['VIEWS'].'/sign_in', 0);
+    } else {
+      parent::notify('error', 'Error en el registro', 'Ha ocurrido un error inesperado al registrarte. Por favor, prueba de nuevo.', '/'.$_SERVER['VIEWS'].'/sign_up');
+    }
+  }
+
   public function checkCookiesSession() {
     if(isset($_COOKIE['fet_net_session_login'])) {
       $cookieSession = unserialize($_COOKIE['fet_net_session_login']);
@@ -46,14 +54,6 @@ class UserController extends ApplicationController {
         $_SESSION['id'] = 'aR_3vG_88KlpZ';
         $_SESSION['user'] = $userData;
       }
-    }
-  }
-
-  public function sign_up() {
-    if($this->user->sign_up()) {
-      parent::notify('success', 'Te has registrado satisfactoriamente', 'Te hemos enviado un email. Revisa tu correo electrónico para poder activar tu usuario (si no lo encuentras mira en la carpeta de spam).', '/'.$_SERVER['VIEWS'].'/sign_in');
-    } else {
-      parent::notify('error', 'Error en el registro', 'Ha ocurrido un error inesperado al registrarte. Por favor, prueba de nuevo.', '/'.$_SERVER['VIEWS'].'/sign_up');
     }
   }
 
@@ -70,6 +70,15 @@ class UserController extends ApplicationController {
     setcookie('fet_net_session_login', null, -1, '/');
     $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
     parent::notify('success', '¡Hasta pronto!', 'Has cerrado tu sesión correctamente.', urldecode($prevUrl));
+  }
+
+  public function deleteAccount() {
+    if($this->user->deleteAccount()) {
+      session_destroy();
+      setcookie('fet_net_session_login', null, -1, '/');
+      $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
+      parent::notify('success', '¡Vuelve cuando quieras!', 'Has eliminado tu cuenta correctamente.', urldecode($prevUrl));
+    }
   }
 
   public function changeImage() {

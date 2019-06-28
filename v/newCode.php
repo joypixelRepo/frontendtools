@@ -12,7 +12,7 @@
                   
                   <div class="row">
                     <div class="col-12 mt-4 check-categories">
-                      <h6>Categoría</h6>
+                      <h6>Categoría/s</h6>
 
                         <?php foreach ($categories as $category) { ?>
                         <label for="<?= $category['id_category'] ?>" class="category-select"><img src="<?= $category['category_logo'] ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $category['category_name']?>"></label>

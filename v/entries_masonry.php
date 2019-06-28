@@ -19,7 +19,7 @@ if(!empty($entries)) {
             <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
               <ul class="dropdown-menu">
 
-                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver</a></li>
+                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver entrada</a></li>
 
                 <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
                 
@@ -65,14 +65,14 @@ if(!empty($entries)) {
           </div>
           <div class="col-6">
             <div class="font-11 col-grey text-right">
-              <i><?= strftime('%e %B %Y · %H:%M', strtotime($entry['creation_date'])) ?></i>
+              <i><?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></i>
             </div>
           </div>
         </div>
       </div>
       <div class="entry-info-box">
         <div class="row">
-          <div class="col-10">
+          <div class="col-8">
             <div class="languages-logos">
               <? foreach ($entry['categories'] as $category) { ?>
               <a href="/?c=<?=$category['descriptive_name']?>" title="<?= $category['category_name']?>">
@@ -81,13 +81,19 @@ if(!empty($entries)) {
               <? } ?>
             </div>
           </div>
-          <div class="col-2">
+          <!-- <div class="col-2">
             <? if($entry['executable']) { ?>
             <div class="executable-corner" title="Ejecutable">
-              <!-- <span>Ejecutable</span> -->
               <a href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" target="_blank"><img src="/assets/images/executable-grid.svg" alt="Entrada ejecutable"></a>
             </div>
             <? } ?>
+          </div> -->
+          <div class="col-4">
+            <div class="text-right">
+              <a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>#comments" title="<?= isset($entry['comments']) ? count($entry['comments']) : 0 ?> comentarios">
+                <span class="comments-number"><?= isset($entry['comments']) ? count($entry['comments']) : 0 ?><i class="material-icons">chat</i></span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

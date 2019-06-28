@@ -8,6 +8,7 @@ if(isset($_COOKIE['fet_notify'])) { ?>
     'type' => $messages['type'],
     'title' => $messages['title'],
     'message' => $messages['message'],
+    'closeTime' => $messages['closeTime'] == 0 ? 120000 : $messages['closeTime'],
   ];
 }
 
@@ -16,9 +17,9 @@ if($notify) { ?>
 		// open notification modal
 	  swal({
       title: '<?= $notify['title'] ?>',
-      html: '<?= $notify['message'] ?>',
+      text: '<?= $notify['message'] ?>',
       type: '<?= $notify['type'] ?>',
-      timer: 2500,
+      timer: '<?= $notify['closeTime'] ?>',
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#263238',
       allowOutsideClick: true,

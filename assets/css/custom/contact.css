@@ -1,0 +1,22 @@
+.contact-info .contact-detail {
+  margin-bottom: 16px;
+}
+.contact-info .contact-detail img {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+}
+.contact-info .contact-detail a,
+.contact-info .contact-detail a:hover,
+.contact-info .contact-detail a:focus {
+  color: #444;
+}
+.contact-info .contact-detail a:hover {
+  text-decoration: underline;
+}
+.contact-form h3 {
+  margin-top: 0;
+}
+.contact-form input {
+  margin-bottom: 8px;
+}

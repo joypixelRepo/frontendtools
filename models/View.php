@@ -80,6 +80,7 @@ class View extends ApplicationController {
     // $entries = parent::unique_multidim_array($entries, 'id');
     // push categories into entries
     $entries = parent::pushCategories($entries, $this->db);
+    $entries = parent::pushComments($entries, $this->db);
 
     $entries['pages'] = $totalPages;
 
@@ -119,7 +120,7 @@ class View extends ApplicationController {
   }
 
   public function loadComments($url) {
-    $sql = "SELECT * FROM comments INNER JOIN entries ON comments.comment_entry_id = entries.id INNER JOIN login ON comments.comment_user_id = login.user_id WHERE entries.url = ?";
+    $sql = "SELECT * FROM comments INNER JOIN entries ON comments.comment_entry_id = entries.id INNER JOIN login ON comments.comment_user_id = login.user_id WHERE entries.url = ? ORDER BY comments.comment_date DESC";
 
     $vars = [urlencode($url)];
 
@@ -141,6 +142,18 @@ class View extends ApplicationController {
     $category['count'] = $categoryCount['entriesCount'];
 
     return $category;
+  }
+
+  public function getSitemap() {
+    $sql = "SELECT * FROM entries WHERE 1";
+
+    $vars = [];
+
+    $entries = $this->db->query($sql, $vars)->fetchAll(PDO::FETCH_ASSOC);
+    
+    if($entries) {
+      return $entries;
+    }
   }
 
   public function __destruct() {}

@@ -54,8 +54,8 @@ form.on('submit', function(e){
 	var errors = [];
 	alerts.html('');
 
-	if(title.val().length <= 3 || title.val().length > 255) {
-		errors.push('El título debe contener entre 4 y 255 caracteres.');
+	if(title.val().length <= 3 || title.val().length > 100) {
+		errors.push('El título debe contener entre 4 y 100 caracteres.');
 	}
 
 	if(description.val().length > 255) {
@@ -145,7 +145,8 @@ function checkCheckboxes() {
     $('input[data_category="css3"]').is(':checked') ||
     $('input[data_category="javascript"]').is(':checked') ||
     $('input[data_category="svg"]').is(':checked') ||
-    $('input[data_category="jquery"]').is(':checked')
+    $('input[data_category="jquery"]').is(':checked') ||
+    $('input[data_category="bootstrap4"]').is(':checked')
     ) {
     $('.box-codes').css('display', 'flex');
   } else {

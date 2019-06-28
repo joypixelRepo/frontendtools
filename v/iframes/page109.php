@@ -11,8 +11,8 @@
     -webkit-transform: translate(-50%, -50%);
 }
   </style>
-  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
 </head>
 <body>
   <div class="centrado">

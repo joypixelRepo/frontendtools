@@ -3,10 +3,12 @@ class User extends ApplicationController {
 
   private $db;
   private $sessionUser;
+  private $sessionUserId;
 
   public function __construct() {
     $this->db = new Db();
     $this->sessionUser = isset($_SESSION['user']['user']) ? $_SESSION['user']['user'] : null;
+    $this->sessionUserId = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : null;
   }
 
   public function sign_in($user, $password) {
@@ -37,6 +39,24 @@ class User extends ApplicationController {
     if($res == 1) {
       self::sendActivationEmail($_POST['user'], $_POST['full-name'], $_POST['email']);
       return true;
+    }
+  }
+
+  public function deleteAccount() {
+    $sql = 'DELETE FROM comments WHERE comment_user_id = ?';
+    $vars = [$_SESSION['user']['user_id']];
+    $res = $this->db->query($sql, $vars);
+
+    $sql = 'DELETE FROM entries WHERE creator = ?';
+    $vars = [$_SESSION['user']['user']];
+    $res = $this->db->query($sql, $vars);
+
+    $sql = 'DELETE FROM login WHERE user_id = ?';
+    $vars = [$_SESSION['user']['user_id']];
+    $res = $this->db->query($sql, $vars)->rowCount();
+
+    if($res) {
+      return $res;
     }
   }
 
@@ -378,6 +398,21 @@ class User extends ApplicationController {
     $sql = 'SELECT entries.id FROM entries INNER JOIN login ON entries.creator = login.user WHERE login.user = ? AND (entries.id = ? OR login.rol = ?)';
     $vars = [$this->sessionUser, $entryId, 'admin'];
     $res = $this->db->query($sql, $vars)->rowCount();
+    if($res == 0) {
+      parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
+      die;
+    }
+  }
+
+  public function commentBelongsToTheUser($commentId) {
+    if(self::isAdmin()) {
+      $res = 1;
+    } else {
+      $sql = 'SELECT comments.comment_id FROM comments INNER JOIN login ON comments.comment_user_id = login.user_id WHERE comments.comment_user_id = ? AND comments.comment_id = ?';
+      $vars = [$this->sessionUserId, $commentId];
+      $res = $this->db->query($sql, $vars)->rowCount();
+    }
+
     if($res == 0) {
       parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
       die;

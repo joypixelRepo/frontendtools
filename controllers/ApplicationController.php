@@ -10,11 +10,12 @@ class ApplicationController {
     }
 	}
 
-  public function notify($type, $title, $message, $urlRedirect = '/') {
+  public function notify($type, $title, $message, $urlRedirect = '/', $closeTime = 2500) {
     $messages = [
       'type' => $type,
       'title' => $title,
       'message' => $message,
+      'closeTime' => $closeTime,
     ];
     setcookie('fet_notify', serialize($messages), 0, '/');
     header('Location: '.$urlRedirect);
@@ -49,6 +50,19 @@ class ApplicationController {
   }
 
   protected function createIframe($entry) {
+
+    $boostrap = '';
+    $jquery = '';
+
+    foreach ($entry['categories'] as $category) {
+      if($category['descriptive_name'] == 'bootstrap') {
+        $boostrap = '<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">';
+      }
+      if($category['descriptive_name'] == 'jquery') {
+        $jquery = '<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>';
+      }
+    }
+
 $html = 
 '<!DOCTYPE html>
 <html>
@@ -57,8 +71,8 @@ $html =
   <style>
   '.$entry['css'].'
   </style>
-  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  '.$boostrap.'
+  '.$jquery.'
 </head>
 <body>
   '.html_entity_decode($entry['html']).'
@@ -104,6 +118,21 @@ $html =
       foreach ($entryCategories as $category) {
         if($entry['id'] == $category['entry_id']) {
           $entries[$entryKey]['categories'][] = $category;
+        }
+      }
+    }
+    return $entries;
+  }
+
+  protected function pushComments($entries, $db) {
+    $sql = 'SELECT * FROM comments INNER JOIN entries ON comments.comment_entry_id = entries.id';
+
+    $entryComments = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($entries as $entryKey => $entry) {
+      foreach ($entryComments as $comment) {
+        if($entry['id'] == $comment['comment_entry_id']) {
+          $entries[$entryKey]['comments'][] = $comment;
         }
       }
     }

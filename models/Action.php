@@ -149,10 +149,24 @@ class Action extends ApplicationController {
 
   public function deleteEntry($id) {
     $this->user->entryBelongsToTheUser($id);
-    $sql = 'DELETE FROM entries WHERE id = ?';
+
+    $sql = '
+      DELETE FROM comments WHERE comment_entry_id = ?;
+      DELETE FROM entries WHERE id = ?;
+    ';
+    $vars = [$id, $id];
+    $res = $this->db->query($sql, $vars);
+
+    parent::deleteIframe($id);
+
+    return $res;
+  }
+
+  public function deleteComment($id) {
+    $this->user->commentBelongsToTheUser($id);
+    $sql = 'DELETE FROM comments WHERE comment_id = ?';
     $vars = [$id];
     $res = $this->db->query($sql, $vars);
-    parent::deleteIframe($id);
     return $res;
   }
 
@@ -241,6 +255,38 @@ class Action extends ApplicationController {
     if($res->rowCount() > 0) {
       return true;
     }
+  }
+
+  public function sendMessage() {
+    $config['name'] = 'Frontendtools';
+    $config['email'] = 'info@frontendtools.net';
+    $message = '
+    <html>
+    <head>
+      <title>Mensaje de contacto en Frontendtools</title>
+    </head>
+    <body>
+      <p><strong>Asunto:</strong> '.$_POST['subject'].'</p>
+      <p><strong>Nombre:</strong> '.$_POST['name'].'</p>
+      <p><strong>Email:</strong> '.$_POST['email'].'</p>
+      <p><strong>Mensaje:</strong> <pre>'.$_POST['message'].'</pre></p>
+    </body>
+    </html>
+    ';
+
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+    // Cabeceras adicionales
+    $headers .= 'To: '.$config['name'].' <'.$config['email'].'>' . "\r\n";
+    $headers .= 'From: '.$_POST['name'].' <'.$_POST['email'].'>' . "\r\n";
+    $headers .= 'Reply-To: '.$_POST['email'] . "\r\n";
+    //$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+    //$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+    $to = $config['email'];
+    $subject = $_POST['subject'];
+
+    return mail($to, $subject, $message, $headers);
   }
 
   public function __destruct() {}

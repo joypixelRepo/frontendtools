@@ -140,7 +140,7 @@
       <li>
         <a href="/<?= $_SERVER['VIEWS'] ?>/newCode" class="btn-fade-icon bg-1">
           <i class="material-icons">add_circle</i>
-          <span>Crear entrada</span>
+          <span>Nueva entrada</span>
         </a>
       </li>
 
@@ -154,11 +154,11 @@
 
 			<li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span>Herramientas</span> </a>
 				<ul class="ml-menu">
-					<li><a href="/<?= $_SERVER['VIEWS'] ?>/rem"><span>Conversor REM</span> </a></li>
+					<li><a href="/<?= $_SERVER['VIEWS'] ?>/rem"><span>Conversor REM a píxeles</span> </a></li>
 					
-					<li><a href="/<?= $_SERVER['VIEWS'] ?>/gradient_generator"><span>Degradado CSS3</span></a></li>
+					<li><a href="/<?= $_SERVER['VIEWS'] ?>/gradient_generator"><span>Generador de gradientes</span></a></li>
 
-					<li><a href="/<?= $_SERVER['VIEWS'] ?>/text_generator"><span>Texto aleatorio</span></a></li>
+					<li><a href="/<?= $_SERVER['VIEWS'] ?>/text_generator"><span>Generador de texto</span></a></li>
 
           <li><a href="/<?= $_SERVER['VIEWS'] ?>/base64"><span>Base64 encode/decode</span></a></li>
 				</ul>
@@ -167,6 +167,8 @@
 			<?php if($user['rol'] == 'admin') { ?>
 			<li><a href="/original" target="_blank"><i class="zmdi zmdi-delicious"></i><span>Original</span> </a></li>
 			<?php } ?>
+
+      <li><a href="/<?= $_SERVER['VIEWS'] ?>/contact" class="bb-n"><img src="/assets/images/contact.svg" class="category-image"><span>Contacto</span> </a></li>
 
 		</ul>
 	</div>

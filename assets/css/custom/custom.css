@@ -472,6 +472,42 @@ a.link-entry-creator:hover {
   line-height: 1.3;
   border-radius: 0;
 }
+.custom-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 8px 10px;
+  border: 1px solid #eaeaea;
+  background: #f9f9f9;
+  -webkit-appearance: none;
+  line-height: 1.3;
+  border-radius: 0;
+}
+/* WebKit, Blink, Edge */
+.custom-textarea::-webkit-input-placeholder {
+  color: #bdbdbd;
+}
+/* Mozilla Firefox 4 to 18 */
+.custom-textarea:-moz-placeholder {
+  color: #bdbdbd;
+}
+/* Mozilla Firefox 19+ */
+.custom-textarea::-moz-placeholder {
+  color: #bdbdbd;
+}
+.custom-textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #bdbdbd;
+}
+/* Microsoft Edge */
+.custom-textarea::-ms-input-placeholder {
+  color: #bdbdbd;
+}
+/* Most modern browsers support this now. */
+.custom-textarea::placeholder {
+  color: #bdbdbd;
+}
+
+
+
 /* WebKit, Blink, Edge */
 .custom-input::-webkit-input-placeholder {
   color: #bdbdbd;
@@ -840,12 +876,17 @@ input.logo-checkbox {
 .check-categories img:hover {
   transform: scale(1.1);
 }
-.category-select {
+.category-select img {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
   opacity: 0.75;
 }
-.category-selected {
+.category-select img:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  opacity: 1;
+}
+.category-selected img {
   -webkit-filter: grayscale(0%) !important; /* Safari 6.0 - 9.0 */
   filter: grayscale(0%) !important;
   opacity: 1;
@@ -1065,7 +1106,8 @@ input.logo-checkbox {
   width: 33px;
   height: 33px;
 }
-input:required {
+input:required,
+textarea:required {
   background: url(/assets/images/required.svg);
   background-repeat: no-repeat;
   background-position-x: right;
@@ -1085,22 +1127,19 @@ button[type="submit"]:disabled {
   background: #b3b3b3 !important;
 }
 .entry-comments .entry-comment {
-  margin-bottom: 18px;
+  padding: 16px 0;
 }
-.entry-comments .entry-comment:not(:last-child) {
-  padding-bottom: 0;
-  border-bottom: 2px solid #eeeeee;
+.entry-comments .entry-comment .comment-comment .comment-text pre {
+  font-family: 'Muli', Arial, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 .entry-comments .entry-comment .comment-user-avatar {
   text-align: center;
   vertical-align: top;
 }
-.entry-comments .entry-comment .comment-user-avatar img.comment-avatar {
-  width: 45px;
-  height: 45px;
-}
 .entry-comments .entry-comment .comment-comment .comment-user-name {
-  display: block;
+  display: inline-block;
 }
 .entry-comments .entry-comment .comment-comment .comment-date {
   display: block;
@@ -1109,8 +1148,125 @@ button[type="submit"]:disabled {
   margin-bottom: 8px;
 }
 .entry-comments .entry-comment .comment-comment {
-  padding-left: 15px;
+  padding: 0 15px;
 }
 #comment-form {
   display: none;
+}
+td.comments-buttons {
+  vertical-align: top;
+}
+.entry-comments .entry-comment table {
+  width: 100%;
+}
+.entry-comments .entry-comment .comment-user-avatar img.comment-avatar,
+.entry-comments .entry-comment table td.comment-user-avatar {
+  width: 35px;
+  height: auto;
+}
+.entry-comments .entry-comment table td.comments-buttons a.coment-icon {
+  color: #292b2c;
+}
+.custom-text-area {
+  -webkit-appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  width: 100%;
+  height: 150px;
+  padding: 8px;
+}
+/* WebKit, Blink, Edge */
+.custom-text-area::-webkit-input-placeholder {
+  color: #bdbdbd;
+}
+/* Mozilla Firefox 4 to 18 */
+.custom-text-area:-moz-placeholder {
+  color: #bdbdbd;
+}
+/* Mozilla Firefox 19+ */
+.custom-text-area::-moz-placeholder {
+  color: #bdbdbd;
+}
+.custom-text-area:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #bdbdbd;
+}
+/* Microsoft Edge */
+.custom-text-area::-ms-input-placeholder {
+  color: #bdbdbd;
+}
+/* Most modern browsers support this now. */
+.custom-text-area::placeholder {
+  color: #bdbdbd;
+}
+.comments-number {
+  color: #a2a2a2;
+  font-size: 13px;
+}
+.comments-number i {
+  margin-left: 3px;
+  font-size: 19px;
+  vertical-align: middle;
+}
+.share-social a {
+  display: inline-block;
+}
+.share-social img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  -webkit-transition: all .13s ease-out;
+  -moz-transition: all .13s ease-out;
+  -o-transition: all .13s ease-out;
+  transition: all .13s ease-out;
+}
+.share-social img:hover {
+  transform: scale(1.1);
+}
+.share-social-mobile {
+  position: fixed;
+  z-index: 99999;
+  bottom: 0;
+  background: #ffffff;
+  width: 100%;
+  padding: 0;
+  box-shadow: 0px -3px 6px 0px #00000026;
+}
+.share-social-mobile img {
+  width: 25px;
+  height: 25px;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+.social-icon-mobile {
+  display: inline-block;
+  margin: 0 -2px;
+  padding: 8px 15px;
+  width: 25%;
+} 
+.linkedin-social-icon-mobile {
+  background: #0e76a8;
+}
+.facebook-social-icon-mobile {
+  background: #3b5998;
+}
+.twitter-social-icon-mobile {
+  background: #00acee;
+}
+.whatsapp-social-icon-mobile {
+  background: #62d467;
+}
+a.btn-full-code i {
+  vertical-align: middle;
+  margin-right: 5px;
+  font-size: 19px;
+}
+a.btn-full-code,
+a.btn-full-code:hover,
+a.btn-full-code:focus {
+  display: inline-block;
+  margin-bottom: 8px;
+  background: #a5a5a5;
+  padding: 3px 8px;
+  color: #fff;
+  font-size: 13px;
 }

@@ -54,6 +54,13 @@
 		}
 	} ?>
 
+  <?php if(isset($scripts) && !empty($scripts)) {
+    echo '<!-- required scripts for this view -->'."\n\t";
+    foreach ($scripts as $script) {
+      echo $script."\n\t";
+    }
+  } ?>
+
 </head>
 <body class="theme-orange">
 	<div id="cookies" style="display: none;">

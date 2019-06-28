@@ -21,7 +21,7 @@
 									<input type="hidden" name="url" value="<?= urlencode($_SERVER['REQUEST_URI']) ?>">
                   <div class="row">
                     <div class="col-12 mt-4 check-categories">
-                      <h6>Categoría</h6>
+                      <h6>Categoría/s</h6>
 
                         <?php foreach ($categories as $category) {
                           $checked = '';

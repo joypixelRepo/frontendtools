@@ -194,6 +194,46 @@ class VController extends ApplicationController {
     die;
   }
 
+  public function contact() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session(),
+      'styles' => [
+        self::printCss('/assets/css/custom/contact.css',0),
+      ],
+      'scripts' => [
+        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',0),
+      ]
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
+    die;
+  }
+
+  public function law() {
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
+      'session' => parent::session()
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
+    die;
+  }
+
   public function error404() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session()
@@ -308,8 +348,6 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        self::printScript('/assets/js/pages/forms/editors.js',1),
         self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
         self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
         self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
@@ -535,6 +573,13 @@ class VController extends ApplicationController {
     }
 
     return $images;
+  }
+
+  public function sitemap() {
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
+      'sitemap' => $this->view->getSitemap(),
+    ]);
+    die;
   }
 
   private function printCss($url, $cache) {

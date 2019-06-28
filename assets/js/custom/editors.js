@@ -1,9 +1,16 @@
+// active if editors are editable or not
+var readOnly = false;
+if($('#exec-page').length > 0) {
+  readOnly = true;
+}
+
 // other code
 var box_otherCode = null;
 if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
   box_otherCode.forEach(function(valor, indice, array) {
     var editor = CodeMirror.fromTextArea(valor, {
       mode: "scheme",
+      readOnly: readOnly,
       keyMap: "sublime",
       theme: "monokai",
       lineNumbers: true,
@@ -25,6 +32,7 @@ var box_html = null;
 if(box_html = document.getElementById('box_html')) {
   var editor = CodeMirror.fromTextArea(box_html, {
     mode: "text/html",
+    readOnly: readOnly,
     extraKeys: {"Ctrl-Space": "autocomplete"},
     keyMap: "sublime",
     theme: "monokai",
@@ -47,6 +55,7 @@ var box_css = null;
 if(box_css = document.getElementById('box_css')) {
   var editor = CodeMirror.fromTextArea(box_css, {
     mode: "text/css",
+    readOnly: readOnly,
     extraKeys: {"Ctrl-Space": "autocomplete"},
     keyMap: "sublime",
     theme: "monokai",
@@ -71,6 +80,7 @@ if(box_js = document.getElementById('box_js')) {
   var editor = CodeMirror.fromTextArea(box_js, {
     lineNumbers: true,
     mode: "javascript",
+    readOnly: readOnly,
     keyMap: "sublime",
     autoCloseBrackets: true,
     matchBrackets: true,
@@ -94,6 +104,7 @@ if(phpCode = document.getElementById('php')) {
   var editor = CodeMirror.fromTextArea(phpCode, {
     lineNumbers: true,
     mode: "application/x-httpd-php",
+    readOnly: readOnly,
     keyMap: "sublime",
     autoCloseBrackets: true,
     matchBrackets: true,
@@ -116,6 +127,7 @@ var sql = null;
 if(sql = document.getElementById('mysql')) {
   var editor = CodeMirror.fromTextArea(sql, {
     mode: "text/x-mariadb",
+    readOnly: readOnly,
     keyMap: "sublime",
     theme: "monokai",
     indentWithTabs: true,
@@ -144,6 +156,7 @@ if(reactjs = document.getElementById('reactjs')) {
   var editor = CodeMirror.fromTextArea(document.getElementById('reactjs'), {
     lineNumbers: true,
     mode: "jsx",
+    readOnly: readOnly,
     keyMap: "sublime",
     autoCloseBrackets: true,
     matchBrackets: true,
@@ -167,6 +180,7 @@ if(terminal = document.getElementById('terminal')) {
   var editor = CodeMirror.fromTextArea(document.getElementById('terminal'), {
     lineNumbers: true,
     mode: "shell",
+    readOnly: readOnly,
     keyMap: "sublime",
     autoCloseBrackets: true,
     matchBrackets: true,

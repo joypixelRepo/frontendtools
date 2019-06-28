@@ -47,11 +47,11 @@
         <div class="row clearfix">
             <div class="col-sm-12">
                 <div class="card">
-                  <div class="header">
-                    <h3 class="text-center title-profile">Tus entradas</h3>
-                    <p class="text-center">Todas tus entradas clasificadas por categorías</p>
-                  </div>
                   <? if(isset($userCategories)) { ?>
+                    <div class="header">
+                      <h3 class="text-center title-profile">Tus entradas</h3>
+                      <p class="text-center">Todas tus entradas clasificadas por categorías</p>
+                    </div>
                     <div class="row profile_state list-unstyled">
                         <?php
                         foreach ($userCategories as $userCategory) { ?>
@@ -68,10 +68,39 @@
                           </li>
                         <? } ?>
                     </div>
-                  <? } ?>
                     <div class="text-center">
                       <a href="/?creator=<?= $user['user'] ?>" class="btn btn-raised bg-custom waves-effect mt-4 mb-4">Ver todas mis entradas</a>
                     </div>
+                  <? } else { ?>
+                    <div class="header">
+                      <h3 class="text-center title-profile">Tus entradas</h3>
+                      <p class="text-center">No has creado ninguna entrada hasta ahora. ¿Quieres crear una?</p>
+                      <p class="text-center">
+                        <a href="/<?= $_SERVER['VIEWS'] ?>/newCode">
+                          <button type="button" class="btn bg-custom waves-effect">Crear mi primera entrada</button>
+                        </a>
+                      </p>
+                    </div>
+                  <? } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                  <div class="header">
+                    <h3 class="title-profile">Opciones de tu cuenta</h3>
+
+                    <div class="profile-option">
+                      <form action="/user/deleteAccount" method="POST">
+                        <button type="submit" class="btn bg-custom waves-effect" onclick="javascript: if(!confirm('¡CUIDADO!\n¡Vas a eliminar tu cuenta!\nTodas tus entradas y comentarios se borrarán.\n¿Estás seguro/a de que quieres eliminar tu cuenta definitivamente?')) { return false }">Eliminar mi cuenta</button>
+                      </form>
+                    </div>
+
+                  </div>
                 </div>
             </div>
         </div>
