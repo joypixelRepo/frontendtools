@@ -28,7 +28,7 @@
                     <input type="email" name="email" class="custom-input" placeholder="Correo electrónico" required>
                     <input type="text" name="subject" class="custom-input" placeholder="Asunto" required>
                     <textarea name="message" class="custom-textarea" placeholder="Mensaje" required></textarea>
-                    <div class="g-recaptcha" data-sitekey="6LfZEqsUAAAAAPMQx77lOsDhyD35mpgzZfu06o3U"></div>
+                    <div class="g-recaptcha mb-2" data-sitekey="6LfZEqsUAAAAAPMQx77lOsDhyD35mpgzZfu06o3U"></div>
                     <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="Enviar mensaje">
                   </form>
                 </div>
