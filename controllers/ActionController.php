@@ -83,37 +83,10 @@ class ActionController extends ApplicationController {
   }
 
   public function sendMessage() {
-    // google recaptcha
-    $recaptcha = $_POST["g-recaptcha-response"];
-    $url = 'https://www.google.com/recaptcha/api/siteverify';
-    $data = array(
-        'secret' => '6LfZEqsUAAAAABshjNl4ASwt8xvXfx_Dv-1yXFVJ',
-        'response' => $recaptcha
-    );
-
-    $options = array(
-        'http' => array (
-            'method' => 'POST',
-            'content' => http_build_query($data),
-            'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
-        )
-    );
-
-    $context  = stream_context_create($options);
-    $verify = file_get_contents($url, false, $context);
-    $captcha_success = json_decode($verify);
-
-    if (!$captcha_success->success) {
-        die('No se ha enviado el formulario porque no se ha validado el captcha');
-    }
-    // end google recaptcha
-
-    $prevUrl = isset($_POST['url']) ? $_POST['url'] : '/';
-
     if($this->action->sendMessage()) {
-      parent::notify('success', 'Mensaje enviado', 'Tu mensaje ha sido enviado correctamente.', urldecode($prevUrl));
+      echo 'ok';
     } else {
-      parent::notify('error', 'Error', 'No se ha podido enviar tu mensaje. Por favor, prueba de nuevo.', '/');
+      echo 'ko';
     }
   }
 

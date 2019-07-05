@@ -15,7 +15,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	
-	<title><?= !empty($entry['title']) ? $entry['title'] : 'Web Tools for Front-end developers' ?></title>
+	<title><?= !empty($entry['title']) ? $entry['title'] : 'FrontEndTools - Tu repositorio online para guardar y no olvidar fragmentos de código usados por los desarrolladores FrontEnd' ?></title>
   <meta name="description" content="<?= !empty($entry['description']) ? $entry['description'] : 'Entrada sin descripción establecida.' ?>">
 
 	<!-- Favicon-->
@@ -27,21 +27,24 @@
   <meta name="theme-color" content="#ffffff">
 
 	<!-- common styles -->
-	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
-	<link rel="stylesheet" href="/assets/plugins/morrisjs/morris.css">
-	<link rel="stylesheet" href="/assets/css/main.css">
-	<link rel="stylesheet" href="/assets/plugins/sweetalert/sweetalert.css">
-	<link rel="stylesheet" href="/assets/css/color_skins.css">
-	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>">
-	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>">
+	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css" media="all">
+	<link rel="stylesheet" href="/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" media="all">
+	<link rel="stylesheet" href="/assets/plugins/morrisjs/morris.css" media="all">
+	<link rel="stylesheet" href="/assets/css/main.css" media="all">
+	<link rel="stylesheet" href="/assets/plugins/sweetalert/sweetalert.css" media="all">
+	<link rel="stylesheet" href="/assets/css/color_skins.css" media="all">
+	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>" media="all">
+	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>" media="all">
 
   <!-- SEO -->
   <meta property="og:site_name" content="Frontendtools" />
-  <meta property="og:image" content="/assets/images/frontendtools-logo-desktop-background.png" />
+  <meta property="og:image" content="/assets/images/frontendtools-entry.jpg" />
   <?php if(isset($entry)) { ?>
   <meta property="og:title" content="<?= $entry['title'] ?>" />
   <meta property="og:description" content="<?= $entry['description'] ?>" />
+  <?php } else if(isset($seo)) { ?>
+  <meta property="og:title" content="<?= $seo['ogtitle'] ?>" />
+  <meta property="og:description" content="<?= $seo['ogdescription'] ?>" />
   <?php } ?>
 
 	<!-- common scrips -->

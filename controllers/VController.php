@@ -44,7 +44,7 @@ class VController extends ApplicationController {
 
   public function sessionActive() {
     if(!parent::session()) {
-      parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
+      parent::notify('error', 'No estás logeado', 'No tienes permisos para la acción que quieres realizar porque para ello necesitas iniciar sesión con tu cuenta de usuario.', '/', 0);
     }
   }
 
@@ -64,67 +64,16 @@ class VController extends ApplicationController {
     die;
   }
 
-  public function util() {
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session(),
-      'styles' => [
-        self::printCss('/assets/css/custom/code.css',0),
-      ]
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
-      'entries' => $this->view->loadEntries(),
-      'category' => $this->view->getCategoryName(self::returnGet('c')),
-      'user' => $this->user->getUserData(),
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-      'scripts' => [
-        
-      ]
-    ]);
-    die;
-  }
-
-  public function results($results) {
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session(),
-      'styles' => [
-        self::printCss('/assets/css/custom/code.css',0),
-      ]
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
-      'entries' => $results,
-      'user' => $this->user->getUserData(),
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
-      'scripts' => [
-        
-      ]
-    ]);
-    die;
-  }
-
   public function index() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
       	self::printCss('/assets/css/custom/home.css',0),
-      ]
+      ],
+      'seo' => [
+        'ogtitle' => 'Herramientas y recursos para desarrolladores Front-end',
+        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
+      ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -171,6 +120,7 @@ class VController extends ApplicationController {
       ]
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/modals.php', []);
     parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', [
       'avatars' => self::renderAvatars(),
     ]);
@@ -179,7 +129,11 @@ class VController extends ApplicationController {
 
   public function blank() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session()
+      'session' => parent::session(),
+      'seo' => [
+        'ogtitle' => 'Página en blanco',
+        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
+      ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -198,39 +152,34 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
       'styles' => [
+        self::printCss('/assets/css/libraries/animate.css',1),
         self::printCss('/assets/css/custom/contact.css',0),
       ],
       'scripts' => [
         self::printScript('https://www.google.com/recaptcha/api.js?hl=es',0),
+      ],
+      'seo' => [
+        'ogtitle' => 'Contacta con FrontEndTools',
+        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
+      ],
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
+      'session' => parent::session(),
+      'user' => $this->user->getUserData(),
+      'users' => $this->user->getUsers(),
+      'options' => $this->options->loadOptions(),
+      'categories' => $this->view->loadCategories(),
+    ]);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/modals.php', []);
+    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
+      'scripts' => [
+        self::printScript('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
+        self::printScript('/assets/js/custom/contact.js',0),
+        self::printScript('/assets/js/custom/maxLength.js',0),
       ]
     ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
-    die;
-  }
-
-  public function law() {
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session()
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
     die;
   }
 
@@ -269,23 +218,6 @@ class VController extends ApplicationController {
         self::printScript('/assets/js/custom/base64.js',0),
       ]
     ]);
-    die;
-  }
-
-  public function success() {
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
-      'session' => parent::session()
-    ]);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
-      'session' => parent::session(),
-      'user' => $this->user->getUserData(),
-      'users' => $this->user->getUsers(),
-      'options' => $this->options->loadOptions(),
-      'categories' => $this->view->loadCategories(),
-    ]);
-    parent::render($this->viewUrl.'/'.__FUNCTION__.'.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
     die;
   }
 
@@ -416,7 +348,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
-        // self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
+        self::printScript('/assets/js/custom/maxLength.js',0),
       ]
     ]);
     die;
@@ -474,7 +406,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/newCode.js',0),
-        // self::printScript('https://www.google.com/recaptcha/api.js?hl=es',1),
+        self::printScript('/assets/js/custom/maxLength.js',0),
       ]
     ]);
     die;
@@ -584,12 +516,12 @@ class VController extends ApplicationController {
 
   private function printCss($url, $cache) {
     $caching = self::removeCache($cache);
-  	return '<link rel="stylesheet" href="'.$url.$caching.'">';
+  	return '<link rel="stylesheet" href="'.$url.$caching.'" media="all">';
   }
 
   private function printScript($url, $cache) {
     $caching = self::removeCache($cache);
-  	return '<script src="'.$url.$caching.'"></script>';
+  	return '<script src="'.$url.$caching.'" defer></script>';
   }
 
   private function removeCache($cache) {

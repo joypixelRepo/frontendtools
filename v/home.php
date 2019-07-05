@@ -1,4 +1,4 @@
-<section class="entries content pt-3">
+<section class="entries content pt-3" id="home-page">
 	<div class="container-fluid">
 		<div class="row clearfix">
 			<div class="col-12">
@@ -9,6 +9,16 @@
 						</div>
 					</div>
 				</div> -->
+
+        <div class="card card-info mb-3">
+          <div class="body">
+            <div class="header">
+              <h1>Herramientas para desarrolladores FrontEnd</h1>
+              <h2>Tu repositorio online para guardar y no olvidar fragmentos de código utilizados por los desarrolladores FrontEnd</h2>
+            </div>
+          </div>
+        </div>
+
 				<div class="card d-none d-sm-block mb-3">
 					<div class="body">
 						<div class="header">

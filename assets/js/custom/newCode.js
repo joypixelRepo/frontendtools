@@ -92,29 +92,6 @@ $('#full-html, #full-css, #full-js').on('click', function(e){
 	}
 });
 
-
-var maxlength = $('*[maxlength]');
-maxlength.each(function(index) {
-  const num = $(this).attr('maxlength');
-  var span = $(this).next();
-
-  span.text(num - $(this).val().length);
-
-  $(this).on('keydown keyup change', function() {
-    span.text(num - $(this).val().length);
-    if((num - $(this).val().length) > 50) {
-      span.css({'background':'', 'border':'', 'color':''});
-    }
-    if((num - $(this).val().length) <= 50) {
-      span.css({'background':'#ffc100', 'border':'1px solid #ffc100', 'color':'#fff'});
-    }
-    if((num - $(this).val().length) <= 10) {
-      span.css({'background':'red', 'border':'1px solid red', 'color':'#fff'});
-    }
-  });
-
-});
-
 title.on('keyup', function() {
   if(title.val().length > 0) {
     $('h1.titles').html(title.val());

@@ -1,6 +1,7 @@
 const avatars_a = $('.avatars a');
+const form = $('#sign_up');
 
-if($('#sign_up').length > 0) {
+if(form.length > 0) {
 
 	// inputs
 	const name = $('*[name="full-name"]');
@@ -89,7 +90,7 @@ if($('#sign_up').length > 0) {
     }
   }
 
-	$('#sign_up').on('submit', function(e){
+	$(form).on('submit', function(e){
 		e.preventDefault();
 
 		var errors = [];

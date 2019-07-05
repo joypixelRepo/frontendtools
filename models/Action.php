@@ -258,15 +258,46 @@ class Action extends ApplicationController {
   }
 
   public function sendMessage() {
+    // google recaptcha
+    $recaptcha = $_POST["g-recaptcha-response"];
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+        'secret' => '6LfZEqsUAAAAABshjNl4ASwt8xvXfx_Dv-1yXFVJ',
+        'response' => $recaptcha
+    );
+
+    $options = array(
+        'http' => array (
+            'method' => 'POST',
+            'content' => http_build_query($data),
+            'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
+        )
+    );
+
+    $context  = stream_context_create($options);
+    $verify = file_get_contents($url, false, $context);
+    $captcha_success = json_decode($verify);
+
+    if (!$captcha_success->success) {
+      // response text when fail captcha
+      die('fail_captcha');
+    }
+    // end google recaptcha
+
+    if(strlen($_POST['message']) > 30100) {
+      die('Error');
+    }
+
+    $subject = 'Contacto desde FrontEndTools';
+
     $config['name'] = 'Frontendtools';
     $config['email'] = 'info@frontendtools.net';
     $message = '
     <html>
     <head>
-      <title>Mensaje de contacto en Frontendtools</title>
+      <title>Mensaje de contacto desde Frontendtools</title>
     </head>
     <body>
-      <p><strong>Asunto:</strong> '.$_POST['subject'].'</p>
       <p><strong>Nombre:</strong> '.$_POST['name'].'</p>
       <p><strong>Email:</strong> '.$_POST['email'].'</p>
       <p><strong>Mensaje:</strong> <pre>'.$_POST['message'].'</pre></p>
@@ -284,7 +315,6 @@ class Action extends ApplicationController {
     //$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
 
     $to = $config['email'];
-    $subject = $_POST['subject'];
 
     return mail($to, $subject, $message, $headers);
   }

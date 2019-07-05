@@ -168,7 +168,7 @@
 			<li><a href="/original" target="_blank"><i class="zmdi zmdi-delicious"></i><span>Original</span> </a></li>
 			<?php } ?>
 
-      <li><a href="/<?= $_SERVER['VIEWS'] ?>/contact" class="bb-n"><img src="/assets/images/contact.svg" class="category-image"><span>Contacto</span> </a></li>
+      <li><a href="/<?= $_SERVER['VIEWS'] ?>/contact" class="bb-n icon-menu"><img src="/assets/images/contact.svg" class="category-image"><span>Contacto</span> </a></li>
 
 		</ul>
 	</div>

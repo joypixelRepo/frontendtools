@@ -3,10 +3,10 @@ $(document).ready(function() {
   if(url !== '') {
 	  $('.menu a').each(function(index,element) {
   		if(~($(this).attr('href')).indexOf(url)) {
-  			$(this)/*.addClass('toggled')*/.parents('li').addClass('active open');
+  			$(this).parents('li').addClass('active open');
 		  }
 	  });
 	} else {
-		$('.menu #dashboardLink')/*.addClass('toggled')*/.parent().addClass('active open');
+		$('.menu #dashboardLink').parent().addClass('active open');
 	}
 });

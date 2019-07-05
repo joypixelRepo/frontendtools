@@ -11,9 +11,9 @@ if(!empty($entries)) {
 
       <div class="header">
           <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>">
-            <h2 title="<?= $entry['title'] ?>">
+            <h1 title="<?= $entry['title'] ?>" class="mb-0">
               <?= $entry['title'] ?>
-            </h2>
+            </h1>
           </a>
           <ul class="header-dropdown m-r--5">
             <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
@@ -49,7 +49,9 @@ if(!empty($entries)) {
         <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>">
           <div class="code-description">
             <? if(!empty($entry['description'])) { ?>
+              <h2>
             <?= strlen($entry['description']) > 120 ? substr($entry['description'],0,120)."..." : $entry['description'] ?>
+              </h2>
             <? } else { ?>
               <span class="no-description">Sin descripción.</span>
             <? } ?>

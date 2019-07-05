@@ -180,13 +180,18 @@
             </div>
             <? } ?>
 
+          </div>
+        </div>
 
-
-
-
-
-            <div class="mt-4 entry-details">
-            	<div class="row">
+        <div class="card mb-3">
+          <div class="body">
+            <div class="entry-details">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="mb-2">Detalles</h4>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-12">
                   <div class="font-11"><strong>Autor:</strong> <a href="/?creator=<?= $entry['creator'] ?>" class="creator col-grey" title="Ver todas las entradas de <?= $entry['creator'] ?>"><?= $entry['creator'] ?></a></div>
                 </div>

@@ -11,19 +11,28 @@
 <body>
   
   <script>
-    $.ajax({
-  url: '',
-  cache: false,
-  beforeSend: function(){
-    console.log('beforeSend...');
-  },
-  complete: function(){
-    console.log('complete...');
-  },
-  success: function(response){
-    console.log(response);
-  }
-});
+    // select form
+var form = $('form');
+// serialize form elements
+var datos = form.serialize();
+
+$.ajax({
+    url: '/file.php',
+    type:"POST",
+    cache: false,
+    data: datos,
+    beforeSend: function(){
+      // actions before send
+    },
+    complete: function(){
+      // actions when complete
+    },
+    success: function(response){
+      if(response == 'ok') {
+        // actions before sucess
+      }
+    }
+  });
   </script>
 </body>
 </html>

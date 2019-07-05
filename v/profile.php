@@ -30,6 +30,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="body">
+                                <h3 class="text-center">Modificar avatar</h3>
+                                <p class="text-center">Haz click para modificar tu avatar</p>
                                 <div class="avatars avatars-edit">
                                 <? foreach ($avatars['files'] as $avatar) { ?>
                                     <a href="#" data-image="<?= $avatar ?>"><img src="<?= $avatar ?>" alt="avatar"/></a>
@@ -96,7 +98,7 @@
 
                     <div class="profile-option">
                       <form action="/user/deleteAccount" method="POST">
-                        <button type="submit" class="btn bg-custom waves-effect" onclick="javascript: if(!confirm('¡CUIDADO!\n¡Vas a eliminar tu cuenta!\nTodas tus entradas y comentarios se borrarán.\n¿Estás seguro/a de que quieres eliminar tu cuenta definitivamente?')) { return false }">Eliminar mi cuenta</button>
+                        <button type="submit" <?= $user['rol'] == 'admin' ? 'disabled title="No puedes eliminar una cuenta de administrador"' : '' ?> class="btn bg-custom waves-effect" onclick="javascript: if(!confirm('¡CUIDADO!\n¡Vas a eliminar tu cuenta!\nTodas tus entradas y comentarios se borrarán.\n¿Estás seguro/a de que quieres eliminar tu cuenta definitivamente?')) { return false }">Eliminar mi cuenta</button>
                       </form>
                     </div>
 
