@@ -13,8 +13,8 @@
         <div class="card card-info mb-3">
           <div class="body">
             <div class="header">
-              <h1>Herramientas para desarrolladores FrontEnd</h1>
-              <h2>Tu repositorio online para guardar y no olvidar fragmentos de código utilizados por los desarrolladores FrontEnd</h2>
+              <h1>Herramientas y recursos para desarrolladores Front-end y más</h1>
+              <h2>Tu repositorio online para guardar y no olvidar fragmentos de código usado en tus proyectos</h2>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
 							<div class="languages-logos languages-logos-big">
 							<?php foreach ($categories as $category) { ?>
 								<a href="/?c=<?=$category['descriptive_name']?>">
-									<img src="<?= $category['category_logo'] ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $category['category_name']?> (<?= isset($category['count']) && $category['count'] > 0 ? $category['count'] : 0 ?> entradas)">
+									<img src="<?= $category['category_logo'] ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $category['category_name']?> (<?= isset($category['count']) && $category['count'] > 0 ? $category['count'] : 0 ?> entradas)" alt="<?= $category['category_name']?>">
 								</a>&nbsp;&nbsp;
 							<?php } ?>
 							</div>

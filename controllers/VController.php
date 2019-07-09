@@ -71,8 +71,8 @@ class VController extends ApplicationController {
       	self::printCss('/assets/css/custom/home.css',0),
       ],
       'seo' => [
-        'ogtitle' => 'Herramientas y recursos para desarrolladores Front-end',
-        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
+        'ogtitle' => 'Herramientas y recursos para desarrolladores Front-end y más',
+        'ogdescription' => 'Tu repositorio online para guardar y no olvidar fragmentos de código usado en tus proyectos',
       ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -91,6 +91,34 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
     die;
+  }
+
+  public function dateDiff($date) {
+    $datetime = $date;
+
+    // check datetime var type
+    $strTime = (is_object($datetime)) ? $datetime->format('Y-m-d H:i:s') : $datetime;
+
+    $time = strtotime($strTime);
+    $time = time() - $time;
+    $time = ($time<1)? 1 : $time;
+
+    $tokens = array (
+      31536000 => 'año',
+      2592000 => 'mes',
+      604800 => 'semana',
+      86400 => 'día',
+      3600 => 'hora',
+      60 => 'minuto',
+      1 => 'segundo'
+    );
+
+    foreach ($tokens as $unit => $text) {
+      if ($time < $unit) continue;
+      $numberOfUnits = floor($time / $unit);
+      $plural = ($unit == 2592000) ? 'es' : 's';
+      return $numberOfUnits . ' ' . $text . (($numberOfUnits > 1) ? $plural : '');
+    }
   }
 
   public function maintenance() {
@@ -261,6 +289,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/plugins/codemirror/lib/codemirror.css',1),
         self::printCss('/assets/plugins/codemirror/addon/display/fullscreen.css',1),
         self::printCss('/assets/plugins/codemirror/theme/monokai.css',1),
+        self::printCss('/assets/css/libraries/animate.css',1),
       ],
       'entry' => $this->view->loadEntry(null, $_GET['u']),
     ]);
@@ -295,6 +324,7 @@ class VController extends ApplicationController {
         self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
         self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScript('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
         self::printScript('/assets/js/custom/editors.js',0),
         self::printScript('/assets/js/custom/exec.js',0),
       ]

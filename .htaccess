@@ -8,3 +8,8 @@ RewriteRule (.+)\/(.+)(\/)?$ index.php?controller=$1&action=$2 [QSA]
 
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# redirect from www to without www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.frontendtools.net [NC]
+RewriteRule ^(.*)$ https://frontendtools.net/$1 [L,R=301]

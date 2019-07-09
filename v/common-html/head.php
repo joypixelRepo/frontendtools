@@ -15,8 +15,26 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	
-	<title><?= !empty($entry['title']) ? $entry['title'] : 'FrontEndTools - Tu repositorio online para guardar y no olvidar fragmentos de código usados por los desarrolladores FrontEnd' ?></title>
-  <meta name="description" content="<?= !empty($entry['description']) ? $entry['description'] : 'Entrada sin descripción establecida.' ?>">
+	<title><?= !empty($entry['title']) ? $entry['title'] : 'FrontEndTools - Tu repositorio online para guardar y no olvidar fragmentos de código usado en tus proyectos' ?></title>
+
+  <!-- SEO -->
+  <?php if(isset($entry)) { ?>
+
+  <meta name="description" content="<?= !empty($entry['description']) ? $entry['description'] : $entry['title'] ?>">
+  <meta property="og:title" content="<?= $entry['title'] ?>" />
+  <meta property="og:description" content="<?= $entry['description'] ?>" />
+
+  <?php } else if(isset($seo)) { ?>
+
+  <meta name="description" content="<?= $seo['ogdescription'] ?>">
+  <meta property="og:title" content="<?= $seo['ogtitle'] ?>" />
+  <meta property="og:description" content="<?= $seo['ogdescription'] ?>" />
+
+  <?php } ?>
+
+  <meta property="og:site_name" content="Frontendtools" />
+  <meta property="og:image" content="/assets/images/frontendtools-entry.jpg" />
+  <!-- end SEO -->
 
 	<!-- Favicon-->
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png<?= '?v='.hash('md5', time()) ?>">
@@ -35,17 +53,6 @@
 	<link rel="stylesheet" href="/assets/css/color_skins.css" media="all">
 	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>" media="all">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>" media="all">
-
-  <!-- SEO -->
-  <meta property="og:site_name" content="Frontendtools" />
-  <meta property="og:image" content="/assets/images/frontendtools-entry.jpg" />
-  <?php if(isset($entry)) { ?>
-  <meta property="og:title" content="<?= $entry['title'] ?>" />
-  <meta property="og:description" content="<?= $entry['description'] ?>" />
-  <?php } else if(isset($seo)) { ?>
-  <meta property="og:title" content="<?= $seo['ogtitle'] ?>" />
-  <meta property="og:description" content="<?= $seo['ogdescription'] ?>" />
-  <?php } ?>
 
 	<!-- common scrips -->
 	<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>

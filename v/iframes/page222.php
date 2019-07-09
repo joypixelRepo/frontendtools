@@ -11,7 +11,9 @@
 <body>
   
   <script>
-    for (var value of array) {
+    var array = [];
+
+for (var value of array) {
    console.log(value); 
 }
   </script>

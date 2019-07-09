@@ -57,6 +57,11 @@
                     <img src="/assets/images/logos/html.svg" alt="language-logo">
                   </div>HTML
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="box_html" autocomplete="off"><?= $entry['html'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -66,6 +71,11 @@
                     <img src="/assets/images/logos/css.svg" alt="language-logo">
                   </div>CSS
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="box_css" autocomplete="off"><?= $entry['css'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -75,6 +85,11 @@
                     <img src="/assets/images/logos/javascript.svg" alt="language-logo">
                   </div>JavaScript / jQuery
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="box_js" autocomplete="off"><?= $entry['javascript'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -104,6 +119,11 @@
                     <img src="/assets/images/logos/git.svg" alt="language-logo">
                   </div>Git
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea class="box_otherCode" autocomplete="off"><?= $entry['git'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -118,6 +138,11 @@
                     <img src="/assets/images/logos/mysql.svg" alt="language-logo">
                   </div>MySQL
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="mysql" autocomplete="off"><?= $entry['mysql'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -132,6 +157,11 @@
                     <img src="/assets/images/logos/php.svg" alt="language-logo">
                   </div>PHP
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="php" autocomplete="off"><?= $entry['php'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -146,6 +176,11 @@
                     <img src="/assets/images/logos/react.svg" alt="language-logo">
                   </div>ReactJS
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="reactjs" autocomplete="off"><?= $entry['reactjs'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -160,6 +195,11 @@
                     <img src="/assets/images/logos/xampp.svg" alt="language-logo">
                   </div>XAMPP
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea class="box_otherCode" autocomplete="off"><?= $entry['xampp'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -174,6 +214,11 @@
                     <img src="/assets/images/logos/terminal.svg" alt="language-logo">
                   </div>Terminal
                 </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                </div>
                 <textarea id="terminal" autocomplete="off"><?= $entry['terminal'] ?></textarea>
                 <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
               </div>
@@ -263,7 +308,7 @@
               <form id="comment-form" action="/action/saveComment" method="POST" class="mt-2">
                 <div class="row">
                   <div class="col-12">
-                    <textarea class="custom-text-area" name="comment" maxlength="1023" placeholder="Escribe tu comentario..."></textarea>
+                    <textarea class="custom-text-area" name="comment" maxlength="1023" placeholder="Escribe un comentario como <?= $_SESSION['user']['user'] ?>..."></textarea>
                   </div>
                 </div>
                 <input type="hidden" name="url" value="<?= urlencode($_SERVER['REQUEST_URI']) ?>#comments">

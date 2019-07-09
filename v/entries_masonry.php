@@ -35,16 +35,16 @@ if(!empty($entries)) {
       
       <div class="body entry-box">
 
-        <? if($entry['executable']) { ?>
-          <? if(!empty($entry['screenshot'])) { ?>
-            <!--<div class="screenshot" style="background:url(<?= $entry['screenshot'] ?>)"></div>-->
-          <? } ?>
-          <? if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/iframes/page'.$entry['id'].'.php')) { ?>
+        <? //if($entry['executable']) { ?>
+          <? //if(!empty($entry['screenshot'])) { ?>
+            <!-- <div class="screenshot" style="background:url(<?= $entry['screenshot'] ?>)"></div> -->
+          <? //} ?>
+          <? //if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['VIEWS'].'/iframes/page'.$entry['id'].'.php')) { ?>
             <!-- <div class="d-iframe">
               <iframe scrolling="no" src="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php"></iframe>
             </div> -->
-          <? } ?>
-        <? } ?>
+          <? //} ?>
+        <? //} ?>
 
         <a class="link-box" href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>">
           <div class="code-description">
@@ -67,7 +67,10 @@ if(!empty($entries)) {
           </div>
           <div class="col-6">
             <div class="font-11 col-grey text-right">
-              <i><?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></i>
+              <!-- <i><?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></i> -->
+              <i title="<?= 'Publicado el ' . strftime('%e de %B de %Y', strtotime($entry['creation_date'])) ?>">
+                <?= 'Hace ' . VController::dateDiff($entry['creation_date']) ?>
+              </i>
             </div>
           </div>
         </div>
