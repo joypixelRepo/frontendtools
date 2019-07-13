@@ -128,7 +128,7 @@ $(document).ready(function() {
 		document.execCommand('copy');
 		//eliminamos el input temporal
 		$temp.remove();
-		alert('Texto copiado al portapapeles:'+"\n"+$temp.val());
+		alert(LANG_JS.text_copy_to_clipboard+"\n"+$temp.val());
 	});
 
 });

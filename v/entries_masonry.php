@@ -19,12 +19,12 @@ if(!empty($entries)) {
             <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>
               <ul class="dropdown-menu">
 
-                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>" title="Ver entrada"><i class="material-icons">remove_red_eye</i>Ver entrada</a></li>
+                <li><a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>" title="<?= LANG['view_entry'] ?>"><i class="material-icons">remove_red_eye</i><?= LANG['view_entry'] ?></a></li>
 
                 <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
                 
-                <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar"><i class="material-icons">mode_edit</i>Editar</a></li>
-                <li><a class="delete-menu" onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar"><i class="material-icons">delete</i>Eliminar</a></li>
+                <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="<?= LANG['edit'] ?>"><i class="material-icons">mode_edit</i><?= LANG['edit'] ?></a></li>
+                <li><a class="delete-menu" onclick="javascript: if(!confirm('<?= LANG['del_entry'] ?>')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="<?= LANG['delete'] ?>"><i class="material-icons">delete</i><?= LANG['delete'] ?></a></li>
 
                 <? } ?>
 
@@ -53,7 +53,7 @@ if(!empty($entries)) {
             <?= strlen($entry['description']) > 120 ? substr($entry['description'],0,120)."..." : $entry['description'] ?>
               </h2>
             <? } else { ?>
-              <span class="no-description">Sin descripción.</span>
+              <span class="no-description"><?= LANG['no_description'] ?></span>
             <? } ?>
           </div>
         </a>
@@ -62,14 +62,14 @@ if(!empty($entries)) {
         <div class="row">
           <div class="col-6">
             <div class="font-11 entry-creator">
-              <a href="/?creator=<?= $entry['creator'] ?>" class="col-grey link-entry-creator" title="<?= $user['rol'] == 'admin' ? 'Última conexión: '.strftime('%A %e %B %Y · %H:%M', strtotime($entry['last_connection'])) : '' ?>"><?= $entry['creator'] ?></a>
+              <a href="/?creator=<?= $entry['creator'] ?>" class="col-grey link-entry-creator" title="<?= $user['rol'] == 'admin' ? LANG['last_connection'] . strftime('%A %e %B %Y · %H:%M', strtotime($entry['last_connection'])) : '' ?>"><?= $entry['creator'] ?></a>
             </div>
           </div>
           <div class="col-6">
             <div class="font-11 col-grey text-right">
               <!-- <i><?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></i> -->
-              <i title="<?= 'Publicado el ' . strftime('%e de %B de %Y', strtotime($entry['creation_date'])) ?>">
-                <?= 'Hace ' . VController::dateDiff($entry['creation_date']) ?>
+              <i title="<?= LANG['published_on'] . strftime('%e de %B de %Y', strtotime($entry['creation_date'])) ?>">
+                <?= LANG['ago'] . VController::dateDiff($entry['creation_date']) ?>
               </i>
             </div>
           </div>
@@ -95,7 +95,7 @@ if(!empty($entries)) {
           </div> -->
           <div class="col-4">
             <div class="text-right">
-              <a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>#comments" title="<?= isset($entry['comments']) ? count($entry['comments']) : 0 ?> comentarios">
+              <a href="/<?= $_SERVER['VIEWS'].'/exec?u='.($entry['url'])?>#comments" title="<?= isset($entry['comments']) ? count($entry['comments']) : 0 ?> <?= LANG['comments'] ?>">
                 <span class="comments-number"><?= isset($entry['comments']) ? count($entry['comments']) : 0 ?><i class="material-icons">chat</i></span>
               </a>
             </div>
@@ -130,10 +130,10 @@ if($nextPage > $totalPages) {
       <!-- pagination -->
       <? if($actualPage != 1) { ?>
       <li class="page-item">
-        <a class="page-link link-bold" href="<?= $url.'page=1' ?>" title="Primera página"><img src="/assets/images/arrow-first.svg"></a>
+        <a class="page-link link-bold" href="<?= $url.'page=1' ?>" title="<?= LANG['first_page'] ?>"><img src="/assets/images/arrow-first.svg"></a>
       </li>
       
-      <li><a class="page-link link-bold" href="<?= $url.'page='.$prevPage ?>" title="Página anterior"><img src="/assets/images/arrow-previous.svg"></a></li>
+      <li><a class="page-link link-bold" href="<?= $url.'page='.$prevPage ?>" title="<?= LANG['previous_page'] ?>"><img src="/assets/images/arrow-previous.svg"></a></li>
       <? } ?>
 
       
@@ -162,10 +162,10 @@ if($nextPage > $totalPages) {
 
 
       <? if($nextPage != null) { ?>
-      <li><a class="page-link link-bold" href="<?= $url.'page='.$nextPage ?>" title="Página siguiente"><img src="/assets/images/arrow-next.svg"></a></li>
+      <li><a class="page-link link-bold" href="<?= $url.'page='.$nextPage ?>" title="<?= LANG['next_page'] ?>"><img src="/assets/images/arrow-next.svg"></a></li>
 
       <li class="page-item">
-        <a class="page-link link-bold" href="<?= $url.'page='.$totalPages ?>" title="Última página"><img src="/assets/images/arrow-last.svg"></a>
+        <a class="page-link link-bold" href="<?= $url.'page='.$totalPages ?>" title="<?= LANG['last_page'] ?>"><img src="/assets/images/arrow-last.svg"></a>
       </li>
       <? } ?>
       <!-- end pagination -->
@@ -179,7 +179,7 @@ if($nextPage > $totalPages) {
   <div class="card">
     <div class="body">
       <div class="alert alert-danger no_entries">
-          <strong>¡Ups!</strong><br>No hay entradas que mostrar.
+          <strong><?= LANG['ups'] ?></strong><br><?= LANG['no_show_entries'] ?>
       </div>
     </div>
   </div>

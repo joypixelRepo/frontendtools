@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="es">
+<html class="no-js" lang="<?= LANG['metaLang'] ?>">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141935705-1"></script>
@@ -15,7 +15,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	
-	<title><?= !empty($entry['title']) ? $entry['title'] : 'FrontEndTools - Tu repositorio online para guardar y no olvidar fragmentos de código usado en tus proyectos' ?></title>
+	<title><?= !empty($entry['title']) ? $entry['title'] : LANG['defaultTitle'] ?></title>
 
   <!-- SEO -->
   <?php if(isset($entry)) { ?>
@@ -74,5 +74,5 @@
 </head>
 <body class="theme-orange">
 	<div id="cookies" style="display: none;">
-		<p>Este sitio utiliza cookies propias y de terceros para mejorar tu experiencia de usuario. Si continuas navegando estás aceptando el uso de las cookies. <input type="button" id="accept-cookies" class="btn btn-large btn-raised bg-custom waves-effect ml-2" value="Aceptar y no mostrar más"></p>
+		<p><?= LANG['cookiesTxt'] ?> <input type="button" id="accept-cookies" class="btn btn-large btn-raised bg-custom waves-effect ml-2" value="<?= LANG['cookiesAccept'] ?>"></p>
 	</div>

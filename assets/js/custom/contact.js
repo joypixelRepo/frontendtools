@@ -25,23 +25,22 @@ $('form#contactForm').on('submit', function(e){
     success: function(response){
       if(response == 'ok') {
         swal({
-          title: 'Mensaje enviado',
-          text: 'El mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo en la mayor brevedad posible.',
+          title: LANG_JS.message_sent,
+          text: LANG_JS.message_sent_text,
           type: 'success',
           timer: '8000',
-          confirmButtonText: 'Aceptar',
+          confirmButtonText: LANG_JS.accept_txt,
           confirmButtonColor: '#263238',
           allowOutsideClick: true,
         });
-        //bootstrapNotify('success', 5000, 'El mensaje ha sido enviado con éxito.');
       } 
       else if(response == 'fail_captcha') {
-        bootstrapNotify('danger', 5000, 'El captcha no ha sido validado. Inténtalo de nuevo.');
+        bootstrapNotify('danger', 5000, LANG_JS.invalid_captcha);
         submitBtn.show();
         submitBtn.attr('disabled', false);
       }
       else {
-        bootstrapNotify('danger', 5000, 'Ha ocurrido un error inesperado. Inténtalo de nuevo.');
+        bootstrapNotify('danger', 5000, LANG_JS.unexpected_error);
         submitBtn.show();
         submitBtn.attr('disabled', false);
       }

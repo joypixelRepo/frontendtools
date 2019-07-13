@@ -30,8 +30,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="body">
-                                <h3 class="text-center">Modificar avatar</h3>
-                                <p class="text-center">Haz click para modificar tu avatar</p>
+                                <h3 class="text-center"><?= LANG['change_avatar'] ?></h3>
+                                <p class="text-center"><?= LANG['click_to_modify_avatar'] ?></p>
                                 <div class="avatars avatars-edit">
                                 <? foreach ($avatars['files'] as $avatar) { ?>
                                     <a href="#" data-image="<?= $avatar ?>"><img src="<?= $avatar ?>" alt="avatar"/></a>
@@ -51,8 +51,8 @@
                 <div class="card">
                   <? if(isset($userCategories)) { ?>
                     <div class="header">
-                      <h3 class="text-center title-profile">Tus entradas</h3>
-                      <p class="text-center">Todas tus entradas clasificadas por categorías</p>
+                      <h3 class="text-center title-profile"><?= LANG['your_entries'] ?></h3>
+                      <p class="text-center"><?= LANG['your_entries_classified_by_categories'] ?></p>
                     </div>
                     <div class="row profile_state list-unstyled">
                         <?php
@@ -71,15 +71,15 @@
                         <? } ?>
                     </div>
                     <div class="text-center">
-                      <a href="/?creator=<?= $user['user'] ?>" class="btn btn-raised bg-custom waves-effect mt-4 mb-4">Ver todas mis entradas</a>
+                      <a href="/?creator=<?= $user['user'] ?>" class="btn btn-raised bg-custom waves-effect mt-4 mb-4"><?= LANG['view_all_my_entries'] ?></a>
                     </div>
                   <? } else { ?>
                     <div class="header">
-                      <h3 class="text-center title-profile">Tus entradas</h3>
-                      <p class="text-center">No has creado ninguna entrada hasta ahora. ¿Quieres crear una?</p>
+                      <h3 class="text-center title-profile"><?= LANG['your_entries'] ?></h3>
+                      <p class="text-center"><?= LANG['no_entries_so_far'] ?></p>
                       <p class="text-center">
                         <a href="/<?= $_SERVER['VIEWS'] ?>/newCode">
-                          <button type="button" class="btn bg-custom waves-effect">Crear mi primera entrada</button>
+                          <button type="button" class="btn bg-custom waves-effect"><?= LANG['create_my_first_entry'] ?></button>
                         </a>
                       </p>
                     </div>
@@ -94,11 +94,11 @@
             <div class="col-sm-12">
                 <div class="card">
                   <div class="header">
-                    <h3 class="title-profile">Opciones de tu cuenta</h3>
+                    <h3 class="title-profile"><?= LANG['account_options'] ?></h3>
 
                     <div class="profile-option">
                       <form action="/user/deleteAccount" method="POST">
-                        <button type="submit" <?= $user['rol'] == 'admin' ? 'disabled title="No puedes eliminar una cuenta de administrador"' : '' ?> class="btn bg-custom waves-effect" onclick="javascript: if(!confirm('¡CUIDADO!\n¡Vas a eliminar tu cuenta!\nTodas tus entradas y comentarios se borrarán.\n¿Estás seguro/a de que quieres eliminar tu cuenta definitivamente?')) { return false }">Eliminar mi cuenta</button>
+                        <button type="submit" <?= $user['rol'] == 'admin' ? 'disabled title="'.LANG['no_delete_admin_account'].'"' : '' ?> class="btn bg-custom waves-effect" onclick="javascript: if(!confirm('<?= LANG['caution_all_entries_deleted'] ?>')) { return false }"><?= LANG['delete_my_account'] ?></button>
                       </form>
                     </div>
 

@@ -5,12 +5,12 @@
 				<div class="card">
 					<div class="body">
 						<div class="float-right">
-              <a href="/<?= $_SERVER['VIEWS'].'/exec?u='.$entry['url']?>" title="Ver entrada">
+              <a href="/<?= $_SERVER['VIEWS'].'/exec?u='.$entry['url']?>" title="<?= LANG['view_entry'] ?>">
                 <button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">remove_red_eye</i> </button>
               </a>
             </div>
             <span class="info-label">
-              <i class="material-icons">info_outline</i>Editando entrada
+              <i class="material-icons">info_outline</i><?= LANG['editing_entry'] ?>
             </span>
 						<h1 class="titles"><?= $entry['title'] ?></h1>
 						<?php if($session) { ?>
@@ -21,7 +21,7 @@
 									<input type="hidden" name="url" value="<?= urlencode($_SERVER['REQUEST_URI']) ?>">
                   <div class="row">
                     <div class="col-12 mt-4 check-categories">
-                      <h6>Categoría/s</h6>
+                      <h6><?= LANG['category_s'] ?></h6>
 
                         <?php foreach ($categories as $category) {
                           $checked = '';
@@ -41,8 +41,8 @@
 									<div class="row">
 										<div class="col-12">
 											<div class="mt-4">
-												<h6>Título</h6>
-                        <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="Título de la entrada" maxlength="100" data-entry-id="<?= $_GET['id'] ?>"><?= $entry['title'] ?></textarea>
+												<h6><?= LANG['title'] ?></h6>
+                        <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="<?= LANG['entry_title'] ?>" maxlength="100" data-entry-id="<?= $_GET['id'] ?>"><?= $entry['title'] ?></textarea>
                         <span class="characters">100</span>
                         <div id="errorTitle"></div>
 											</div>
@@ -51,8 +51,8 @@
 									<div class="row">
 										<div class="col-12">
 											<div class="mt-4">
-												<h6>Breve descripción</h6>
-												<textarea name="description" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="Escribe una breve descripción"placeholder="Escribe una breve descripción" maxlength="255"><?= $entry['description'] ?></textarea>
+												<h6><?= LANG['short_description'] ?></h6>
+												<textarea name="description" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="<?= LANG['write_a_short_description'] ?>" maxlength="255"><?= $entry['description'] ?></textarea>
                         <span class="characters">255</span>
 											</div>
 										</div>
@@ -60,7 +60,7 @@
 									<div class="row">
 										<div class="col-12">
 											<div class="mt-4 mb-4">
-												<h6>Descripción detallada</h6>
+												<h6><?= LANG['detail_description'] ?></h6>
 												<!-- <textarea name="explanation" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="Explica detalladamente en qué consiste la entrada" maxlength="65535"><?= $entry['explanation'] ?></textarea> -->
                         <!-- CKEditor -->
                         <textarea id="ckeditor" name="explanation" maxlength="65535"><?= $entry['explanation'] ?></textarea>
@@ -81,7 +81,7 @@
                             </div>HTML
                           </h6>
                           <textarea id="box_html" name="html" autocomplete="off"><?= $entry['html'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -94,7 +94,7 @@
                             </div>CSS
                           </h6>
                           <textarea id="box_css" name="css" autocomplete="off"><?= $entry['css'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@
                             </div>JavaScript / jQuery
                           </h6>
                           <textarea id="box_js" name="javascript" autocomplete="off"><?= $entry['javascript'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -124,7 +124,7 @@
                             </div>Git
                           </h6>
                           <textarea class="box_otherCode" name="git" autocomplete="off"><?= $entry['git'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -140,7 +140,7 @@
                             </div>MySQL
                           </h6>
                           <textarea id="mysql" name="mysql" autocomplete="off"><?= $entry['mysql'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -156,7 +156,7 @@
                             </div>PHP
                           </h6>
                           <textarea id="php" name="php" autocomplete="off"><?= $entry['php'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                             </div>ReactJS
                           </h6>
                           <textarea id="reactjs" name="reactjs" autocomplete="off"><?= $entry['reactjs'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -188,7 +188,7 @@
                             </div>XAMPP
                           </h6>
                           <textarea class="box_otherCode" name="xampp" autocomplete="off"><?= $entry['xampp'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -204,7 +204,7 @@
                             </div>Terminal
                           </h6>
                           <textarea id="terminal" name="terminal" autocomplete="off"><?= $entry['terminal'] ?></textarea>
-                          <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>
                     </div>
@@ -213,7 +213,7 @@
 
 									<div class="row">
 										<div class="col-12">
-											<button type="submit" class="btn btn-raised bg-custom waves-effect mt-4" onclick="javascript: if(!confirm('Vas a editar esta entrada.\n¿Estás seguro?')) { return false }"><i class="zmdi zmdi-save"></i>&nbsp;&nbsp;Guardar</button>
+											<button type="submit" class="btn btn-raised bg-custom waves-effect mt-4" onclick="javascript: if(!confirm('<?= LANG['edit_entry_sure'] ?>')) { return false }"><i class="zmdi zmdi-save"></i>&nbsp;&nbsp;<?= LANG['save'] ?></button>
 										</div>
 									</div>
 									<div class="row">
@@ -227,7 +227,7 @@
 						<?php } else { ?>
 						<div class="row">
 							<div class="col-12">
-								No tienes suficientes privilegios para ver el contenido de esta página.
+								<?= LANG['no_privileges'] ?>
 							</div>
 						</div>
 						<?php } ?>

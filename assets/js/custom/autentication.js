@@ -33,10 +33,10 @@ if(form.length > 0) {
 		$.post('/user/userExist?user='+user.val(), function(data) {
 		  if(data == 1) {
         swal({
-          title: 'Error',
-          text: 'Usuario ocupado.',
-          type: 'error',
-          confirmButtonText: 'Aceptar',
+          title: LANG_JS.error_title,
+          text: LANG_JS.used_taken,
+          type: LANG_JS.error_type,
+          confirmButtonText: LANG_JS.accept_txt,
           confirmButtonColor: '#263238',
           allowOutsideClick: true,
         });
@@ -54,10 +54,10 @@ if(form.length > 0) {
     $.post('/user/emailExist?email='+email.val(), function(data) {
       if(data == 1) {
         swal({
-          title: 'Error',
-          text: 'Correo electrónico ocupado.',
-          type: 'error',
-          confirmButtonText: 'Aceptar',
+          title: LANG_JS.error_title,
+          text: LANG_JS.email_taken,
+          type: LANG_JS.error_type,
+          confirmButtonText: LANG_JS.btn_swal,
           confirmButtonColor: '#263238',
           allowOutsideClick: true,
         });
@@ -73,10 +73,10 @@ if(form.length > 0) {
   function checkPassword(password, passwordConfirm) {
     if(password.val() != passwordConfirm.val()) {
       swal({
-        title: 'Error',
-        text: 'Las contraseñas no coinciden.',
-        type: 'error',
-        confirmButtonText: 'Aceptar',
+        title: LANG_JS.error_title,
+        text: LANG_JS.dif_passwords,
+        type: LANG_JS.error_type,
+        confirmButtonText: LANG_JS.btn_swal,
         confirmButtonColor: '#263238',
         allowOutsideClick: true,
       });
@@ -99,37 +99,37 @@ if(form.length > 0) {
 
 		if(!/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/g.test(name.val())) {
 			errors.push(name.attr('name'));
-			errorTxt.push('El campo nombre no es correcto.');
+			errorTxt.push(LANG_JS.invalid_name);
 		}
 		if(!/^[a-z0-9]{3,20}$/g.test(user.val())) {
 			errors.push(user.attr('name'));
-			errorTxt.push('El campo usuario no es correcto.');
+			errorTxt.push(LANG_JS.invalid_user);
 		}
     if(job.val() == '-1') {
       errors.push(job.attr('name'));
-      errorTxt.push('Debes seleccionar a qué te dedicas.');
+      errorTxt.push(LANG_JS.invalid_job);
     }
 		if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val())) {
 			errors.push(email.attr('name'));
-			errorTxt.push('El campo email no es correcto.');
+			errorTxt.push(LANG_JS.invalid_email);
 		}
 		if(password.val() != passwordConfirm.val()) {
 			errors.push(password.attr('name'));
 			errors.push(passwordConfirm.attr('name'));
-			errorTxt.push('Las contraseñas no coinciden.');
+			errorTxt.push(LANG_JS.invalid_passwords);
 		}
     if(email.val() != emailConfirm.val()) {
       errors.push(email.attr('name'));
       errors.push(emailConfirm.attr('name'));
-      errorTxt.push('Los emails no coinciden.');
+      errorTxt.push(LANG_JS.invalid_emails);
     }
 		if(avatar.val().length == 0) {
 			errors.push(avatar.attr('name'));
-			errorTxt.push('Debes seleccionar un avatar.');
+			errorTxt.push(LANG_JS.invalid_avatar);
 		}
 		if(!conditions.prop('checked')) {
 			errors.push(conditions.attr('name'));
-			errorTxt.push('Debes aceptar las condiciones generales de uso.');
+			errorTxt.push(LANG_JS.accept_conditions);
 		}
 
 		// check errors

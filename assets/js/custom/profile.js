@@ -33,7 +33,7 @@ function changeImage(img) {
 	    	effectOut(img);
 	    	effectIn(img);
     	} else {
-    		alert('Operación no permitida.');
+    		alert(LANG_JS.action_no_allowed);
     	}
     }
 	});

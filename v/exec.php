@@ -6,17 +6,17 @@
           <div class="header pb-0">
 
             <div class="share-social d-none d-sm-block mb-4">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="Compartir en LinkedIn">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="<?= LANG['share_on_linkedin'] ?>">
                 <img src="/assets/images/social/linkedin-logo.svg" alt="social-icon">
               </a>
-              <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="Compartir en Facebook">
+              <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_facebook'] ?>">
                 <img src="/assets/images/social/facebook-logo.svg" alt="social-icon">
               </a>
-              <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="Compartir en Twitter">
+              <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_twitter'] ?>">
                 <img src="/assets/images/social/twitter-logo.svg" alt="social-icon">
               </a>
               <!-- whatsapp desktop -->
-              <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="Compartir en WhatsApp">
+              <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="<?= LANG['share_on_whatsapp'] ?>">
                 <img src="/assets/images/social/whatsapp-logo.svg" alt="social-icon">
               </a>
             </div>
@@ -27,13 +27,13 @@
                 <ul class="dropdown-menu">
 
                   <?php if($entry['executable']) { ?>
-                  <li><a href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" title="Pantalla completa" target="_blank"><i class="material-icons">open_in_new</i>Ampliar</a></li>
+                  <li><a href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" title="<?= LANG['fullscreen'] ?>" target="_blank"><i class="material-icons">open_in_new</i><?= LANG['extend'] ?></a></li>
                   <?php } ?>
 
                   <? if($user['user'] == $entry['creator'] || $user['rol'] == 'admin') { ?>
 
-                  <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="Editar"><i class="material-icons">mode_edit</i>Editar</a></li>
-                  <li><a onclick="javascript: if(!confirm('Vas a eliminar esta entrada permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="Eliminar"><i class="material-icons">delete</i>Eliminar</a></li>
+                  <li><a href="/<?= $_SERVER['VIEWS'].'/edit?type=entry&id='.$entry['id']?>" title="<?= LANG['edit'] ?>"><i class="material-icons">mode_edit</i><?= LANG['edit'] ?></a></li>
+                  <li><a onclick="javascript: if(!confirm('<?= LANG['del_entry'] ?>')) { return false }" href="/action/delete?type=entry&id=<?= $entry['id']?>" title="<?= LANG['delete'] ?>"><i class="material-icons">delete</i><?= LANG['delete'] ?></a></li>
 
                   <? } ?>
 
@@ -59,11 +59,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="box_html" autocomplete="off"><?= $entry['html'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
               <div class="col-lg-4">
                 <h6 class="code-title">
@@ -73,11 +73,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="box_css" autocomplete="off"><?= $entry['css'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
               <div class="col-lg-4">
                 <h6 class="code-title">
@@ -87,11 +87,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="box_js" autocomplete="off"><?= $entry['javascript'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <?php } ?>
@@ -100,7 +100,7 @@
             <?php if($entry['executable']) { ?>
             <div class="row mt-4">
               <div class="col-12">
-                <a class="btn-full-code" href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" title="Pantalla completa" target="_blank"><i class="material-icons">open_in_new</i>Ampliar</a>
+                <a class="btn-full-code" href="/<?= $_SERVER['VIEWS'] ?>/iframes/page<?= $entry['id'] ?>.php" title="<?= LANG['fullscreen'] ?>" target="_blank"><i class="material-icons">open_in_new</i><?= LANG['extend'] ?></a>
               </div>
               <div class="col-12">
                 <div class="execute-box">
@@ -121,11 +121,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea class="box_otherCode" autocomplete="off"><?= $entry['git'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -140,11 +140,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="mysql" autocomplete="off"><?= $entry['mysql'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -159,11 +159,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="php" autocomplete="off"><?= $entry['php'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -178,11 +178,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="reactjs" autocomplete="off"><?= $entry['reactjs'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -197,11 +197,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea class="box_otherCode" autocomplete="off"><?= $entry['xampp'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -216,11 +216,11 @@
                 </h6>
 
                 <div class="actions-codemirror text-right">
-                  <a href="#" data-action="copy" title="Copiar código al portapapeles"><i class="material-icons">content_copy</i></a>
-                  <a href="#" data-action="maximize" title="Ver en pantalla completa"><i class="material-icons">aspect_ratio</i></a>
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
                 <textarea id="terminal" autocomplete="off"><?= $entry['terminal'] ?></textarea>
-                <span class="fullscreen-leyend">Pulsa "Ctrl + Intro" para ver en pantalla completa</span>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
             <? } ?>
@@ -233,29 +233,29 @@
             <div class="entry-details">
               <div class="row">
                 <div class="col-12">
-                  <h4 class="mb-2">Detalles</h4>
+                  <h4 class="mb-2"><?= LANG['details'] ?></h4>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="font-11"><strong>Autor:</strong> <a href="/?creator=<?= $entry['creator'] ?>" class="creator col-grey" title="Ver todas las entradas de <?= $entry['creator'] ?>"><?= $entry['creator'] ?></a></div>
+                  <div class="font-11"><strong><?= LANG['author'] ?></strong> <a href="/?creator=<?= $entry['creator'] ?>" class="creator col-grey" title="<?= LANG['view_all_entries_of'] ?> <?= $entry['creator'] ?>"><?= $entry['creator'] ?></a></div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="font-11"><strong>Creado:</strong> <?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></div>
+                  <div class="font-11"><strong><?= LANG['created'] ?></strong> <?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="font-11"><strong>Última edición:</strong> <?= strftime('%e %B %Y', strtotime($entry['edition_date'])) ?></div>
+                  <div class="font-11"><strong><?= LANG['last_edition'] ?></strong> <?= strftime('%e %B %Y', strtotime($entry['edition_date'])) ?></div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
                   <div class="link-box mt-2">
                     <div class="languages-logos">
-                      <div class="font-11 mb-1"><strong>Categorías:</strong></div>
+                      <div class="font-11 mb-1"><strong><?= LANG['categories_min'] ?>:</strong></div>
                       <?php foreach ($entry['categories'] as $category) { ?>
                       <a href="/?c=<?=$category['descriptive_name']?>" title="<?= $category['category_name']?>">
                         <img src="<?= $category['category_logo'] ?>">
@@ -272,7 +272,7 @@
         <div class="entry-comments" id="comments">
           <div class="card">
             <div class="card-body">
-              <h4 class="mb-4">Comentarios <span class="comments-count"><?= isset($comments) & count($comments) > 0 ? '('.count($comments).')' : '(0)' ?></span></h4>
+              <h4 class="mb-4"><?= LANG['comments_cap'] ?> <span class="comments-count"><?= isset($comments) & count($comments) > 0 ? '('.count($comments).')' : '(0)' ?></span></h4>
               <? if(!empty($comments)) { ?>
                 <? foreach ($comments as $comment) { ?>
                 <div class="entry-comment">
@@ -285,14 +285,14 @@
                           </td>
                           <td class="comment-comment">
                             <a href="/?creator=<?= $comment['user'] ?>">
-                              <span class="comment-user-name" title="Ver entradas de <?= $comment['user'] ?>"><?= $comment['user'] ?></span>
+                              <span class="comment-user-name" title="<?= LANG['view_entries_of'] ?> <?= $comment['user'] ?>"><?= $comment['user'] ?></span>
                             </a>
                             <span class="comment-date"><?= strftime('%e %B %Y a las %H:%M', strtotime($comment['comment_date'])) ?></span>
                             <div class="comment-text"><pre><?= $comment['comment'] ?></pre></div>
                           </td>
                           <td class="comments-buttons text-right">
                             <? if($user['user'] == $comment['user'] || $user['rol'] == 'admin') { ?>
-                            <a onclick="javascript: if(!confirm('Vas a eliminar este comentario permanentemente.\n¿Estás seguro?')) { return false }" href="/action/delete?type=comment&id=<?= $comment['comment_id']?>&url=<?= $_SERVER['REQUEST_URI'] ?>#comments" title="Eliminar comentario" class="coment-icon"><button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">delete</i> </button></a>
+                            <a onclick="javascript: if(!confirm('<?= LANG['delete_comment_sure'] ?>')) { return false }" href="/action/delete?type=comment&id=<?= $comment['comment_id']?>&url=<?= $_SERVER['REQUEST_URI'] ?>#comments" title="<?= LANG['delete_comment'] ?>" class="coment-icon"><button type="button" class="btn btn-raised btn-default btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">delete</i> </button></a>
                             <? } ?>
                           </td>
                         </tr>
@@ -304,16 +304,16 @@
               <? } ?>
 
               <? if($session) { ?>
-              <a href="#" id="comment-btn" class="btn btn-raised bg-custom waves-effect mt-2"><i class="material-icons">chat</i>&nbsp;&nbsp;Escribir comentario</a>
+              <a href="#" id="comment-btn" class="btn btn-raised bg-custom waves-effect mt-2"><i class="material-icons">chat</i>&nbsp;&nbsp;<?= LANG['write_comment'] ?></a>
               <form id="comment-form" action="/action/saveComment" method="POST" class="mt-2">
                 <div class="row">
                   <div class="col-12">
-                    <textarea class="custom-text-area" name="comment" maxlength="1023" placeholder="Escribe un comentario como <?= $_SESSION['user']['user'] ?>..."></textarea>
+                    <textarea class="custom-text-area" name="comment" maxlength="1023" placeholder="<?= LANG['write_comment_as'] ?> <?= $_SESSION['user']['user'] ?>..."></textarea>
                   </div>
                 </div>
                 <input type="hidden" name="url" value="<?= urlencode($_SERVER['REQUEST_URI']) ?>#comments">
                 <input type="hidden" name="id" value="<?= $entry['id'] ?>">
-                <button type="submit" class="btn btn-raised bg-custom waves-effect mt-2"><i class="material-icons">chat</i>&nbsp;&nbsp;Publicar comentario</button>
+                <button type="submit" class="btn btn-raised bg-custom waves-effect mt-2"><i class="material-icons">chat</i>&nbsp;&nbsp;<?= LANG['publish_comment'] ?></button>
               </form>
               <? } ?>
 
@@ -328,20 +328,20 @@
 
   <div class="share-social-mobile d-block d-sm-none text-center">
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="Compartir en LinkedIn" class="linkedin-social-icon-mobile social-icon-mobile">
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="<?= LANG['share_on_linkedin'] ?>" class="linkedin-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/linkedin-flat-logo.svg" alt="social-icon">
     </a>
 
-    <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="Compartir en Facebook" class="facebook-social-icon-mobile social-icon-mobile">
+    <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_facebook'] ?>" class="facebook-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/facebook-flat-logo.svg" alt="social-icon">
     </a>
 
-    <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="Compartir en Twitter" class="twitter-social-icon-mobile social-icon-mobile">
+    <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_twitter'] ?>" class="twitter-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/twitter-flat-logo.svg" alt="social-icon">
     </a>
 
     <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" class="whatsapp-social-icon-mobile social-icon-mobile">
-      <img src="/assets/images/social/whatsapp-flat-logo.svg" alt="social-icon" title="Compartir en WhatsApp">
+      <img src="/assets/images/social/whatsapp-flat-logo.svg" alt="social-icon" title="<?= LANG['share_on_whatsapp'] ?>">
     </a>
 
   </div>

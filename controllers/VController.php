@@ -8,6 +8,38 @@ class VController extends ApplicationController {
 
   public function __construct() {
   	setlocale(LC_TIME, "es_ES.UTF8");
+
+    if(isset($_GET['lang'])) {
+      $lang = $_SESSION['lang'] = $_GET['lang'];
+    }
+    else if(isset($_SESSION['lang'])) {
+      $lang = $_SESSION['lang'];
+    }
+    else {
+      $explorerLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+      if(!empty($explorerLang)) {
+        $lang = $explorerLang;
+      } else {
+        $lang = 'es';
+      }
+    }
+
+    switch ($lang) {
+      case 'en':
+        $lang_file = 'en';
+        break;
+
+      case 'es':
+        $lang_file = 'es';
+        break;
+      
+      default:
+        $lang_file = 'es';
+        break;
+    }
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/languages/'.$lang_file.'.php';
     
     $userController = new UserController();
     $userController->checkCookiesSession();

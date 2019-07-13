@@ -7,7 +7,7 @@ $('#comment-btn').on('click', function(e) {
 $('#comment-form').on('submit', function(e) {
   e.preventDefault();
   if($(this).find('*[name="comment"]').val().length <= 3) {
-    alert('El comentario debe tener más de 3 caracteres.');
+    alert(LANG_JS.comment_length);
   } else {
     this.submit();
   }
@@ -20,7 +20,7 @@ for(var element of copyElements) {
   element.addEventListener('click', function(e) {
     e.preventDefault();
     // Elemento a copiar
-    var code = element.parentElement.nextElementSibling;
+    var code = this.parentElement.nextElementSibling;
 
     var textArea = document.createElement("textarea");
     textArea.value = code.value;
@@ -28,10 +28,10 @@ for(var element of copyElements) {
     textArea.select();
 
     if(document.execCommand("copy")) {
-      bootstrapNotify('success', 2000, 'Código copiado en tu portapapeles.');
+      bootstrapNotify('success', 2000, LANG_JS.copied_code);
     }
     else {
-      bootstrapNotify('error', 2000, 'No se ha podido copiar el código.');
+      bootstrapNotify('error', 2000, LANG_JS.no_copied_code);
     }
     document.body.removeChild(textArea);
   });

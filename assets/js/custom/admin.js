@@ -12,7 +12,7 @@ $('#addIp').on('click', function(){
 		ips.val(ips.val() + concat + myIp.val());
 		ips.parent().addClass('focused');
 	} else {
-		alert('Tu IP ya está añadida en la lista.');
+		alert(LANG_JS.ip_add_list);
 	}
 });
 

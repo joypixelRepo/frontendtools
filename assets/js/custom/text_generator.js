@@ -53,5 +53,5 @@ $('#copy').on('click', function() {
 	document.execCommand('copy');
 	//eliminamos el input temporal
 	$temp.remove();
-	alert('Texto copiado al portapapeles.');
+	alert(LANG_JS.copied_code);
 });
