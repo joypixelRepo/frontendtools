@@ -28,7 +28,7 @@ class UserController extends ApplicationController {
         setcookie('fet_net_session_login', null, -1, '/');
       }
 
-      parent::notify('success', 'Sesión iniciada', 'Has iniciado sesión correctamente.', $prevUrl);
+      parent::notify('success', LANG['session_started'], LANG['session_sucefull'], $prevUrl);
     } else {
       header('Location: /'.$_SERVER['VIEWS'].'/sign_in?e');
     }
@@ -36,9 +36,9 @@ class UserController extends ApplicationController {
 
   public function sign_up() {
     if($this->user->sign_up()) {
-      parent::notify('success', 'Te has registrado satisfactoriamente', 'Te hemos enviado un email. Revisa tu correo electrónico para poder activar tu usuario (si no lo encuentras mira en la carpeta de spam).', '/'.$_SERVER['VIEWS'].'/sign_in', 0);
+      parent::notify('success', LANG['sign_up_sucefull'], LANG['email_sign_up_sent'], '/'.$_SERVER['VIEWS'].'/sign_in', 0);
     } else {
-      parent::notify('error', 'Error en el registro', 'Ha ocurrido un error inesperado al registrarte. Por favor, prueba de nuevo.', '/'.$_SERVER['VIEWS'].'/sign_up');
+      parent::notify('error', LANG['sign_up_error'], LANG['sign_up_error_text'], '/'.$_SERVER['VIEWS'].'/sign_up');
     }
   }
 
@@ -59,9 +59,9 @@ class UserController extends ApplicationController {
 
   public function activate() {
     if($this->user->activateUser($_GET['user'], $_GET['code'])) {
-      parent::notify('success', 'Cuenta activada', 'Ya puedes iniciar sesión con tu usuario y contraseña.', '/'.$_SERVER['VIEWS'].'/sign_in');
+      parent::notify('success', LANG['account_activated'], LANG['now_you_can_login'], '/'.$_SERVER['VIEWS'].'/sign_in');
     } else {
-      parent::notify('error', 'Cuenta no activada', 'No se ha podido activar tu cuenta. Por favor, verifica que el enlace de activación es el correcto.', '/'.$_SERVER['VIEWS'].'/sign_in');
+      parent::notify('error', LANG['account_no_activated'], LANG['account_no_activated_text'], '/'.$_SERVER['VIEWS'].'/sign_in');
     }
   }
 
@@ -69,7 +69,7 @@ class UserController extends ApplicationController {
     session_destroy();
     setcookie('fet_net_session_login', null, -1, '/');
     $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
-    parent::notify('success', '¡Hasta pronto!', 'Has cerrado tu sesión correctamente.', urldecode($prevUrl));
+    parent::notify('success', LANG['see_you_soon'], LANG['logout_sucefull'], urldecode($prevUrl));
   }
 
   public function deleteAccount() {
@@ -77,7 +77,7 @@ class UserController extends ApplicationController {
       session_destroy();
       setcookie('fet_net_session_login', null, -1, '/');
       $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
-      parent::notify('success', '¡Vuelve cuando quieras!', 'Has eliminado tu cuenta correctamente.', urldecode($prevUrl));
+      parent::notify('success', LANG['come_back_when_you_want'], LANG['account_deleted_sucefull'], urldecode($prevUrl));
     }
   }
 

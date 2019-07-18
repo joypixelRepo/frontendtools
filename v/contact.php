@@ -4,11 +4,11 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="body">
-            <h2>Contacta con FrontEndTools</h2>
+            <h2><?= LANG['contact_title'] ?></h2>
             <div class="row">
               <div class="col-12">
                 <div class="mb-2">
-                  <span class="font-11">Los campos marcados con asterisco (*) son obligatorios</span>
+                  <span class="font-11"><?= LANG['fields_mark_asterisk_requireds'] ?></span>
                 </div>
               </div>
             </div>
@@ -18,20 +18,20 @@
                   <form action="#" method="POST" id="contactForm">
                     <div class="row">
                       <div class="col-lg-6 co-12">
-                        <input type="text" name="name" class="custom-input" placeholder="Nombre" required>
+                        <input type="text" name="name" class="custom-input" placeholder="<?= LANG['name'] ?>" required>
                       </div>
                       <div class="col-lg-6 co-12">
-                        <input type="email" name="email" class="custom-input" placeholder="Correo electrónico" required>
+                        <input type="email" name="email" class="custom-input" placeholder="<?= LANG['email'] ?>" required>
                       </div>
                       <div class="col-lg-12 co-12">
-                        <textarea name="message" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="Mensaje" maxlength="30000" required></textarea>
+                        <textarea name="message" rows="3" class="custom-input auto-growth" autocomplete="off" placeholder="<?= LANG['message'] ?>" maxlength="30000" required></textarea>
                         <span class="characters">30000</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12 mt-2 mb-2">
                         <input type="checkbox" name="conditions" id="conditions" class="filled-in chk-col-amber" required>
-                        <label for="conditions">Al enviar el formulario, acepto la <a href="#" data-toggle="modal" data-target="#lopd">política de privacidad</a> de este sitio web.</label>
+                        <label for="conditions"><?= LANG['at_send_form_accept'] ?> <a href="#" data-toggle="modal" data-target="#lopd"><?= LANG['privacy_policy'] ?></a> <?= LANG['of_this_website'] ?></label>
                       </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="Enviar mensaje">
+                        <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="<?= LANG['send_message'] ?>">
                       </div>
                     </div>
                     <div class="row">
@@ -67,7 +67,7 @@
                           <div class="img-box">
                             <img src="/assets/images/email-white.svg" />
                           </div>
-                          <span class="title">Email</span>
+                          <span class="title"><?= LANG['email'] ?></span>
                           <span>info@frontendtools.net</span>
                         </a>
                       </div>
@@ -78,7 +78,7 @@
                           <div class="img-box">
                             <img src="/assets/images/location-white.svg" />
                           </div>
-                          <span class="title">Localización</span>
+                          <span class="title"><?= LANG['location'] ?></span>
                           <span>C/ Mayólica 5. 28037 Madrid</span>
                         </a>
                       </div>

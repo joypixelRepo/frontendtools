@@ -7,40 +7,6 @@ class VController extends ApplicationController {
   private $user;
 
   public function __construct() {
-  	setlocale(LC_TIME, "es_ES.UTF8");
-
-    if(isset($_GET['lang'])) {
-      $lang = $_SESSION['lang'] = $_GET['lang'];
-    }
-    else if(isset($_SESSION['lang'])) {
-      $lang = $_SESSION['lang'];
-    }
-    else {
-      $explorerLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-
-      if(!empty($explorerLang)) {
-        $lang = $explorerLang;
-      } else {
-        $lang = 'es';
-      }
-    }
-
-    switch ($lang) {
-      case 'en':
-        $lang_file = 'en';
-        break;
-
-      case 'es':
-        $lang_file = 'es';
-        break;
-      
-      default:
-        $lang_file = 'es';
-        break;
-    }
-
-    include_once $_SERVER['DOCUMENT_ROOT'].'/languages/'.$lang_file.'.php';
-    
     $userController = new UserController();
     $userController->checkCookiesSession();
 
@@ -76,7 +42,7 @@ class VController extends ApplicationController {
 
   public function sessionActive() {
     if(!parent::session()) {
-      parent::notify('error', 'No estás logeado', 'No tienes permisos para la acción que quieres realizar porque para ello necesitas iniciar sesión con tu cuenta de usuario.', '/', 0);
+      parent::notify('error', LANG['no_logged'], LANG['no_permission_must_login'], '/', 0);
     }
   }
 
@@ -103,8 +69,8 @@ class VController extends ApplicationController {
       	self::printCss('/assets/css/custom/home.css',0),
       ],
       'seo' => [
-        'ogtitle' => 'Herramientas y recursos para desarrolladores Front-end y más',
-        'ogdescription' => 'Tu repositorio online para guardar y no olvidar fragmentos de código usado en tus proyectos',
+        'ogtitle' => LANG['index_title'],
+        'ogdescription' => LANG['index_description'],
       ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -136,13 +102,13 @@ class VController extends ApplicationController {
     $time = ($time<1)? 1 : $time;
 
     $tokens = array (
-      31536000 => 'año',
-      2592000 => 'mes',
-      604800 => 'semana',
-      86400 => 'día',
-      3600 => 'hora',
-      60 => 'minuto',
-      1 => 'segundo'
+      31536000 => LANG['year'],
+      2592000 => LANG['month'],
+      604800 => LANG['week'],
+      86400 => LANG['day'],
+      3600 => LANG['hour'],
+      60 => LANG['minute'],
+      1 => LANG['second']
     );
 
     foreach ($tokens as $unit => $text) {
@@ -190,10 +156,6 @@ class VController extends ApplicationController {
   public function blank() {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [
       'session' => parent::session(),
-      'seo' => [
-        'ogtitle' => 'Página en blanco',
-        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
-      ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
       'session' => parent::session(),
@@ -219,8 +181,8 @@ class VController extends ApplicationController {
         self::printScript('https://www.google.com/recaptcha/api.js?hl=es',0),
       ],
       'seo' => [
-        'ogtitle' => 'Contacta con FrontEndTools',
-        'ogdescription' => 'FrontEndTools - Herramientas para el desarrolador Front End',
+        'ogtitle' => LANG['contact_title'],
+        'ogdescription' => LANG['contact_description'],
       ],
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/menu.php', [
@@ -420,7 +382,7 @@ class VController extends ApplicationController {
     self::sessionActive();
     $this->user->entryBelongsToTheUser($_GET['id']);
     if(!isset($_GET['type']) || !isset($_GET['id'])) {
-      die('No se han recibido todos los parametros para poder realizar la operación solicitada.');
+      die(LANG['no_received_all_parameters']);
     }
 
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/head.php', [

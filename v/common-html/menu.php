@@ -41,26 +41,26 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 
-      <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="material-icons">flag</i>
+      <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><img class="menu-lang-flag" src="/assets/images/languages/flags/<?= $_SESSION['lang'] ?>.svg">
       </a>
       <ul class="dropdown-menu">
         <li class="header"><?= LANG['change_language'] ?></li>
         <li class="body">
           <ul class="menu list-unstyled category-list-menu">
             <li>
-              <a href="/?lang=en">
-                <img src="/assets/images/english.svg">
+              <a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=en">
+                <img src="/assets/images/languages/flags/en.svg">
                 <div class="menu-info">
-                  <h4>English</h4>
+                  <h4><?= LANG['english'] ?></h4>
                   <p><?= LANG['change_to_english'] ?></p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="/?lang=es">
-                <img src="/assets/images/espana.svg">
+              <a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=es">
+                <img src="/assets/images/languages/flags/es.svg">
                 <div class="menu-info">
-                  <h4>Español</h4>
+                  <h4><?= LANG['spanish'] ?></h4>
                   <p><?= LANG['change_to_spanish'] ?></p>
                 </div>
               </a>
@@ -168,6 +168,15 @@
 
       <li><a href="/" class="bb-n"><i class="zmdi zmdi-home"></i><span><?= LANG['home'] ?></span> </a></li>
 
+      <li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span><?= LANG['change_language'] ?></span> </a>
+        <ul class="ml-menu">
+          <li><a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=en"><img class="category-image" src="/assets/images/languages/flags/en.svg"><span><?= LANG['english'] ?></span> </a></li>
+          
+          <li><a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=es"><img class="category-image" src="/assets/images/languages/flags/es.svg"><span><?= LANG['spanish'] ?></span></a></li>
+
+        </ul>
+      </li>
+
       <li>
         <a href="/<?= $_SERVER['VIEWS'] ?>/newCode" class="btn-fade-icon bg-1">
           <i class="material-icons">add_circle</i>
@@ -254,7 +263,8 @@
 										<a href="/?creator=<?= $user['user'] ?>" class="col-grey user-sidebar">
 											<img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" alt="profile-img" class="filter-gray">
 											<span><?= $user['user'] ?></span>
-											<span class="font-10 ml-2"><?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?></span>
+                      <span class="font-10 ml-2"><?= VController::dateDiff($user['last_connection']) ?></span>
+											<!-- <span class="font-10 ml-2"><?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?></span> -->
 										</a>
 									</li>
 								<? } ?>

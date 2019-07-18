@@ -19,6 +19,9 @@
               <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="<?= LANG['share_on_whatsapp'] ?>">
                 <img src="/assets/images/social/whatsapp-logo.svg" alt="social-icon">
               </a>
+              <a href="mailto:info@frontendtools.net?subject=<?= $entry['title'] ?>&body=<?= LANG['share_on_email_text'] ?> <?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="<?= LANG['share_on_email'] ?>">
+                <img src="/assets/images/social/email-logo.svg" alt="social-icon">
+              </a>
             </div>
 
             <h1 class="mb-3 titles"><?= html_entity_decode($entry['title'], ENT_QUOTES | ENT_HTML5) ?></h1>
@@ -304,7 +307,7 @@
               <? } ?>
 
               <? if($session) { ?>
-              <a href="#" id="comment-btn" class="btn btn-raised bg-custom waves-effect mt-2"><i class="material-icons">chat</i>&nbsp;&nbsp;<?= LANG['write_comment'] ?></a>
+              <a href="#" id="comment-btn" class="btn btn-raised bg-custom waves-effect"><i class="material-icons">chat</i>&nbsp;&nbsp;<?= LANG['write_comment'] ?></a>
               <form id="comment-form" action="/action/saveComment" method="POST" class="mt-2">
                 <div class="row">
                   <div class="col-12">
@@ -342,6 +345,10 @@
 
     <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" class="whatsapp-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/whatsapp-flat-logo.svg" alt="social-icon" title="<?= LANG['share_on_whatsapp'] ?>">
+    </a>
+
+    <a href="mailto:info@frontendtools.net?subject=<?= $entry['title'] ?>" target="_blank" title="<?= LANG['share_on_email'] ?>" class="email-social-icon-mobile social-icon-mobile">
+      <img src="/assets/images/social/email-logo.svg" alt="social-icon">
     </a>
 
   </div>

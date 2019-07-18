@@ -9,24 +9,24 @@
                 </div>
                 <form class="col-lg-12" id="sign_in" method="POST" action="/user/sign_in">
                     <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">
-                    <h5 class="title mb-4">Acceder como usuario</h5>
+                    <h5 class="title mb-4"><?= LANG['acces_as_user'] ?></h5>
                     <?php if(isset($_GET['e'])) { ?>
                     <div class="alert alert-danger mt-3">
-                        El usuario introducido y/o la contraseña son incorrectos.
+                        <?= LANG['user_or_pass_invalid'] ?>
                     </div>
                     <?php } ?>
                     <input type="text" name="user" class="custom-input mb-2" placeholder="Usuario" required>
                     <input type="password" name="password" class="custom-input mb-2" placeholder="Contraseña" required>
                     <div class="mt-2">
                         <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-amber" checked>
-                        <label for="rememberme">Recordarme</label>
+                        <label for="rememberme"><?= LANG['remember'] ?></label>
                     </div>
                     <div class="col-lg-12">
                         <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="Entrar">
                     </div>
                 </form>
                 <div class="col-lg-12 m-t-20">
-                    <a href="/<?= $_SERVER['VIEWS'] ?>/sign_up">Registro de nuevo usuario</a>
+                    <a href="/<?= $_SERVER['VIEWS'] ?>/sign_up"><?= LANG['log_new_user'] ?></a>
                 </div>
             </div>
         </div>

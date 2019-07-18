@@ -5,6 +5,11 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+require_once $_SERVER['DOCUMENT_ROOT'].'/models/Languages.php';
+$languages = new Languages();
+
+setlocale(LC_TIME, LANG['setlocale']);
+
 spl_autoload_register(function ($class) {
   $folder = (strpos($class, 'Controller')) ? 'controllers/' : 'models/';
   $path = $_SERVER['DOCUMENT_ROOT'].'/'.$folder. $class . '.php';

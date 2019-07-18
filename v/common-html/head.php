@@ -11,6 +11,8 @@
     gtag('config', 'UA-141935705-1');
   </script>
 
+  <? $langVars = json_encode(LANG) ?>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -43,6 +45,8 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
+
+  <script>var LANG_JS = <?= $langVars ?></script>
 
 	<!-- common styles -->
 	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css" media="all">

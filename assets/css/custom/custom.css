@@ -116,7 +116,7 @@ a:focus {
 }
 .search-bar .close-search {
   right: 23px;
-  top: 14px;
+  top: 6px;
 }
 .right-sidebar #settings .setting-list {
   margin-bottom: 0;
@@ -242,7 +242,7 @@ a:focus {
   overflow-y: scroll;
 }
 .navbar-header {
-  padding-bottom: 11px;
+  padding-bottom: 6px;
   padding-top: 12px;
 }
 .form-group .form-line:after {
@@ -1264,7 +1264,7 @@ td.comments-buttons {
   display: inline-block;
   margin: 0 -2px;
   padding: 8px 15px;
-  width: 25%;
+  width: 20%;
 } 
 .linkedin-social-icon-mobile {
   background: #0e76a8;
@@ -1277,6 +1277,9 @@ td.comments-buttons {
 }
 .whatsapp-social-icon-mobile {
   background: #62d467;
+}
+.email-social-icon-mobile {
+  background: #000;
 }
 a.btn-full-code i {
   vertical-align: middle;
@@ -1324,4 +1327,13 @@ a.btn-full-code:focus {
 .bouncing-loader > div:nth-child(3) {
   animation-delay: 0.4s;
   background: #7ce6b9;
+}
+img.menu-lang-flag {
+  position: relative;
+  width: 20px;
+  height: auto;
+  top: -6px;
+}
+.search-bar input[type="text"] {
+  padding: 16px 60px 16px 56px;
 }
