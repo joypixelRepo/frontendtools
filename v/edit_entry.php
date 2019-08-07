@@ -162,6 +162,22 @@
                     </div>
                   </div>
 
+                  <div class="row row-content box-laravel">
+                    <div class="col-12">
+                      <div class="mt-2 mb-2">
+                        <div class="form-box">
+                          <h6 class="code-title">
+                            <div class="code-logo">
+                              <img src="/assets/images/logos/laravel.svg" alt="language-logo">
+                            </div>Laravel
+                          </h6>
+                          <textarea id="laravel" name="laravel" autocomplete="off"><?= $entry['laravel'] ?></textarea>
+                          <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row row-content box-reactjs">
                     <div class="col-12">
                       <div class="mt-2 mb-2">

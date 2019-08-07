@@ -122,6 +122,30 @@ if(phpCode = document.getElementById('php')) {
   });
 }
 
+// PHP
+var laravelCode = null;
+if(laravelCode = document.getElementById('laravel')) {
+  var editor = CodeMirror.fromTextArea(laravelCode, {
+    lineNumbers: true,
+    mode: "application/x-httpd-php",
+    readOnly: readOnly,
+    keyMap: "sublime",
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    showCursorWhenSelecting: true,
+    theme: "monokai",
+    tabSize: 2,
+    extraKeys: {
+      "Ctrl-Enter": function(cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+      }
+    }
+  });
+}
+
 // SQL
 var sql = null;
 if(sql = document.getElementById('mysql')) {

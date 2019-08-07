@@ -33,7 +33,46 @@
 					</div>
 				</div>
 
-        <? if($viewCategory['count'] > 0) { ?>
+        <?php if(isset($_GET['keys'])) { ?>
+        <div class="card card-info mb-3">
+          <div class="body">
+            <div class="header">
+              <a href="#" id="toogle_advanced_search"><strong><?= LANG['advanced_search'] ?></strong></a>
+              <form action="/" method="GET" class="advanced-search-form mt-4">
+
+                <div class="row">
+                  <div class="col-lg-4 col-12">
+                    <label for="keys"><?= LANG['search_keywords'] ?></label>
+                    <input type="text" class="custom-input mb-3" name="keys" id="keys" value="<?= $_GET['keys'] ?>">
+                  </div>
+                  <div class="col-lg-4 col-12">
+                    <label><?= LANG['filter_by_user'] ?></label>
+                    <select name="creator" class="custom-select mt-0 mb-3">
+                      <option value="">- <?= LANG['anyone'] ?> -</option>
+                      <?php foreach ($usersOrdered as $userOrdered) { ?>
+                        <option value="<?= $userOrdered['user'] ?>" <?= $userOrdered['user'] == $_GET['creator'] ? 'selected' : '' ?>><?= $userOrdered['user'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="col-lg-4 col-12">
+                    <label><?= LANG['filter_by_category'] ?></label>
+                    <select name="c" class="custom-select mt-0 mb-3">
+                      <option value="">- <?= LANG['anyone'] ?> -</option>
+                      <?php foreach ($categories as $category) { ?>
+                        <option value="<?= $category['descriptive_name'] ?>" <?= $category['descriptive_name'] == $_GET['c'] ? 'selected' : '' ?>><?= $category['category_name'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="<?= LANG['search'] ?>">
+              </form>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+
+        <? if($viewCategory['count'] > 0 && !isset($_GET['keys'])) { ?>
         <div class="card <?= isset($viewCategory['id_category']) ? 'border'.$viewCategory['id_category'] : '' ?> mb-3">
           <div class="body">
             <div class="header">

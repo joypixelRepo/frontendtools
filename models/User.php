@@ -389,6 +389,15 @@ class User extends ApplicationController {
     }
   }
 
+  public function getUsersOrdered() {
+    $sql = 'SELECT * FROM login ORDER BY user ASC';
+    $res = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+    if($res) {
+      return $res;
+    }
+  }
+
   private function encrypt($password) {
     $salt = '92?8K37yrtQUysdf2*91qq';
     return hash('sha256', $password.$salt);
@@ -399,7 +408,7 @@ class User extends ApplicationController {
     $vars = [$this->sessionUser, $entryId, 'admin'];
     $res = $this->db->query($sql, $vars)->rowCount();
     if($res == 0) {
-      parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
+      parent::notify('error', LANG['access_denied'], LANG['dont_have_permissions'], '/');
       die;
     }
   }
@@ -414,7 +423,7 @@ class User extends ApplicationController {
     }
 
     if($res == 0) {
-      parent::notify('error', 'Acceso denegado', 'No tienes permisos para la acción que quieres realizar.', '/');
+      parent::notify('error', LANG['access_denied'], LANG['dont_have_permissions'], '/');
       die;
     }
   }

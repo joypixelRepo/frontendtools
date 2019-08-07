@@ -20,6 +20,7 @@ class Action extends ApplicationController {
       html = ?,
       javascript = ?,
       php = ?,
+      laravel = ?,
       mysql = ?,
       git = ?,
       reactjs = ?,
@@ -40,6 +41,7 @@ class Action extends ApplicationController {
       $_POST['html'],
       $_POST['javascript'],
       $_POST['php'],
+      $_POST['laravel'],
       $_POST['mysql'],
       $_POST['git'],
       $_POST['reactjs'],
@@ -92,6 +94,7 @@ class Action extends ApplicationController {
       html = ?,
       javascript = ?,
       php = ?,
+      laravel = ?,
       mysql = ?,
       git = ?,
       reactjs = ?,
@@ -111,6 +114,7 @@ class Action extends ApplicationController {
       $_POST['html'],
       $_POST['javascript'],
       $_POST['php'],
+      $_POST['laravel'],
       $_POST['mysql'],
       $_POST['git'],
       $_POST['reactjs'],
@@ -288,19 +292,19 @@ class Action extends ApplicationController {
       die('Error');
     }
 
-    $subject = 'Contacto desde FrontEndTools';
+    $subject = LANG['contact_from_frontendtools'];
 
     $config['name'] = 'Frontendtools';
     $config['email'] = 'info@frontendtools.net';
     $message = '
     <html>
     <head>
-      <title>Mensaje de contacto desde Frontendtools</title>
+      <title>'.LANG['contact_message'].'</title>
     </head>
     <body>
-      <p><strong>Nombre:</strong> '.$_POST['name'].'</p>
-      <p><strong>Email:</strong> '.$_POST['email'].'</p>
-      <p><strong>Mensaje:</strong> <pre>'.$_POST['message'].'</pre></p>
+      <p><strong>'.LANG['name'].':</strong> '.$_POST['name'].'</p>
+      <p><strong>'.LANG['email'].':</strong> '.$_POST['email'].'</p>
+      <p><strong>'.LANG['message'].':</strong> <pre>'.$_POST['message'].'</pre></p>
     </body>
     </html>
     ';

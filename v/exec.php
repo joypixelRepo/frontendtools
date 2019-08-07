@@ -171,6 +171,25 @@
             </div>
             <? } ?>
 
+            <? if(!empty($entry['laravel'])) { ?>
+            <div class="row mt-4">
+              <div class="col-12">
+                <h6 class="code-title">
+                  <div class="code-logo">
+                    <img src="/assets/images/logos/laravel.svg" alt="language-logo">
+                  </div>PHP
+                </h6>
+
+                <div class="actions-codemirror text-right">
+                  <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
+                  <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
+                </div>
+                <textarea id="laravel" autocomplete="off"><?= $entry['laravel'] ?></textarea>
+                <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
+              </div>
+            </div>
+            <? } ?>
+
             <? if(!empty($entry['reactjs'])) { ?>
             <div class="row mt-4">
               <div class="col-12">

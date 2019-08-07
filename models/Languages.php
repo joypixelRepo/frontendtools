@@ -7,6 +7,8 @@ class Languages {
     require_once $_SERVER['DOCUMENT_ROOT'].'/models/Db.php';
     $this->db = new Db();
 
+    $defaultLanguage = 'en';
+
     if(isset($_GET['lang'])) {
       $lang = $_SESSION['lang'] = $_GET['lang'];
     }
@@ -19,7 +21,7 @@ class Languages {
       if(!empty($user_explorer_language)) {
         $lang = $_SESSION['lang'] = $user_explorer_language;
       } else {
-        $lang = $_SESSION['lang'] = 'es';
+        $lang = $_SESSION['lang'] = $defaultLanguage;
       }
     }
 
@@ -33,7 +35,7 @@ class Languages {
         break;
       
       default:
-        $language = 'es';
+        $language = $defaultLanguage;
         break;
     }
 

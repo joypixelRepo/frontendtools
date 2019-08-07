@@ -68,7 +68,7 @@ if(!empty($entries)) {
           <div class="col-6">
             <div class="font-11 col-grey text-right">
               <!-- <i><?= strftime('%e %B %Y', strtotime($entry['creation_date'])) ?></i> -->
-              <i title="<?= LANG['published_on'] . strftime('%e - %B - %Y', strtotime($entry['creation_date'])) ?>">
+              <i title="<?= LANG['published_on'] .' '. strftime('%e - %B - %Y', strtotime($entry['creation_date'])) ?>">
                 <?= VController::dateDiff($entry['creation_date']) ?>
               </i>
             </div>

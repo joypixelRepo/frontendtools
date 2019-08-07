@@ -67,6 +67,7 @@ class VController extends ApplicationController {
       'session' => parent::session(),
       'styles' => [
       	self::printCss('/assets/css/custom/home.css',0),
+        self::printCss('/assets/plugins/bootstrap-select/css/bootstrap-select.css',0),
       ],
       'seo' => [
         'ogtitle' => LANG['index_title'],
@@ -85,9 +86,14 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
       'viewCategory' => $this->view->getCategoryName(self::returnGet('c')),
       'user' => $this->user->getUserData(),
+      'usersOrdered' => $this->user->getUsersOrdered(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', []);
+    parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
+      'scripts' => [
+        self::printScript('/assets/js/custom/advanced-search.js',1),
+      ],
+    ]);
     die;
   }
 

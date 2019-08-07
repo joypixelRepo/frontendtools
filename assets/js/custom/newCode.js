@@ -60,6 +60,7 @@ title.on('keyup', function() {
 var git = $('input[data_category="git"]');
 var mysql = $('input[data_category="mysql"]');
 var php = $('input[data_category="php"]');
+var laravel = $('input[data_category="laravel"]');
 var reactjs = $('input[data_category="reactjs"]');
 var xampp = $('input[data_category="xampp"]');
 var terminal = $('input[data_category="terminal"]');
@@ -103,6 +104,12 @@ function checkCheckboxes() {
     $('.box-php').css('display', 'flex');
   } else {
     $('.box-php').css('display', 'none');
+  }
+
+  if(laravel.is(':checked')) {
+    $('.box-laravel').css('display', 'flex');
+  } else {
+    $('.box-laravel').css('display', 'none');
   }
 
   if(reactjs.is(':checked')) {

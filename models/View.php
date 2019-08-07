@@ -42,24 +42,26 @@ class View extends ApplicationController {
     $limit = '';
 
     // search by category
-    if(isset($_GET['c'])) {
+    if(isset($_GET['c']) && strlen($_GET['c']) > 0) {
       $where .= ' AND categories.descriptive_name = "'.$_GET['c'].'"';
     }
     // search by creator
-    if(isset($_GET['creator'])) {
+    if(isset($_GET['creator']) && strlen($_GET['creator']) > 0) {
       $where .= ' AND entries.creator = "'.$_GET['creator'].'"';
     }
+
     // search by keywords
     if(isset($_GET['keys'])) {
       $keys = explode(' ', $_GET['keys']);
 
-      $where .= ' AND entries.title LIKE "%'.$keys[0].'%" OR entries.description LIKE "%'.$keys[0].'%" ';
+      $where .= ' AND (entries.title LIKE "%'.$keys[0].'%" OR entries.description LIKE "%'.$keys[0].'%" ';
 
       for($i = 1; $i < count($keys); $i++) {
         if(!empty($keys[$i])) {
             $where .= " OR entries.title like '%".$keys[$i]."%' OR entries.description like '%".$keys[$i]."%'";
         }
       }
+      $where .= ')';
     }
 
     if($entriesNum != null && $entriesNum > 0) {

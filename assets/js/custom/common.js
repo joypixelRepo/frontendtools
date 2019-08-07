@@ -56,4 +56,3 @@ $('a.user-sidebar').on('mouseover touchstart', function() {
 $('a.user-sidebar').on('mouseout touchend', function() {
   $(this).find('img').addClass('filter-gray');
 });
-
