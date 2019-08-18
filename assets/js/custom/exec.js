@@ -28,44 +28,23 @@ for(var element of copyElements) {
     textArea.select();
 
     if(document.execCommand("copy")) {
-      bootstrapNotify('success', 2000, LANG_JS.copied_code);
+      messageNotify('success', 2000, LANG_JS.copied, LANG_JS.copied_code);
     }
     else {
-      bootstrapNotify('error', 2000, LANG_JS.no_copied_code);
+      messageNotify('error', 2000, LANG_JS.not_copied, LANG_JS.no_copied_code);
     }
     document.body.removeChild(textArea);
   });
 }
 
-function bootstrapNotify(notify_type, notify_timer, notify_message){
-  $.notify({
-    // options
-    message: notify_message,
-  },{
-    // settings
-    element: 'body',
-    position: null,
+function messageNotify(notify_type, notify_timer, notify_title, notify_message){
+  swal({
+    title: notify_title,
+    text: notify_message,
     type: notify_type,
-    allow_dismiss: true,
-    newest_on_top: false,
-    showProgressbar: false,
-    placement: {
-      from: "bottom",
-      align: "center"
-    },
-    spacing: 10,
-    z_index: 1031,
-    delay: 2000,
     timer: notify_timer,
-    url_target: '_blank',
-    mouse_over: null,
-    animate: {
-      enter: 'animated fadeInUp',
-      exit: 'animated fadeOutDown'
-    },
-    onShow: null,
-    onShown: null,
-    onClose: null,
-    onClosed: null,
+    confirmButtonText: LANG_JS.accept_txt,
+    confirmButtonColor: '#263238',
+    allowOutsideClick: true,
   });
 }

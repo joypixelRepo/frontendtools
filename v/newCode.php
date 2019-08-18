@@ -26,7 +26,7 @@
 										<div class="col-12">
                       <div class="mt-4">
   											<h6><?= LANG['title'] ?></h6>
-                        <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="<?= LANG['entry_title'] ?>" maxlength="100"></textarea>
+                        <textarea name="title" rows="1" class="custom-input auto-growth" autocomplete="off" placeholder="<?= LANG['entry_title'] ?>" maxlength="100" required></textarea>
                         <span class="characters">100</span>
                         <div id="errorTitle"></div>
                       </div>

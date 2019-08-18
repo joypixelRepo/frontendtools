@@ -30,3 +30,8 @@
   margin-top: -2px;
   margin-left: 3px;
 }
+@media(max-width: 991px) {
+  .actions-codemirror {
+    display: none;
+  }
+}

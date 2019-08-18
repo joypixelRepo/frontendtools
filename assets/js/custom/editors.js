@@ -5,9 +5,9 @@ if($('#exec-page').length > 0) {
 }
 
 // other code
-var box_otherCode = null;
-if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
-  box_otherCode.forEach(function(valor, indice, array) {
+var box_otherCodes = null;
+if(box_otherCodes = document.querySelectorAll('.box_otherCode')) {
+  box_otherCodes.forEach(function(valor, indice, array) {
     var editor = CodeMirror.fromTextArea(valor, {
       mode: "scheme",
       readOnly: readOnly,
@@ -24,6 +24,8 @@ if(box_otherCode = document.querySelectorAll('.box_otherCode')) {
         }
       }
     });
+    var prev = valor.previousElementSibling;
+    activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
   });
 }
 
@@ -48,6 +50,8 @@ if(box_html = document.getElementById('box_html')) {
       }
     }
   });
+  var prev = box_html.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // css
@@ -72,6 +76,8 @@ if(box_css = document.getElementById('box_css')) {
       }
     }
   });
+  var prev = box_css.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // JavaScript
@@ -96,6 +102,8 @@ if(box_js = document.getElementById('box_js')) {
       }
     }
   });
+  var prev = box_js.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // PHP
@@ -120,6 +128,8 @@ if(phpCode = document.getElementById('php')) {
       }
     }
   });
+  var prev = phpCode.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // PHP
@@ -144,6 +154,8 @@ if(laravelCode = document.getElementById('laravel')) {
       }
     }
   });
+  var prev = laravelCode.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // SQL
@@ -172,6 +184,8 @@ if(sql = document.getElementById('mysql')) {
       }
     }
   });
+  var prev = sql.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // reactjs
@@ -196,6 +210,8 @@ if(reactjs = document.getElementById('reactjs')) {
       }
     }
   });
+  var prev = reactjs.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // terminal
@@ -220,6 +236,8 @@ if(terminal = document.getElementById('terminal')) {
       }
     }
   });
+  var prev = terminal.previousElementSibling;
+  activeControls(prev.querySelector('*[data-action="maximize"]'), editor);
 }
 
 // solve ckeditor toolbar popup on click on other textarea (mobile)
@@ -227,14 +245,24 @@ if($('#ckeditor').length) {
   CKEDITOR.disableAutoInline = true;
 }
 
-// solve codemirror elements on ckeditor is visible
+// solve codemirror elements if ckeditor is visible
 $(document).ready(checkContainer);
 function checkContainer() {
   if($('#cke_ckeditor').is(':visible')) {
-    $('.CodeMirror').each(function(i, el){
+    $('.CodeMirror').each(function(i, el) {
       el.CodeMirror.refresh();
     });
   } else {
     setTimeout(checkContainer, 50);
+  }
+}
+
+function activeControls(maximizeButton, codemirrorEditor) {
+  if(maximizeButton) {
+    maximizeButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      codemirrorEditor.focus();
+      codemirrorEditor.setOption("fullScreen", !codemirrorEditor.getOption("fullScreen"));
+    });
   }
 }

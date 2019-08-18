@@ -89,6 +89,21 @@ class VController extends ApplicationController {
       'usersOrdered' => $this->user->getUsersOrdered(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
+
+    $keys = null;
+    if(isset($_GET['keys']) && !empty($_GET['keys'])) {
+      $keyWords = explode(" ", $_GET['keys']);
+
+      $keys = [];
+
+      foreach ($keyWords as $key) {
+        $keys[] = $key;
+      }
+
+      $keys = json_encode($keys);
+      echo '<script>var keys = '.$keys.'</script>';
+    }
+
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         self::printScript('/assets/js/custom/advanced-search.js',1),
@@ -184,7 +199,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/css/custom/contact.css',0),
       ],
       'scripts' => [
-        self::printScript('https://www.google.com/recaptcha/api.js?hl=es',0),
+        self::printScript('https://www.google.com/recaptcha/api.js?hl='.LANG['metaLang'],0),
       ],
       'seo' => [
         'ogtitle' => LANG['contact_title'],

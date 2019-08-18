@@ -63,7 +63,7 @@
                   <div class="row">
                     <div class="col-6">
                       <div class="contact-detail">
-                        <a href="mailto:info@frontendtools.net" target="_blank">
+                        <a href="mailto:info@frontendtools.net">
                           <div class="img-box">
                             <img src="/assets/images/email-white.svg" />
                           </div>
@@ -74,12 +74,12 @@
                     </div>
                     <div class="col-6">
                       <div class="contact-detail">
-                        <a href="#" target="_blank">
+                        <a href="#">
                           <div class="img-box">
                             <img src="/assets/images/location-white.svg" />
                           </div>
                           <span class="title"><?= LANG['location'] ?></span>
-                          <span>C/ Mayólica 5. 28037 Madrid</span>
+                          <span>In the world</span>
                         </a>
                       </div>
                     </

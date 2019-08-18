@@ -262,11 +262,12 @@ class Action extends ApplicationController {
   }
 
   public function sendMessage() {
+    $google = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/config/google.ini', true);
     // google recaptcha
     $recaptcha = $_POST["g-recaptcha-response"];
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = array(
-        'secret' => '6LfZEqsUAAAAABshjNl4ASwt8xvXfx_Dv-1yXFVJ',
+        'secret' => $google['secret'],
         'response' => $recaptcha
     );
 

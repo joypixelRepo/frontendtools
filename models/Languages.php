@@ -15,7 +15,7 @@ class Languages {
     else if(isset($_SESSION['lang'])) {
       $lang = $_SESSION['lang'];
     }
-    else {
+    else if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
       $user_explorer_language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
       if(!empty($user_explorer_language)) {
@@ -23,6 +23,9 @@ class Languages {
       } else {
         $lang = $_SESSION['lang'] = $defaultLanguage;
       }
+    }
+    else {
+      $lang = $defaultLanguage;
     }
 
     switch ($lang) {

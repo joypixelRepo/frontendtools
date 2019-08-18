@@ -11,9 +11,9 @@ class ActionController extends ApplicationController {
 
   public function save_entry() {
   	if($this->action->saveEntry()) {
-      parent::notify('success', 'Entrada creada', 'La entrada ha sido creada con éxito.', '/');
+      parent::notify('success', LANG['entry_created'], LANG['entry_created_successfully'], '/');
   	} else {
-      parent::notify('error', 'Entrada no creada', 'No se ha guardado el extracto de código debido a un error inesperado.', '/');
+      parent::notify('error', LANG['entry_not_created'], LANG['entry_not_created_description'], '/');
   	}
   }
 
@@ -21,37 +21,37 @@ class ActionController extends ApplicationController {
     $prevUrl = isset($_POST['url']) ? $_POST['url'] : '/';
 
     if($this->action->editEntry()) {
-      parent::notify('success', 'Entrada modificada', 'La entrada ha sido modificada correctamente.', urldecode($prevUrl));
+      parent::notify('success', LANG['entry_modified'], LANG['entry_modified_correctly'], urldecode($prevUrl));
     } else {
-      parent::notify('error', 'Error modificando la entrada', 'La entrada no ha podido sido modificada por un error inesperado. Por favor, prueba de nuevo.', '/');
+      parent::notify('error', LANG['error_modifying_entry'], LANG['entry_not_created_try_again'], '/');
     }
   }
 
   public function delete() {
     if(!isset($_GET['type']) || !isset($_GET['id'])) {
-      die('No se han recibido todos los parametros para poder realizar la operación solicitada.');
+      die(LANG['not_all_parameters_received']);
     }
     
     if($_GET['type'] == 'entry') {
       if($this->action->deleteEntry($_GET['id'])) {
-        parent::notify('success', 'Entrada eliminada', 'La entrada ha sido eliminada.', '/');
+        parent::notify('success', LANG['entry_deleted'], LANG['entry_has_been_deleted'], '/');
       } else {
-        parent::notify('error', 'Error eliminando la entrada', 'La entrada no ha podido ser eliminada por un error inesperado. Por favor, prueba de nuevo.', '/');
+        parent::notify('error', LANG['error_deleting_entry'], LANG['entry_not_deleted_unexpected_error'], '/');
       }
     }
     else if($_GET['type'] == 'category') {
       if($this->action->deleteCategory($_GET['id'])) {
-        parent::notify('success', 'Categoría eliminada', 'La categoría ha sido eliminada.', '/');
+        parent::notify('success', LANG['category_deleted'], LANG['category_has_been_deleted'], '/');
       } else {
-        parent::notify('error', 'Error eliminando la categoría', 'La categoría no ha podido ser eliminada por un error inesperado. Por favor, prueba de nuevo.', '/');
+        parent::notify('error', LANG['error_deleting_category'], LANG['category_deleted_unexpected_error'], '/');
       }
     }
     else if($_GET['type'] == 'comment') {
       $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/';
       if($this->action->deleteComment($_GET['id'])) {
-        parent::notify('success', 'Comentario eliminado', 'El comentario ha sido eliminado.', $prevUrl);
+        parent::notify('success', LANG['comment_deleted'], LANG['comment_has_been_deleted'], $prevUrl);
       } else {
-        parent::notify('error', 'Error eliminando el comentario', 'El comentario no ha podido ser eliminado por un error inesperado. Por favor, prueba de nuevo.', $prevUrl);
+        parent::notify('error', LANG['error_deleting_comment'], LANG['comment_not_deleted_unexpected_error'], $prevUrl);
       }
     }
   }
@@ -76,9 +76,9 @@ class ActionController extends ApplicationController {
     $prevUrl = isset($_POST['url']) ? $_POST['url'] : '/';
 
     if($this->action->saveComment()) {
-      parent::notify('success', 'Comentario publicado', 'Tu comentario ha sido publicado correctamente.', urldecode($prevUrl));
+      parent::notify('success', LANG['comment_posted'], LANG['comment_published_correctly'], urldecode($prevUrl));
     } else {
-      parent::notify('error', 'Error', 'No se ha podido enviar tu comentario. Por favor, prueba de nuevo.', '/');
+      parent::notify('error', LANG['error'], LANG['not_send_comment'], '/');
     }
   }
 

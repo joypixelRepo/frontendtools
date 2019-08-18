@@ -15,15 +15,17 @@ if(isset($_COOKIE['fet_notify'])) { ?>
 if($notify) { ?>
 	<script>
 		// open notification modal
-	  swal({
-      title: '<?= $notify['title'] ?>',
-      text: '<?= $notify['message'] ?>',
-      type: '<?= $notify['type'] ?>',
-      timer: '<?= $notify['closeTime'] ?>',
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#263238',
-      allowOutsideClick: true,
-    });
+    setTimeout(function(){
+      swal({
+        title: '<?= $notify['title'] ?>',
+        text: '<?= $notify['message'] ?>',
+        type: '<?= $notify['type'] ?>',
+        timer: '<?= $notify['closeTime'] ?>',
+        confirmButtonText: '<?= LANG['accept_txt'] ?>',
+        confirmButtonColor: '#263238',
+        allowOutsideClick: true,
+      });
+    }, 500);
 	</script>
 <?
 // delete cookie 

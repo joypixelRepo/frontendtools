@@ -177,7 +177,7 @@
                 <h6 class="code-title">
                   <div class="code-logo">
                     <img src="/assets/images/logos/laravel.svg" alt="language-logo">
-                  </div>PHP
+                  </div>Laravel
                 </h6>
 
                 <div class="actions-codemirror text-right">
