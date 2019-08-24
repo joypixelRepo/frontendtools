@@ -29,7 +29,7 @@ class View extends ApplicationController {
     }
   }
 
-  public function loadEntries() {
+  public function loadEntries($limit = '') {
     // pagination
     $entriesPosition = 0;
     $entriesNum = 12;
@@ -39,7 +39,6 @@ class View extends ApplicationController {
     }
 
     $where = 'WHERE 1';
-    $limit = '';
 
     // search by category
     if(isset($_GET['c']) && strlen($_GET['c']) > 0) {
@@ -64,7 +63,10 @@ class View extends ApplicationController {
       $where .= ')';
     }
 
-    if($entriesNum != null && $entriesNum > 0) {
+    if(!empty($limit) && is_numeric($limit) && $limit > 0) {
+      $limit = ' LIMIT '.$limit;
+    }
+    else if($entriesNum != null && $entriesNum > 0) {
       $limit = ' LIMIT '.$entriesPosition.', '.$entriesNum;
     }
 
@@ -94,7 +96,7 @@ class View extends ApplicationController {
   public function userCategories() {
     $user = $_SESSION['user']['user'];
 
-    $sql = 'SELECT categories.`category_logo`, categories.`category_name`, categories.`descriptive_name`, count(category_entry.`category_id`) as entriesCount FROM category_entry LEFT JOIN categories ON categories.`id_category` = category_entry.`category_id` INNER JOIN entries ON entries.id = category_entry.entry_id WHERE entries.`creator` = "'.$user.'" GROUP BY category_entry.`category_id`';
+    $sql = 'SELECT categories.`category_logo`, categories.`category_name`, categories.`descriptive_name`, count(category_entry.`category_id`) as entriesCount FROM category_entry LEFT JOIN categories ON categories.`id_category` = category_entry.`category_id` INNER JOIN entries ON entries.id = category_entry.entry_id WHERE entries.`creator` = "'.$user.'" GROUP BY category_entry.`category_id` ORDER BY entriesCount DESC';
 
     $entries = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 

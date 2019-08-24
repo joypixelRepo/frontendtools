@@ -82,7 +82,7 @@ class VController extends ApplicationController {
       'categories' => $this->view->loadCategories(),
     ]);
     parent::render($this->viewUrl.'/home.php', [
-      'entries' => $this->view->loadEntries(),
+      'entries' => $this->view->loadEntries(''),
       'categories' => $this->view->loadCategories(),
       'viewCategory' => $this->view->getCategoryName(self::returnGet('c')),
       'user' => $this->user->getUserData(),
@@ -102,14 +102,23 @@ class VController extends ApplicationController {
 
       $keys = json_encode($keys);
       echo '<script>var keys = '.$keys.'</script>';
+    } else {
+      echo '<script>var keys = null</script>';
     }
 
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/js/custom/advanced-search.js',1),
+        self::printScript('/assets/js/custom/advanced-search.js',0),
       ],
     ]);
     die;
+  }
+
+  public function searchKeywordsAjax() {
+    $result = $this->view->loadEntries(5);
+    // delete pages key
+    unset($result['pages']);
+    echo json_encode($result);
   }
 
   public function dateDiff($date) {
@@ -550,6 +559,26 @@ class VController extends ApplicationController {
     }
 
     return $images;
+  }
+
+  public function languageUrl($lang) {
+    $url = $_SERVER['REQUEST_URI'];
+    parse_str(parse_url($url, PHP_URL_QUERY), $url_params);
+    unset($url_params['lang']);
+
+    $languageUrl = '?';
+
+    foreach ($url_params as $key => $param) {
+      $languageUrl .= $key.'='.$param.'&';
+    }
+
+    if(empty($url_params)) {
+      $languageUrl = '?lang='.$lang;
+    } else {
+      $languageUrl .= 'lang='.$lang;
+    }
+
+    return $languageUrl;
   }
 
   public function sitemap() {

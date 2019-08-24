@@ -50,6 +50,50 @@ $('.search-form').on('submit', function(e) {
   this.submit();
 });
 
+var search_form_keywords = $('.search-form input[name="keys"]');
+var search_ajax_result = $('.search-ajax-result');
+
+search_form_keywords.on('keyup', function(e) {
+  if(e.keyCode != 27) { // escape key = keycode 27
+    var keywords = $(this).val();
+    if(keywords.length >= 2) {
+      $.get("/v/searchKeywordsAjax?keys="+keywords, function(data, status) {
+        search_ajax_result.empty();
+        var entries = jQuery.parseJSON(data);
+
+        var htmlResult = '';
+
+        $.each(entries, function(key, value ) {
+
+          htmlResult += '<a href="/v/exec?u='+value.url+'">';
+          
+          var category = '';
+          htmlResult += '<span class="search-ajax-category">';
+          $.each(value.categories, function(ky, val ) {
+            htmlResult += '<img src="'+val.category_logo+'" alt="logo"/>';
+          });
+          htmlResult += '</span>';
+
+          htmlResult += '<span class="search-ajax-title">'+value.title+'</span>';
+          htmlResult += '<span class="search-ajax-description">'+value.description+'</span>';
+          htmlResult += '</a>';
+          
+        });
+
+        search_ajax_result.append(htmlResult);
+
+      });
+    }
+  } else {
+    search_ajax_result.empty();
+  }
+});
+
+var close_search = $('.search-form .close-search');
+close_search.on('click', function() {
+  search_ajax_result.empty();
+});
+
 $('a.user-sidebar').on('mouseover touchstart', function() {
   $(this).find('img').removeClass('filter-gray');
 });

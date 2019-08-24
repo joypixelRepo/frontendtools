@@ -118,6 +118,39 @@ a:focus {
   right: 23px;
   top: 6px;
 }
+.search-ajax-result a {
+  display: block;
+  background: #ffffff;
+  padding: 8px 16px;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+.search-ajax-result a:hover {
+  background: #f7f7f7;
+}
+.search-ajax-result a:not(:last-child) {
+  border-bottom: 1px solid #f7f7f7;
+}
+.search-ajax-result a span {
+  display: block;
+}
+.search-ajax-result .search-ajax-category img {
+  display: inline-block;
+  height: 16px;
+  width: auto;
+  margin: 0 8px 0 0;
+}
+.search-ajax-result .search-ajax-title {
+  font-size: 16px;
+  color: #111;
+  font-weight: 600;
+}
+.search-ajax-result .search-ajax-description {
+  font-size: 13px;
+  color: #607D8B;
+}
 .right-sidebar #settings .setting-list {
   margin-bottom: 0;
 }
@@ -1224,6 +1257,9 @@ td.comments-buttons {
 .comments-number {
   color: #a2a2a2;
   font-size: 13px;
+}
+.comments-number:hover {
+  color: #292b2c;
 }
 .comments-number i {
   margin-left: 3px;

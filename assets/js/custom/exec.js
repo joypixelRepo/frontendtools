@@ -48,3 +48,12 @@ function messageNotify(notify_type, notify_timer, notify_title, notify_message){
     allowOutsideClick: true,
   });
 }
+
+// add target="_blank" to all links that appears into ´code-description´ class
+var code_description = $('.code-description');
+if(code_description.length > 0) {
+  const links = $(code_description).find('a');
+  if(links.length > 0) {
+    links.attr('target','_blank');
+  }
+}

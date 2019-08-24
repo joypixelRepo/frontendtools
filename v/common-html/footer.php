@@ -25,7 +25,7 @@
 	<script src="/assets/js/pages/forms/basic-form-elements.js"></script>
 	<script src="/assets/js/custom/menu.js"></script>
 	<script src="/assets/js/custom/admin.js"></script>
-	<script src="/assets/js/custom/common.js"></script>
+	<script src="/assets/js/custom/common.js?v=<?= hash('md5', time()) ?>"></script>
 
 	<?php if(isset($scripts) && !empty($scripts)) {
 		echo '<!-- required scripts for this view -->'."\n\t";

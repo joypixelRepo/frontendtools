@@ -17,6 +17,7 @@
 		<input type="text" name="keys" placeholder="<?= LANG['explore_fet'] ?>" autocomplete="off">
 		<div class="close-search"> <i class="material-icons">close</i> </div>
 	</form>
+  <div class="search-ajax-result"></div>
 </div>
 <!-- Top Bar -->
 <nav class="navbar">
@@ -48,7 +49,7 @@
         <li class="body">
           <ul class="menu list-unstyled category-list-menu">
             <li>
-              <a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=en<?= isset($_GET['u']) ? '&u='.$_GET['u'] : '' ?>">
+              <a href="<?= VController::languageUrl('en') ?>">
                 <img src="/assets/images/languages/flags/en.svg">
                 <div class="menu-info">
                   <h4><?= LANG['english'] ?></h4>
@@ -57,7 +58,7 @@
               </a>
             </li>
             <li>
-              <a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=es<?= isset($_GET['u']) ? '&u='.$_GET['u'] : '' ?>">
+              <a href="<?= VController::languageUrl('es') ?>">
                 <img src="/assets/images/languages/flags/es.svg">
                 <div class="menu-info">
                   <h4><?= LANG['spanish'] ?></h4>
@@ -170,9 +171,9 @@
 
       <li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span><?= LANG['change_language'] ?></span> </a>
         <ul class="ml-menu">
-          <li><a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=en<?= isset($_GET['u']) ? '&u='.$_GET['u'] : '' ?>"><img class="category-image" src="/assets/images/languages/flags/en.svg"><span><?= LANG['english'] ?></span> </a></li>
+          <li><a href="<?= VController::languageUrl('en') ?>"><img class="category-image" src="/assets/images/languages/flags/en.svg"><span><?= LANG['english'] ?></span> </a></li>
           
-          <li><a href="<?= strtok($_SERVER["REQUEST_URI"],'?') ?>?lang=es<?= isset($_GET['u']) ? '&u='.$_GET['u'] : '' ?>"><img class="category-image" src="/assets/images/languages/flags/es.svg"><span><?= LANG['spanish'] ?></span></a></li>
+          <li><a href="<?= VController::languageUrl('es') ?>"><img class="category-image" src="/assets/images/languages/flags/es.svg"><span><?= LANG['spanish'] ?></span></a></li>
 
         </ul>
       </li>
