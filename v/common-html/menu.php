@@ -261,7 +261,7 @@
 							<ul>
 								<? foreach ($users as $user) { ?>
 									<li>
-										<a href="/?creator=<?= $user['user'] ?>" class="col-grey user-sidebar">
+										<a href="/?creator=<?= $user['user'] ?>" class="col-grey user-sidebar" title="<?= strftime('%e %b %Y · %H:%M', strtotime($user['last_connection'])) ?>">
 											<img src="<?= file_exists($_SERVER['DOCUMENT_ROOT'].$user['image']) ? $user['image'] : '/assets/images/avatars/default/default.svg' ?>" alt="profile-img" class="filter-gray">
 											<span><?= $user['user'] ?></span>
                       <span class="font-10 ml-2"><?= VController::dateDiff($user['last_connection']) ?></span>

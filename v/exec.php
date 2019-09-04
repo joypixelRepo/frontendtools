@@ -6,20 +6,24 @@
           <div class="header pb-0">
 
             <div class="share-social d-none d-sm-block mb-4">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="<?= LANG['share_on_linkedin'] ?>">
+              <!-- share icons desktop -->
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= LANG['share_on_linkedin'] ?>">
                 <img src="/assets/images/social/linkedin-logo.svg" alt="social-icon">
               </a>
-              <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_facebook'] ?>">
+
+              <a href="https://www.facebook.com/sharer.php?u=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= LANG['share_on_facebook'] ?>">
                 <img src="/assets/images/social/facebook-logo.svg" alt="social-icon">
               </a>
-              <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" title="<?= LANG['share_on_twitter'] ?>">
+
+              <a href="https://twitter.com/intent/tweet?text=<?= $entry['title'] ?>&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= LANG['share_on_twitter'] ?>">
                 <img src="/assets/images/social/twitter-logo.svg" alt="social-icon">
               </a>
-              <!-- whatsapp desktop -->
-              <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="<?= LANG['share_on_whatsapp'] ?>">
+
+              <a href="https://api.whatsapp.com/send?text=<?= $entry['title'].' '.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= LANG['share_on_whatsapp'] ?>">
                 <img src="/assets/images/social/whatsapp-logo.svg" alt="social-icon">
               </a>
-              <a href="mailto:info@frontendtools.net?subject=<?= $entry['title'] ?>&body=<?= LANG['share_on_email_text'] ?> <?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" title="<?= LANG['share_on_email'] ?>">
+
+              <a href="mailto:info@frontendtools.net?subject=<?= $entry['title'] ?>&body=<?= LANG['share_on_email_text'] ?> <?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= LANG['share_on_email'] ?>">
                 <img src="/assets/images/social/email-logo.svg" alt="social-icon">
               </a>
             </div>
@@ -348,8 +352,8 @@
     </div>
   </div>
 
+  <!-- share icons mobile -->
   <div class="share-social-mobile d-block d-sm-none text-center">
-
     <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']) ?>&title=<?= $entry['title'] ?>&source=LinkedIn" target="_blank" title="<?= LANG['share_on_linkedin'] ?>" class="linkedin-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/linkedin-flat-logo.svg" alt="social-icon">
     </a>
@@ -369,7 +373,6 @@
     <a href="mailto:info@frontendtools.net?subject=<?= $entry['title'] ?>" target="_blank" title="<?= LANG['share_on_email'] ?>" class="email-social-icon-mobile social-icon-mobile">
       <img src="/assets/images/social/email-logo.svg" alt="social-icon">
     </a>
-
   </div>
 
 </section>

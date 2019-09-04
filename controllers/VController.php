@@ -115,7 +115,7 @@ class VController extends ApplicationController {
   }
 
   public function searchKeywordsAjax() {
-    $result = $this->view->loadEntries(5);
+    $result = $this->view->loadEntries(8);
     // delete pages key
     unset($result['pages']);
     echo json_encode($result);

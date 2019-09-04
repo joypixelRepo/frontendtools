@@ -37,8 +37,10 @@ function toggleFullscreen(elem) {
   }
 }
 
+var searchForm = $('form.search-form');
+
 // clean any characters from #search-form
-$('.search-form').on('submit', function(e) {
+searchForm.on('submit', function(e) {
   e.preventDefault();
 
   const characters = /([,.])/g;
@@ -50,44 +52,137 @@ $('.search-form').on('submit', function(e) {
   this.submit();
 });
 
-var search_form_keywords = $('.search-form input[name="keys"]');
-var search_ajax_result = $('.search-ajax-result');
-
-search_form_keywords.on('keyup', function(e) {
-  if(e.keyCode != 27) { // escape key = keycode 27
-    var keywords = $(this).val();
-    if(keywords.length >= 2) {
-      $.get("/v/searchKeywordsAjax?keys="+keywords, function(data, status) {
-        search_ajax_result.empty();
-        var entries = jQuery.parseJSON(data);
-
-        var htmlResult = '';
-
-        $.each(entries, function(key, value ) {
-
-          htmlResult += '<a href="/v/exec?u='+value.url+'">';
-          
-          var category = '';
-          htmlResult += '<span class="search-ajax-category">';
-          $.each(value.categories, function(ky, val ) {
-            htmlResult += '<img src="'+val.category_logo+'" alt="logo"/>';
-          });
-          htmlResult += '</span>';
-
-          htmlResult += '<span class="search-ajax-title">'+value.title+'</span>';
-          htmlResult += '<span class="search-ajax-description">'+value.description+'</span>';
-          htmlResult += '</a>';
-          
-        });
-
-        search_ajax_result.append(htmlResult);
-
-      });
+// open search form
+// if press ctrl+f
+var map = {17: false, 70: false};
+$(document).keydown(function(e) {
+  if (e.keyCode in map) {
+    map[e.keyCode] = true;
+    if (map[17] && map[70]) {
+      $('.search-bar').addClass('open');
+      $('form.search-form input[name="keys"]').focus();
     }
-  } else {
-    search_ajax_result.empty();
+  }
+}).keyup(function(e) {
+  if (e.keyCode in map) {
+    map[e.keyCode] = false;
   }
 });
+// end open search form
+
+var search_form_keywords = $('.search-form input[name="keys"]');
+var search_ajax_result = $('.search-ajax-result');
+var overlay = $('.overlay');
+
+// replace in search form
+search_form_keywords.on('keyup', function(e) {
+  // keycodes => escape(27), up arrow(38), down arrow(40), enter(13)
+  if(e.keyCode != 27 && e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+    var keywords = $(this).val();
+    if(keywords.length >= 3) {
+      setTimeout(function(){
+        $.get("/v/searchKeywordsAjax?keys="+keywords, function(data, status) {
+          search_ajax_result.empty();
+          overlay.css('display', 'none');
+          var entries = jQuery.parseJSON(data);
+
+          var htmlResult = '';
+
+          // link advanced search
+          htmlResult += '<a href="/?keys='+keywords+'" class="advanced-search-first-link">';
+          htmlResult += LANG_JS['advanced_search'];
+          htmlResult += '</a>';
+          // end link advanced search
+
+          $.each(entries, function(key, value ) {
+
+            htmlResult += '<a href="/v/exec?u='+value.url+'">';
+            
+            var category = '';
+            htmlResult += '<span class="search-ajax-category">';
+            $.each(value.categories, function(ky, val) {
+              htmlResult += '<img src="'+val.category_logo+'" alt="logo"/>';
+            });
+            htmlResult += '</span>';
+
+            htmlResult += '<span class="search-ajax-title">'+value.title+'</span>';
+            
+            if(value.description) {
+              htmlResult += '<span class="search-ajax-description">'+value.description+'</span>';
+            }
+
+            htmlResult += '</a>';
+            
+          });
+
+          search_ajax_result.append(htmlResult);
+
+          var search_ajax_result_a = $('.search-ajax-result a');
+          // call to navigation menu method (jquery keynav plugin)
+          if(search_ajax_result_a.length > 0) {
+            menukeynav(search_ajax_result_a);
+          }
+
+          var keys = search_form_keywords.val().split(" ");
+
+          for(var key in keys) {
+            var regExp = new RegExp(keys[key], 'i');
+            $(".search-ajax-result .search-ajax-title, .search-ajax-result .search-ajax-description").each(function() {
+              $(this).html($(this).html().replace(regExp, "<span class='fluorescent'>"+keys[key]+"</span>"));
+            });
+          }
+          if(keys.length > 0) {
+            overlay.css('display', 'block');
+          }
+
+        });
+      }, 500);
+    } else {
+      search_ajax_result.empty();
+      overlay.css('display', 'none');
+    }
+  } else {
+    // keycodes => up arrow(38), down arrow(40), enter(13)
+    if(e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+      search_ajax_result.empty();
+      overlay.css('display', 'none');
+    }
+  }
+});
+
+// keys is in VController->index()
+// replace in homepage -> /?keys=...
+if(keys) {
+  for(var key in keys) {
+    var regExp = new RegExp(keys[key], "i");
+    $(".link-box h1, .link-box .code-description").each(function() {
+      $(this).html($(this).html().replace(regExp, "<span class='fluorescent'>"+keys[key]+"</span>"));
+    });
+  }
+}
+
+// jquery keynav plugin
+function menukeynav(links) {
+  // plugin jquery.keynav.js
+  updateControls = function() {
+    $('#navigation a').removeClass();
+    $((window.keyNavigationDisabled?'#disable':'#enable')).addClass('selected');
+  }
+
+  a=links.keynav(function() {
+      return window.keyNavigationDisabled;
+  });
+
+  $('#disable').click(function(){
+    window.keyNavigationDisabled=true;
+    updateControls();
+  });
+
+  $('#enable').click(function(){
+    window.keyNavigationDisabled=false;
+    updateControls();
+  });
+}
 
 var close_search = $('.search-form .close-search');
 close_search.on('click', function() {
