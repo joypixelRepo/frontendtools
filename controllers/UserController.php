@@ -93,6 +93,16 @@ class UserController extends ApplicationController {
     $this->user->emailExist();
   }
 
+  public function editProfile() {
+    if($this->user->editProfile()) {
+      $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/v/profile';
+      parent::notify('success', LANG['change_made'], LANG['profile_edited_correctly'], urldecode($prevUrl));
+    } else {
+      $prevUrl = isset($_GET['url']) ? $_GET['url'] : '/v/profile';
+      parent::notify('error', LANG['error_title'], LANG['error_editing_profile'], urldecode($prevUrl));
+    }
+  }
+
   public function __destruct() {
     
   }

@@ -1,3 +1,8 @@
+$(document).ready(function() {
+  // destroy bootstrap select for not show bootstrap select
+  $('select').selectpicker('destroy');
+});
+
 const cookie = Cookies.get('fet_cookies_accept');
 if(!cookie) {
   $('#cookies').css('display', 'block');
@@ -152,7 +157,7 @@ search_form_keywords.on('keyup', function(e) {
 
 // keys is in VController->index()
 // replace in homepage -> /?keys=...
-if(keys) {
+if(keys.length > 0) {
   for(var key in keys) {
     var regExp = new RegExp(keys[key], "i");
     $(".link-box h1, .link-box .code-description").each(function() {
@@ -160,6 +165,12 @@ if(keys) {
     });
   }
 }
+
+var close_search = $('.search-form .close-search');
+close_search.on('click', function() {
+  search_ajax_result.empty();
+  overlay.css('display', 'none');
+});
 
 // jquery keynav plugin
 function menukeynav(links) {
@@ -183,11 +194,6 @@ function menukeynav(links) {
     updateControls();
   });
 }
-
-var close_search = $('.search-form .close-search');
-close_search.on('click', function() {
-  search_ajax_result.empty();
-});
 
 $('a.user-sidebar').on('mouseover touchstart', function() {
   $(this).find('img').removeClass('filter-gray');

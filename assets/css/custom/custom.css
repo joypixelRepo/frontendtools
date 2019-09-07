@@ -121,10 +121,6 @@ a:focus {
 .search-bar input[type="text"] {
   padding: 16px 60px 16px 56px;
 }
-.search-bar.open {
-  position: relative;
-  overflow: scroll;
-}
 .search-ajax-result a {
   display: block;
   background: #ffffff;
@@ -280,10 +276,6 @@ a:focus {
 .textarea-code {
   max-height: 200px !important;
   overflow-y: scroll;
-}
-.navbar-header {
-  padding-bottom: 6px;
-  padding-top: 12px;
 }
 .form-group .form-line:after {
   border-bottom: 2px solid #ffc100;
@@ -832,6 +824,10 @@ a.creator:focus {
 .alerts span.alert-message:before {
   margin-right: 5px;
 }
+.navbar-header {
+  padding-bottom: 6px;
+  padding-top: 12px;
+}
 .navbar-nav img.icon-nav {
   width: 25px;
   height: 25px;
@@ -841,6 +837,11 @@ a.creator:focus {
 }
 .navbar-nav.navbar-right {
   padding: 18px 15px 10px 0px;
+}
+@media (max-width: 768px) {
+  .navbar-nav>li>a {
+    padding: 0 6px;
+  }
 }
 .entry-action-button {
   width: 27px;
@@ -1158,6 +1159,10 @@ input.logo-checkbox {
   border: 2px solid #efefef;
   border-radius: 50%;
 }
+.profile_info {
+  display: flex;
+  align-items: center;
+}
 .profile-page .profile-header .profile_info .social-icon a {
   margin: 0 5px 0 0;
 }
@@ -1420,4 +1425,7 @@ img.menu-lang-flag {
 }
 ::-moz-selection {
     background-color: #ffc100;
+}
+.custom-modal label {
+  line-height: 0.5;
 }

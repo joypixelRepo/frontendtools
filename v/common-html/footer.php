@@ -34,6 +34,25 @@
 		}
 	} ?>
 
+	<?php
+	// get search-bar keys
+	$keys = null;
+  if(isset($_GET['keys']) && !empty($_GET['keys'])) {
+    $keyWords = explode(" ", $_GET['keys']);
+
+    $keys = [];
+
+    foreach ($keyWords as $key) {
+      $keys[] = $key;
+    }
+
+    $keys = json_encode($keys);
+    echo '<script>var keys = '.$keys.'</script>';
+  } else {
+    echo '<script>var keys = {}</script>';
+  }
+	?>
+
   <script src="/assets/js/custom/common.js?v=<?= hash('md5', time()) ?>"></script>
 
 </body>

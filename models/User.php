@@ -455,6 +455,25 @@ class User extends ApplicationController {
     }
   }
 
+  public function editProfile() {
+    $sql = 'UPDATE login SET name = ?, job = ?, email = ?, github = ? WHERE user_id = ?';
+
+    $vars = [
+      $_POST['full-name'],
+      $_POST['job'],
+      $_POST['email'],
+      $_POST['github'],
+      $_SESSION['user']['user_id'],
+    ];
+    $res = $this->db->query($sql, $vars);
+
+    if($res) {
+      return true;
+    } else {
+      die('Error.');
+    }
+  }
+
   public function __destruct() {
     
   }

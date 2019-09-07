@@ -89,23 +89,6 @@ class VController extends ApplicationController {
       'usersOrdered' => $this->user->getUsersOrdered(),
     ]);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
-
-    $keys = null;
-    if(isset($_GET['keys']) && !empty($_GET['keys'])) {
-      $keyWords = explode(" ", $_GET['keys']);
-
-      $keys = [];
-
-      foreach ($keyWords as $key) {
-        $keys[] = $key;
-      }
-
-      $keys = json_encode($keys);
-      echo '<script>var keys = '.$keys.'</script>';
-    } else {
-      echo '<script>var keys = null</script>';
-    }
-
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
         self::printScript('/assets/js/custom/advanced-search.js',0),
@@ -115,7 +98,7 @@ class VController extends ApplicationController {
   }
 
   public function searchKeywordsAjax() {
-    $result = $this->view->loadEntries(8);
+    $result = $this->view->loadEntries(5);
     // delete pages key
     unset($result['pages']);
     echo json_encode($result);
