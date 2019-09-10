@@ -44,24 +44,43 @@
   <script>var LANG_JS = <?= $langVars ?></script>
 
 	<!-- common styles -->
-	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css" media="all">
-	<link rel="stylesheet" href="/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" media="all">
-	<link rel="stylesheet" href="/assets/plugins/morrisjs/morris.css" media="all">
-	<link rel="stylesheet" href="/assets/css/main.css" media="all">
-	<link rel="stylesheet" href="/assets/plugins/sweetalert/sweetalert.css" media="all">
-	<link rel="stylesheet" href="/assets/css/color_skins.css" media="all">
-	<link rel="stylesheet" href="/assets/css/custom/custom.css?v=<?= time() ?>" media="all">
+  <?php
+
+  $csss = [
+    '/assets/plugins/bootstrap/css/bootstrap.min.css',
+    '/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css',
+    '/assets/plugins/morrisjs/morris.css',
+    '/assets/plugins/sweetalert/sweetalert.css',
+    '/assets/css/color_skins.css',
+    '/assets/css/main.css',
+    '/assets/css/custom/custom.css',
+  ];
+
+  // push required styles for this view
+  if(isset($styles) && !empty($styles)) {
+    foreach ($styles as $style) {
+      array_push($csss, $style);
+    }
+  }
+
+  $allCss = '';
+  foreach ($csss as $css) {
+    $allCss .= file_get_contents($_SERVER['DOCUMENT_ROOT'].$css);
+    $allCss .= "\n";
+  }
+  // minimize
+  $allCss = preg_replace('/\/\*((?!\*\/).)*\*\//','',$allCss); // negative look ahead
+  $allCss = preg_replace('/\s{2,}/',' ',$allCss);
+  $allCss = preg_replace('/\s*([:;{}])\s*/','$1',$allCss);
+  $allCss = preg_replace('/;}/','}',$allCss);
+
+  echo '<style type="text/css">'.$allCss.'</style>';
+  ?>
+
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>" media="all">
 
 	<!-- common scrips -->
 	<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
-	
-	<?php if(isset($styles) && !empty($styles)) {
-		echo '<!-- required styles for this view -->'."\n\t";
-		foreach ($styles as $style) {
-			echo $style."\n\t";
-		}
-	} ?>
 
   <?php if(isset($scripts) && !empty($scripts)) {
     echo '<!-- required scripts for this view -->'."\n\t";

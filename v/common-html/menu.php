@@ -254,6 +254,13 @@
 
 					<hr>
 
+          <p class="text-left">Entradas con comentarios</p>
+          <div class="col-12">
+              <a href="/?comments">
+                <button type="button" class="btn bg-custom waves-effect w-100">Ver comentarios</button>
+              </a>
+          </div>
+
 					<p class="text-left"><?= LANG['last_connected_users'] ?></p>
 
 					<div class="users">

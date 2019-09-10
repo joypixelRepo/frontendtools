@@ -91,7 +91,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/js/custom/advanced-search.js',0),
+        self::printScriptFooter('/assets/js/custom/advanced-search.js',0, 'async'),
       ],
     ]);
     die;
@@ -191,7 +191,7 @@ class VController extends ApplicationController {
         self::printCss('/assets/css/custom/contact.css',0),
       ],
       'scripts' => [
-        self::printScript('https://www.google.com/recaptcha/api.js?hl='.LANG['metaLang'],0),
+        self::printScriptHead('https://www.google.com/recaptcha/api.js?hl='.LANG['metaLang'],0),
       ],
       'seo' => [
         'ogtitle' => LANG['contact_title'],
@@ -210,9 +210,9 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
-        self::printScript('/assets/js/custom/contact.js',0),
-        self::printScript('/assets/js/custom/maxLength.js',0),
+        self::printScriptFooter('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
+        self::printScriptFooter('/assets/js/custom/contact.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/maxLength.js',0, 'async'),
       ]
     ]);
     die;
@@ -250,7 +250,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/js/custom/base64.js',0),
+        self::printScriptFooter('/assets/js/custom/base64.js',0, 'async'),
       ]
     ]);
     die;
@@ -280,9 +280,9 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
-    		self::printScript('/assets/bundles/knob.bundle.js',1),
-        self::printScript('/assets/js/pages/charts/jquery-knob.js',1),
-        self::printScript('/assets/js/custom/profile.js',0),
+    		self::printScriptFooter('/assets/bundles/knob.bundle.js',1),
+        self::printScriptFooter('/assets/js/pages/charts/jquery-knob.js',1),
+        self::printScriptFooter('/assets/js/custom/profile.js',0, 'async'),
       ]
     ]);
     die;
@@ -316,24 +316,24 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
-        self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
-        self::printScript('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
-        self::printScript('/assets/js/custom/editors.js',0),
-        self::printScript('/assets/js/custom/exec.js',0),
+        self::printScriptFooter('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/xml/xml.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/css/css.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/sql/sql.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScriptFooter('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
+        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/exec.js',0, 'async'),
       ]
     ]);
     die;
@@ -365,27 +365,27 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        self::printScript('/assets/js/pages/forms/editors.js',1),
-        self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
-        self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
-        self::printScript('/assets/js/custom/editors.js',0),
-        self::printScript('/assets/js/custom/newCode.js',0),
-        self::printScript('/assets/js/custom/maxLength.js',0),
+        self::printScriptFooter('/assets/plugins/ckeditor/ckeditor.js',1),
+        self::printScriptFooter('/assets/js/pages/forms/editors.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/xml/xml.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/css/css.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/sql/sql.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
+        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/newCode.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/maxLength.js',0, 'async'),
       ]
     ]);
     die;
@@ -423,27 +423,27 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
       'scripts' => [
-        self::printScript('/assets/plugins/ckeditor/ckeditor.js',1),
-        self::printScript('/assets/js/pages/forms/editors.js',1),
-        self::printScript('/assets/plugins/codemirror/lib/codemirror.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/shell/shell.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/xml/xml.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/css/css.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/clike/clike.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/php/php.js',1),
-        self::printScript('/assets/plugins/codemirror/mode/sql/sql.js',1),
-        self::printScript('/assets/plugins/codemirror/keymap/sublime.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
-        self::printScript('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
-        self::printScript('/assets/js/custom/editors.js',0),
-        self::printScript('/assets/js/custom/newCode.js',0),
-        self::printScript('/assets/js/custom/maxLength.js',0),
+        self::printScriptFooter('/assets/plugins/ckeditor/ckeditor.js',1),
+        self::printScriptFooter('/assets/js/pages/forms/editors.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/lib/codemirror.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/closebrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/edit/matchbrackets.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/shell/shell.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/htmlmixed/htmlmixed.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/xml/xml.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/css/css.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/javascript/javascript.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/jsx/jsx.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/scheme/scheme.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/clike/clike.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/php/php.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/mode/sql/sql.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
+        self::printScriptFooter('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
+        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/newCode.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/maxLength.js',0, 'async'),
       ]
     ]);
     die;
@@ -469,9 +469,9 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
-    		self::printScript('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js',1),
-    		self::printScript('/assets/js/pages/ui/range-sliders.js',1),
-    		self::printScript('/assets/js/custom/rem.js',0)
+    		self::printScriptFooter('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js',1),
+    		self::printScriptFooter('/assets/js/pages/ui/range-sliders.js',1),
+    		self::printScriptFooter('/assets/js/custom/rem.js',0, 'async')
     	]
     ]);
     die;
@@ -496,8 +496,8 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
-    		self::printScript('/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js',1),
-    		self::printScript('/assets/js/custom/gradient_generator.js',0)
+    		self::printScriptFooter('/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js',1),
+    		self::printScriptFooter('/assets/js/custom/gradient_generator.js',0, 'async')
     	]
     ]);
     die;
@@ -518,7 +518,7 @@ class VController extends ApplicationController {
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/notifications.php', []);
     parent::render($this->viewUrl.'/'.$_SERVER['PARTS'].'/footer.php', [
     	'scripts' => [
-    		self::printScript('/assets/js/custom/text_generator.js',0)
+    		self::printScriptFooter('/assets/js/custom/text_generator.js',0, 'async')
     	]
     ]);
     die;
@@ -573,12 +573,17 @@ class VController extends ApplicationController {
 
   private function printCss($url, $cache) {
     $caching = self::removeCache($cache);
-  	return '<link rel="stylesheet" href="'.$url.$caching.'" media="all">';
+  	return $url;
   }
 
-  private function printScript($url, $cache) {
+  private function printScriptHead($url, $cache, $attr = 'defer') {
     $caching = self::removeCache($cache);
-  	return '<script src="'.$url.$caching.'" defer></script>';
+    return '<script src="'.$url.$caching.'" '.$attr.'></script>';
+  }
+
+  private function printScriptFooter($url, $cache, $attr = 'defer') {
+    $caching = self::removeCache($cache);
+    return '<script src="'.$url.$caching.'" '.$attr.'></script>';
   }
 
   private function removeCache($cache) {

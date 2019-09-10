@@ -298,7 +298,7 @@
         <div class="entry-comments" id="comments">
           <div class="card">
             <div class="card-body">
-              <h4 class="mb-4"><?= LANG['comments_cap'] ?> <span class="comments-count"><?= isset($comments) & count($comments) > 0 ? '('.count($comments).')' : '(0)' ?></span></h4>
+              <h4 class="mb-4"><?= LANG['comments_cap'] ?> <span class="comments-count"><?= isset($comments) && count($comments) > 0 ? '('.count($comments).')' : '(0)' ?></span></h4>
               <? if(!empty($comments)) { ?>
                 <? foreach ($comments as $comment) { ?>
                 <div class="entry-comment">

@@ -1,9 +1,10 @@
 <?php
-ob_start();
-session_start();
+// gzip compression
+ob_start("ob_gzhandler");
+// set cache life
+header('Cache-Control: max-age=31557600');
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/models/Languages.php';
 $languages = new Languages();
