@@ -62,7 +62,7 @@ var mysql = $('input[data_category="mysql"]');
 var php = $('input[data_category="php"]');
 var laravel = $('input[data_category="laravel"]');
 var reactjs = $('input[data_category="reactjs"]');
-var xampp = $('input[data_category="xampp"]');
+var apache = $('input[data_category="apache"]');
 var terminal = $('input[data_category="terminal"]');
 
 const checkboxes = $('.check-categories input[type="checkbox"]');
@@ -118,10 +118,10 @@ function checkCheckboxes() {
     $('.box-reactjs').css('display', 'none');
   }
 
-  if(xampp.is(':checked')) {
-    $('.box-xampp').css('display', 'flex');
+  if(apache.is(':checked')) {
+    $('.box-apache').css('display', 'flex');
   } else {
-    $('.box-xampp').css('display', 'none');
+    $('.box-apache').css('display', 'none');
   }
 
   if(terminal.is(':checked')) {

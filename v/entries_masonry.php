@@ -81,7 +81,7 @@ if(!empty($entries)) {
             <div class="languages-logos">
               <? foreach ($entry['categories'] as $category) { ?>
               <a href="/?c=<?=$category['descriptive_name']?>" title="<?= $category['category_name']?>">
-                <img src="<?= $category['category_logo'] ?>">
+                <img src="<?= $category['category_logo'] ?>" alt="<?= $category['category_name']?>">
               </a>&nbsp;&nbsp;
               <? } ?>
             </div>
@@ -130,10 +130,10 @@ if($nextPage > $totalPages) {
       <!-- pagination -->
       <? if($actualPage != 1) { ?>
       <li class="page-item">
-        <a class="page-link link-bold" href="<?= $url.'page=1' ?>" title="<?= LANG['first_page'] ?>"><img src="/assets/images/arrow-first.svg"></a>
+        <a class="page-link link-bold" href="<?= $url.'page=1' ?>" title="<?= LANG['first_page'] ?>"><img src="/assets/images/arrow-first.svg" alt="arrow-first"></a>
       </li>
       
-      <li><a class="page-link link-bold" href="<?= $url.'page='.$prevPage ?>" title="<?= LANG['previous_page'] ?>"><img src="/assets/images/arrow-previous.svg"></a></li>
+      <li><a class="page-link link-bold" href="<?= $url.'page='.$prevPage ?>" title="<?= LANG['previous_page'] ?>"><img src="/assets/images/arrow-previous.svg" alt="arrow-previous"></a></li>
       <? } ?>
 
       
@@ -162,10 +162,10 @@ if($nextPage > $totalPages) {
 
 
       <? if($nextPage != null) { ?>
-      <li><a class="page-link link-bold" href="<?= $url.'page='.$nextPage ?>" title="<?= LANG['next_page'] ?>"><img src="/assets/images/arrow-next.svg"></a></li>
+      <li><a class="page-link link-bold" href="<?= $url.'page='.$nextPage ?>" title="<?= LANG['next_page'] ?>"><img src="/assets/images/arrow-next.svg" alt="arrow-next"></a></li>
 
       <li class="page-item">
-        <a class="page-link link-bold" href="<?= $url.'page='.$totalPages ?>" title="<?= LANG['last_page'] ?>"><img src="/assets/images/arrow-last.svg"></a>
+        <a class="page-link link-bold" href="<?= $url.'page='.$totalPages ?>" title="<?= LANG['last_page'] ?>"><img src="/assets/images/arrow-last.svg" alt="arrow-last"></a>
       </li>
       <? } ?>
       <!-- end pagination -->

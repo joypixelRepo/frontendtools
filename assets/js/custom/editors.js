@@ -263,6 +263,8 @@ function activeControls(maximizeButton, codemirrorEditor) {
       e.preventDefault();
       codemirrorEditor.focus();
       codemirrorEditor.setOption("fullScreen", !codemirrorEditor.getOption("fullScreen"));
+      // show exit message (common.js)
+      customMessage(LANG_JS['exit_full_screen']);
     });
   }
 }

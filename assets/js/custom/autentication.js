@@ -97,36 +97,57 @@ if(form.length > 0) {
 		var errorTxt = [];
 		$('input').removeClass('error');
 
+    // validate full name
 		if(!/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/g.test(name.val())) {
 			errors.push(name.attr('name'));
 			errorTxt.push(LANG_JS.invalid_name);
 		}
+
+    // user name
 		if(!/^[a-z0-9]{3,20}$/g.test(user.val())) {
 			errors.push(user.attr('name'));
 			errorTxt.push(LANG_JS.invalid_user);
 		}
+
+    // job
     if(job.val() == '-1') {
       errors.push(job.attr('name'));
       errorTxt.push(LANG_JS.invalid_job);
     }
+
+    // email
 		if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val())) {
 			errors.push(email.attr('name'));
 			errorTxt.push(LANG_JS.invalid_email);
 		}
+
+    // password confirm
 		if(password.val() != passwordConfirm.val()) {
 			errors.push(password.attr('name'));
 			errors.push(passwordConfirm.attr('name'));
 			errorTxt.push(LANG_JS.invalid_passwords);
 		}
+
+    //password
+    if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])?[A-Za-z\d@$!%*?&]{6,30}$/.test(password.val())) {
+      errors.push(password.attr('name'));
+      errorTxt.push(LANG_JS.password_invalid);
+    }
+
+    // email
     if(email.val() != emailConfirm.val()) {
       errors.push(email.attr('name'));
       errors.push(emailConfirm.attr('name'));
       errorTxt.push(LANG_JS.invalid_emails);
     }
+
+    // avatar image
 		if(avatar.val().length == 0) {
 			errors.push(avatar.attr('name'));
 			errorTxt.push(LANG_JS.invalid_avatar);
 		}
+
+    // checkbox accept conditions
 		if(!conditions.prop('checked')) {
 			errors.push(conditions.attr('name'));
 			errorTxt.push(LANG_JS.accept_conditions);

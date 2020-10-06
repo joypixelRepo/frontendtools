@@ -42,7 +42,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 
-      <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><img class="menu-lang-flag" src="/assets/images/languages/flags/<?= $_SESSION['lang'] ?>.svg">
+      <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><img class="menu-lang-flag" src="/assets/images/languages/flags/<?= $_SESSION['lang'] ?>.svg" alt="language-flag">
       </a>
       <ul class="dropdown-menu">
         <li class="header"><?= LANG['change_language'] ?></li>
@@ -50,7 +50,7 @@
           <ul class="menu list-unstyled category-list-menu">
             <li>
               <a href="<?= VController::languageUrl('en') ?>">
-                <img src="/assets/images/languages/flags/en.svg">
+                <img src="/assets/images/languages/flags/en.svg" alt="language-flag">
                 <div class="menu-info">
                   <h4><?= LANG['english'] ?></h4>
                   <p><?= LANG['change_to_english'] ?></p>
@@ -59,7 +59,7 @@
             </li>
             <li>
               <a href="<?= VController::languageUrl('es') ?>">
-                <img src="/assets/images/languages/flags/es.svg">
+                <img src="/assets/images/languages/flags/es.svg" alt="language-flag">
                 <div class="menu-info">
                   <h4><?= LANG['spanish'] ?></h4>
                   <p><?= LANG['change_to_spanish'] ?></p>
@@ -171,9 +171,9 @@
 
       <li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-delicious"></i><span><?= LANG['change_language'] ?></span> </a>
         <ul class="ml-menu">
-          <li><a href="<?= VController::languageUrl('en') ?>"><img class="category-image" src="/assets/images/languages/flags/en.svg"><span><?= LANG['english'] ?></span> </a></li>
+          <li><a href="<?= VController::languageUrl('en') ?>"><img class="category-image" src="/assets/images/languages/flags/en.svg" alt="language-flag"><span><?= LANG['english'] ?></span> </a></li>
           
-          <li><a href="<?= VController::languageUrl('es') ?>"><img class="category-image" src="/assets/images/languages/flags/es.svg"><span><?= LANG['spanish'] ?></span></a></li>
+          <li><a href="<?= VController::languageUrl('es') ?>"><img class="category-image" src="/assets/images/languages/flags/es.svg" alt="language-flag"><span><?= LANG['spanish'] ?></span></a></li>
 
         </ul>
       </li>
@@ -209,7 +209,7 @@
 			<li><a href="/original" target="_blank"><i class="zmdi zmdi-delicious"></i><span>Original</span> </a></li>
 			<?php } ?>
 
-      <li><a href="/<?= $_SERVER['VIEWS'] ?>/contact" class="bb-n icon-menu"><img src="/assets/images/contact.svg" class="category-image"><span><?= LANG['contact'] ?></span> </a></li>
+      <li><a href="/<?= $_SERVER['VIEWS'] ?>/contact" class="bb-n icon-menu"><img src="/assets/images/contact.svg" class="category-image" alt="contact-letter"><span><?= LANG['contact'] ?></span> </a></li>
 
 		</ul>
 	</div>

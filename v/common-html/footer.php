@@ -23,7 +23,7 @@
 	<script src="/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 	<script src="/assets/bundles/mainscripts.bundle.js"></script>
 	<script src="/assets/js/pages/forms/basic-form-elements.js"></script>
-	<!-- <script src="/assets/js/custom/menu.js"></script> -->
+	<script src="/assets/js/custom/alerts.js"></script>
 	<script src="/assets/js/custom/admin.js"></script>
   <script src="/assets/js/libraries/jquery.keynav.min.js"></script>
 

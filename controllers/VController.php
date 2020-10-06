@@ -332,7 +332,7 @@ class VController extends ApplicationController {
         self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
         self::printScriptFooter('/assets/plugins/bootstrap-notify/bootstrap-notify.js',1),
-        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/editors.js',0),
         self::printScriptFooter('/assets/js/custom/exec.js',0, 'async'),
       ]
     ]);
@@ -383,8 +383,8 @@ class VController extends ApplicationController {
         self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
         self::printScriptFooter('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
-        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
-        self::printScriptFooter('/assets/js/custom/newCode.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/editors.js',0),
+        self::printScriptFooter('/assets/js/custom/newCode.js',0),
         self::printScriptFooter('/assets/js/custom/maxLength.js',0, 'async'),
       ]
     ]);
@@ -441,8 +441,8 @@ class VController extends ApplicationController {
         self::printScriptFooter('/assets/plugins/codemirror/keymap/sublime.js',1),
         self::printScriptFooter('/assets/plugins/codemirror/addon/display/fullscreen.js',1),
         self::printScriptFooter('/assets/plugins/codemirror/addon/display/autorefresh.js',1),
-        self::printScriptFooter('/assets/js/custom/editors.js',0, 'async'),
-        self::printScriptFooter('/assets/js/custom/newCode.js',0, 'async'),
+        self::printScriptFooter('/assets/js/custom/editors.js',0),
+        self::printScriptFooter('/assets/js/custom/newCode.js',0),
         self::printScriptFooter('/assets/js/custom/maxLength.js',0, 'async'),
       ]
     ]);
@@ -471,7 +471,7 @@ class VController extends ApplicationController {
     	'scripts' => [
     		self::printScriptFooter('/assets/plugins/ion-rangeslider/js/ion.rangeSlider.js',1),
     		self::printScriptFooter('/assets/js/pages/ui/range-sliders.js',1),
-    		self::printScriptFooter('/assets/js/custom/rem.js',0, 'async')
+    		self::printScriptFooter('/assets/js/custom/rem.js',0)
     	]
     ]);
     die;

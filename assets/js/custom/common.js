@@ -201,3 +201,9 @@ $('a.user-sidebar').on('mouseover touchstart', function() {
 $('a.user-sidebar').on('mouseout touchend', function() {
   $(this).find('img').addClass('filter-gray');
 });
+
+function customMessage(message) {
+  let customMessage = $('#customMessage');
+  customMessage.html(message);
+  customMessage.fadeIn(300).delay(4000).fadeOut(600);
+}

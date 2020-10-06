@@ -8,26 +8,26 @@
           </div>
         </div>
         <form class="col-lg-12" id="sign_up" method="POST" action="/user/sign_up">
-          <input type="hidden" name="url" value="<?= isset($_GET['url']) ? urldecode($_GET['url']) : '' ?>">
+          <input type="hidden" name="url" value="<?=isset($_GET['url']) ? urldecode($_GET['url']) : ''?>">
           <input type="hidden" name="avatar" value="" >
           <div class="mb-4">
-            <h5 class="title"><?= LANG['new_user_registration'] ?></h5>
-            <span class="font-11"><?= LANG['fields_asterisk_required'] ?></span>
+            <h5 class="title"><?=LANG['new_user_registration']?></h5>
+            <span class="font-11"><?=LANG['fields_asterisk_required']?></span>
           </div>
 
           <div class="row">
             <div class="col-md-6 col-12 mb-4">
-              <input type="text" name="full-name" class="custom-input" placeholder="<?= LANG['name_and_last_name'] ?>" required>
+              <input type="text" name="full-name" class="custom-input" placeholder="<?=LANG['name_and_last_name']?>" required>
             </div>
             <div class="col-md-6 col-12 mb-4">
-              <input type="text" name="user" class="custom-input" minlength="3" maxlength="20" placeholder="<?= LANG['user_name'] ?>" autocomplete="never" required>
+              <input type="text" name="user" class="custom-input" minlength="3" maxlength="20" placeholder="<?=LANG['user_name']?>" autocomplete="never" required>
             </div>
           </div>
 
           <div class="row">
             <div class="col-12 mb-4">
                 <select class="custom-select" name="job">
-                  <option value="-1" selected class="disabled">- <?= LANG['select_what_you_do'] ?> -</option>
+                  <option value="-1" selected class="disabled">- <?=LANG['select_what_you_do']?> -</option>
                   <option value="Web Designer">Web Designer</option>
                   <option value="Front End Developer">Front End Developer</option>
                   <option value="UI Designer">UI Designer</option>
@@ -51,43 +51,41 @@
 
           <div class="row">
             <div class="col-md-6 col-12 mb-4">
-              <input type="email" name="email" class="custom-input" placeholder="<?= LANG['email'] ?>" required>
+              <input type="email" name="email" class="custom-input" placeholder="<?=LANG['email']?>" required>
             </div>
             <div class="col-md-6 col-12 mb-4">
-              <input type="email" name="emailConfirm" class="custom-input" placeholder="<?= LANG['confirm_email'] ?>" required>
+              <input type="email" name="emailConfirm" class="custom-input" placeholder="<?=LANG['confirm_email']?>" required>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6 col-12 mb-4">
-              <input type="password" name="password" class="custom-input" placeholder="<?= LANG['password'] ?>" required>
+              <input type="password" name="password" class="custom-input" placeholder="<?=LANG['password']?>" required>
             </div>
             <div class="col-md-6 col-12 mb-4">
-              <input type="password" name="passwordConfirm" class="custom-input" placeholder="<?= LANG['confirm_password'] ?>" required>
+              <input type="password" name="passwordConfirm" class="custom-input" placeholder="<?=LANG['confirm_password']?>" required>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-1 mb-4">
-              <img class="icon-social" src="/assets/images/github.svg">
-            </div>
-            <div class="col-11 mb-4">
-              <input type="text" name="github" class="custom-input sign_up_icon" placeholder="https://github.com/..." pattern="https:\/\/github.com\/(.+)">
+            <div class="col-12 mb-4">
+              <label><?=LANG['github_account']?></label>
+              <input type="text" name="github" class="custom-input sign_up_icon github-bg" placeholder="https://github.com/..." pattern="https:\/\/github.com\/(.+)">
             </div>
           </div>
 
           <div class="row">
             <div class="col-12">
               <div>
-                <span class="title"><?= LANG['choose_an_avatar'] ?></span>
+                <span class="title"><?=LANG['choose_an_avatar']?></span>
               </div>
-              <span class="font-11">(<?= LANG['you_can_change_it_later'] ?>)</span>
+              <span class="font-11">(<?=LANG['you_can_change_it_later']?>)</span>
             </div>
             <div class="col-12">
               <div class="avatars">
-                <? foreach ($avatars['files'] as $avatar) { ?>
-                  <a href="#" data-image="<?= $avatar ?>"><img src="<?= $avatar ?>" alt="avatar"/></a>
-                  <? } ?>
+                <?foreach ($avatars['files'] as $avatar) {?>
+                  <a href="#" data-image="<?=$avatar?>"><img src="<?=$avatar?>" alt="avatar"/></a>
+                  <?}?>
                 </div>
               </div>
             </div>
@@ -95,16 +93,16 @@
 
 
             <div>
-              <input type="checkbox" name="conditions" id="conditions" class="filled-in chk-col-amber" required>
-              <label for="conditions"><?= LANG['at_send_form_accept'] ?> <a href="#" data-toggle="modal" data-target="#lopd"><?= LANG['privacy_policy'] ?></a>.</label>
+              <input type="checkbox" name="conditions" id="conditions" class="filled-in chk-col-amber">
+              <label for="conditions"><?=LANG['at_send_form_accept']?> <a href="#" data-toggle="modal" data-target="#lopd"><?=LANG['privacy_policy']?></a>.</label>
             </div>
             <div class="col-lg-12">
-              <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="<?= LANG['sign_up'] ?>">
+              <input type="submit" class="btn btn-large btn-raised bg-custom waves-effect" value="<?=LANG['sign_up']?>">
             </div>
             <div class="col-lg-12" id="errors"></div>
           </form>
           <div class="col-lg-12 m-t-20">
-            <a href="/<?= $_SERVER['VIEWS'] ?>/sign_in"><?= LANG['already_registered'] ?></a>
+            <a href="/<?=$_SERVER['VIEWS']?>/sign_in"><?=LANG['already_registered']?></a>
           </div>
         </div>
       </div>
@@ -112,7 +110,7 @@
   </div>
 
   <!-- Jquery Core Js -->
-  <script src="/assets/bundles/libscripts.bundle.js"></script>    
+  <script src="/assets/bundles/libscripts.bundle.js"></script>
   <script src="/assets/bundles/mainscripts.bundle.js"></script>
   <script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
   <script src="/assets/js/custom/autentication.js"></script>

@@ -194,16 +194,16 @@
                     </div>
                   </div>
 
-                  <div class="row row-content box-xampp">
+                  <div class="row row-content box-apache">
                     <div class="col-12">
                       <div class="mt-2 mb-2">
                         <div class="form-box">
                           <h6 class="code-title">
                             <div class="code-logo">
-                              <img src="/assets/images/logos/xampp.svg" alt="language-logo">
-                            </div>XAMPP
+                              <img src="/assets/images/logos/apache.svg" alt="language-logo">
+                            </div>Apache
                           </h6>
-                          <textarea class="box_otherCode" name="xampp" autocomplete="off"><?= $entry['xampp'] ?></textarea>
+                          <textarea class="box_otherCode" name="apache" autocomplete="off"><?= $entry['apache'] ?></textarea>
                           <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
                         </div>
                       </div>

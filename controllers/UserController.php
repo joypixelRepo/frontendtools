@@ -35,10 +35,32 @@ class UserController extends ApplicationController {
   }
 
   public function sign_up() {
-    if($this->user->sign_up()) {
-      parent::notify('success', LANG['sign_up_sucefull'], LANG['email_sign_up_sent'], '/'.$_SERVER['VIEWS'].'/sign_in', 0);
+    if(self::validate_sign_up()) {
+      if($this->user->sign_up()) {
+        parent::notify('success', LANG['sign_up_sucefull'], LANG['email_sign_up_sent'], '/'.$_SERVER['VIEWS'].'/sign_in', 0);
+      } else {
+        parent::notify('error', LANG['sign_up_error'], LANG['sign_up_error_text'], '/'.$_SERVER['VIEWS'].'/sign_up');
+      }
     } else {
       parent::notify('error', LANG['sign_up_error'], LANG['sign_up_error_text'], '/'.$_SERVER['VIEWS'].'/sign_up');
+    }
+  }
+
+  private function validate_sign_up() {
+    if(
+      preg_match('/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/i', $_POST['full-name'])
+      &&
+      preg_match('/^[a-z0-9]{3,20}$/i', $_POST['user'])
+      &&
+      preg_match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', $_POST['email'])
+      &&
+      preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])?[A-Za-z\d@$!%*?&]{6,30}$/', $_POST['password'])
+      &&
+      (isset($_POST['avatar']) && !empty($_POST['avatar']))
+      &&
+      (isset($_POST['conditions']) && $_POST['conditions'] == 'on')
+    ) {
+      return true;
     }
   }
 

@@ -1,7 +1,20 @@
-$('#comment-btn').on('click', function(e) {
+var cancel_comment_btn = $('#cancel-comment-btn');
+var comment_form = $('#comment-form');
+var comment_btn = $('#comment-btn');
+
+comment_btn.on('click', function(e) {
   e.preventDefault();
   $(this).hide();
-  $('#comment-form').show();
+  comment_form.show();
+  cancel_comment_btn.show();
+});
+
+cancel_comment_btn.on('click', function(e) {
+  e.preventDefault();
+  $(this).hide();
+  comment_form.hide();
+  cancel_comment_btn.hide();
+  comment_btn.show();
 });
 
 $('#comment-form').on('submit', function(e) {

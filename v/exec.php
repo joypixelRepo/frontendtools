@@ -213,20 +213,20 @@
             </div>
             <? } ?>
 
-            <? if(!empty($entry['xampp'])) { ?>
+            <? if(!empty($entry['apache'])) { ?>
             <div class="row mt-4">
               <div class="col-12">
                 <h6 class="code-title">
                   <div class="code-logo">
-                    <img src="/assets/images/logos/xampp.svg" alt="language-logo">
-                  </div>XAMPP
+                    <img src="/assets/images/logos/apache.svg" alt="language-logo">
+                  </div>Apache
                 </h6>
 
                 <div class="actions-codemirror text-right">
                   <a href="#" data-action="copy" title="<?= LANG['copy_to_clipboard'] ?>"><i class="material-icons">content_copy</i></a>
                   <a href="#" data-action="maximize" title="<?= LANG['view_on_fullscreen'] ?>"><i class="material-icons">aspect_ratio</i></a>
                 </div>
-                <textarea class="box_otherCode" autocomplete="off"><?= $entry['xampp'] ?></textarea>
+                <textarea class="box_otherCode" autocomplete="off"><?= $entry['apache'] ?></textarea>
                 <span class="fullscreen-leyend"><?= LANG['press_ctrl_intro_fullscreen'] ?></span>
               </div>
             </div>
@@ -330,6 +330,8 @@
               <? } ?>
 
               <? if($session) { ?>
+              <a href="#" id="cancel-comment-btn" class="col-pink cancel-comment-btn"><?= LANG['cancel'] ?></a>
+
               <a href="#" id="comment-btn" class="btn btn-raised bg-custom waves-effect"><i class="material-icons">chat</i>&nbsp;&nbsp;<?= LANG['write_comment'] ?></a>
               <form id="comment-form" action="/action/saveComment" method="POST" class="mt-2">
                 <div class="row">

@@ -11,6 +11,9 @@
     gtag('config', 'UA-141935705-1');
   </script>
 
+  <!-- Google AdSense -->
+  <script data-ad-client="ca-pub-4320137165818711" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <? $langVars = json_encode(LANG) ?>
 
 	<meta charset="utf-8">
@@ -53,7 +56,6 @@
     '/assets/plugins/sweetalert/sweetalert.css',
     '/assets/css/color_skins.css',
     '/assets/css/main.css',
-    '/assets/css/custom/custom.css',
   ];
 
   // push required styles for this view
@@ -68,7 +70,7 @@
     $allCss .= file_get_contents($_SERVER['DOCUMENT_ROOT'].$css);
     $allCss .= "\n";
   }
-  // minimize
+  // minimize css
   $allCss = preg_replace('/\/\*((?!\*\/).)*\*\//','',$allCss); // negative look ahead
   $allCss = preg_replace('/\s{2,}/',' ',$allCss);
   $allCss = preg_replace('/\s*([:;{}])\s*/','$1',$allCss);
@@ -77,6 +79,7 @@
   echo '<style type="text/css">'.$allCss.'</style>';
   ?>
 
+  <link rel="stylesheet" type="text/css" href="/assets/css/custom/custom.css?v=<?= time() ?>" media="all">
 	<link rel="stylesheet" type="text/css" href="/assets/css/custom/dynamic.php?v=<?= time() ?>" media="all">
 
 	<!-- common scrips -->
@@ -92,5 +95,7 @@
 </head>
 <body class="theme-orange">
 	<div id="cookies" style="display: none;">
-		<p><?= LANG['cookiesTxt'] ?> <input type="button" id="accept-cookies" class="btn btn-large btn-raised bg-custom waves-effect ml-2" value="<?= LANG['cookiesAccept'] ?>"></p>
+		<p><?= LANG['cookiesTxt'] ?></p>
+    <input type="button" id="accept-cookies" class="btn btn-large btn-raised bg-custom waves-effect mt-3 ml-2" value="<?= LANG['cookiesAccept'] ?>">
 	</div>
+  <div id="customMessage"></div>

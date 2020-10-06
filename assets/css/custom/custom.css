@@ -40,6 +40,32 @@
   display: flex;
 }
 /****** END SAME HEIGHT ******/
+#cookies {
+  position: fixed;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 300;
+  bottom: 0;
+  z-index: 9999;
+  background: #353535;
+  color: #fff;
+  width: 100%;
+  padding: 30px 10px;
+  box-shadow: 0px 1px 5px #0000007a;
+}
+#cookies p {
+  margin: 0;
+}
+#cookies a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #FFC107;
+  font-weight: 600;
+}
+#cookies a:hover {
+  color: #FFC107;
+}
 form.search-form {
   margin-block-end: 0;
 }
@@ -81,31 +107,6 @@ form.search-form {
 }
 .z-index-8 {
   z-index: 8;
-}
-#cookies {
-  position: fixed;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 300;
-  bottom: 0;
-  z-index: 9999;
-  background: #353535;
-  color: #fff;
-  width: 100%;
-  padding: 30px 10px;
-  box-shadow: 0px 1px 5px #0000007a;
-}
-#cookies p {
-  margin: 0;
-}
-#cookies a {
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid #FFC107;
-  font-weight: 600;
-}
-#cookies a:hover {
-  color: #FFC107;
 }
 .oculto {
   display: none;
@@ -1187,7 +1188,8 @@ textarea:required {
   background-position-x: right;
   background-size: 22px;
 }
-.custom-input.error {
+.custom-input.error,
+.custom-select.error {
   border: 1px solid red;
 }
 #errorTitle {
@@ -1199,6 +1201,12 @@ textarea:required {
 }
 button[type="submit"]:disabled {
   background: #b3b3b3 !important;
+}
+.entry-comments .cancel-comment-btn {
+  display: none;
+  background: #e91e63;
+  color: #fff !important;
+  padding: 8px 16px;
 }
 .entry-comments .entry-comment {
   padding: 16px 0;
@@ -1434,4 +1442,37 @@ img.menu-lang-flag {
 }
 .custom-modal label {
   line-height: 0.5;
+}
+#customMessage {
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: #000;
+  color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+}
+.btn-cancel,
+.btn-cancel:hover,
+.btn-cancel:focus {
+  background: #ec3b57;
+  color: #fff;
+}
+.btn-submit,
+.btn-submit:hover,
+.btn-submit:focus {
+  background: #FFC107;
+  color: #fff;
+}
+.github-bg {
+  background-image: url(/assets/images/github.svg);
+  background-size: 23px;
+  background-repeat: no-repeat;
+  background-position-x: 8px;
+  background-position-y: center;
+  padding-left: 42px;
 }
